@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ros2-node-map"
+version = "0.1.0.dev0"
+description = "ROS 2 graph discovery backend for ros2-node-map"
+readme = { text = "ROS 2 graph discovery backend for ros2-node-map.", content-type = "text/plain" }
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ros2-node-map contributors" }]
+dependencies = ["numpy>=1.26,<2", "pyyaml>=6,<7", "websockets>=14,<17"]
+
+[dependency-groups]
+dev = ["pytest>=7.4,<9"]
+
+[project.scripts]
+ros2-node-map-backend = "ros2_node_map.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ros2_node_map*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:launch_testing -p no:launch_ros -p no:ament_pep257 -p no:ament_copyright -p no:ament_xmllint -p no:ament_lint -p no:ament_flake8 -p no:colcon_core_warnings_stderr"
+

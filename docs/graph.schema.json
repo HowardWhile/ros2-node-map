@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ros2-node-map/ros2-node-map/blob/main/docs/graph.schema.json",
+  "title": "ros2-node-map graph snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "timestamp", "ros_domain_id", "nodes", "edges"],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "ros_domain_id": { "type": "string", "pattern": "^[0-9]+$" },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    }
+  },
+  "$defs": {
+    "nodeBase": {
+      "type": "object",
+      "required": ["id", "kind", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "enum": ["ros_node", "ros_topic", "ros_service", "ros_action"]
+        },
+        "label": { "type": "string", "pattern": "^/" }
+      }
+    },
+    "node": {
+      "oneOf": [
+        {
+          "allOf": [
+            { "$ref": "#/$defs/nodeBase" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "kind", "label", "name", "namespace"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^node:/" },
+                "kind": { "const": "ros_node" },
+                "label": { "type": "string", "pattern": "^/" },
+                "name": { "type": "string", "minLength": 1 },
+                "namespace": { "type": "string", "pattern": "^/" }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            { "$ref": "#/$defs/nodeBase" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "kind", "label"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^(topic|service|action):/" },
+                "kind": { "enum": ["ros_topic", "ros_service", "ros_action"] },
+                "label": { "type": "string", "pattern": "^/" },
+                "types": {
+                  "type": "array",
+                  "items": { "type": "string", "minLength": 1 },
+                  "uniqueItems": true
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "source", "target"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "enum": [
+            "publish", "subscribe", "service_client", "service_server",
+            "action_client", "action_server"
+          ]
+        },
+        "source": { "type": "string", "minLength": 1 },
+        "target": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
