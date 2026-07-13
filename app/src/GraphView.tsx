@@ -220,7 +220,7 @@ export function GraphView({
       style: graphStyle,
       minZoom: 0.08,
       maxZoom: 4,
-      wheelSensitivity: 0.2,
+      wheelSensitivity: 1.0,
       selectionType: "single",
     });
     const handleZoom = () => updateLabelVisibility(graph);

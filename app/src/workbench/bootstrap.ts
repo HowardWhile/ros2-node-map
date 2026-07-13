@@ -30,7 +30,45 @@ export function bootstrap(root: HTMLElement): () => void {
   Widget.attach(shell, root);
   shell.restoreOrDefault();
 
-  const cleanup = () => { shell.saveLayout(); shell.dispose(); store.dispose(); };
+  let resizeFrame: number | null = null;
+  const updateLayout = () => {
+    if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(() => {
+      resizeFrame = null;
+      const pinnedPanels = [
+        panels.findOpen("ros2-node-map.explorer"),
+        panels.findOpen("ros2-node-map.details"),
+      ].flatMap((panel) => {
+        const width = panel?.node.getBoundingClientRect().width ?? 0;
+        if (!panel || width === 0) return [];
+        const { minWidth, maxWidth } = panel.node.style;
+        panel.node.style.minWidth = `${width}px`;
+        panel.node.style.maxWidth = `${width}px`;
+        return [{ panel, minWidth, maxWidth }];
+      });
+      shell.fit();
+      shell.update();
+      window.requestAnimationFrame(() => {
+        for (const { panel, minWidth, maxWidth } of pinnedPanels) {
+          panel.node.style.minWidth = minWidth;
+          panel.node.style.maxWidth = maxWidth;
+        }
+      });
+    });
+  };
+  const resizeObserver = new ResizeObserver(updateLayout);
+  resizeObserver.observe(root);
+  window.addEventListener("resize", updateLayout);
+  updateLayout();
+
+  const cleanup = () => {
+    if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
+    resizeObserver.disconnect();
+    window.removeEventListener("resize", updateLayout);
+    shell.saveLayout();
+    shell.dispose();
+    store.dispose();
+  };
   window.addEventListener("beforeunload", cleanup, { once: true });
   return () => { window.removeEventListener("beforeunload", cleanup); cleanup(); };
 }
