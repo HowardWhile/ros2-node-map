@@ -1,8 +1,8 @@
 # ros2-node-map
 
 `ros2-node-map` is a modern ROS 2 topology explorer inspired by Obsidian's
-Graph View. A Python backend discovers the ROS graph and streams JSON snapshots
-to an Electron application, keeping ROS 2/DDS dependencies out of the UI.
+Graph View. A Python FastAPI backend discovers the ROS graph and streams JSON
+snapshots to an Electron application, keeping ROS 2/DDS dependencies out of the UI.
 
 This worktree is the Lumino Workbench PoC. It keeps the original WebSocket
 protocol, React views, Cytoscape graph, and Electron packaging, while Lumino
@@ -39,6 +39,19 @@ environment rather than PyPI. Start the live graph backend with:
 source /opt/ros/jazzy/setup.bash
 uv run ros2-node-map-backend serve
 ```
+
+The backend also exposes a documented HTTP API:
+
+```text
+Swagger UI:  http://127.0.0.1:8766/docs
+OpenAPI:     http://127.0.0.1:8766/openapi.json
+Health:      http://127.0.0.1:8766/api/health
+Snapshot:    http://127.0.0.1:8766/api/snapshot
+WebSocket:   ws://127.0.0.1:8766/ws/graph
+```
+
+The original `ws://127.0.0.1:8766/` graph stream remains available for existing
+frontend clients.
 
 To inspect one snapshot without the UI:
 
