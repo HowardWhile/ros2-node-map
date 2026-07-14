@@ -5,6 +5,7 @@ import type { GraphEdgeKind, GraphNode, GraphSnapshot } from "./types";
 interface DetailPanelProps {
   snapshot: GraphSnapshot | null;
   selectedNodeIds: string[];
+  onSelectNode: (id: string) => void;
 }
 
 const RELATION_LABELS: Record<GraphEdgeKind, string> = {
@@ -25,6 +26,7 @@ function commandFor(node: GraphNode): string {
 export function DetailPanel({
   snapshot,
   selectedNodeIds,
+  onSelectNode,
 }: DetailPanelProps) {
   const [copied, setCopied] = useState(false);
   const selectedNodes = useMemo(
@@ -81,7 +83,10 @@ export function DetailPanel({
           {relationships.map(([kind, peers]) => (
             <section className="detail-relations" key={kind}>
               <h3>{RELATION_LABELS[kind]} <span>{peers.length}</span></h3>
-              {peers.map((peer) => <div key={peer.id}>{peer.label}</div>)}
+              {peers.map((peer) => (
+                <button key={peer.id} type="button" title={`Select ${peer.label}`}
+                  onClick={() => onSelectNode(peer.id)}>{peer.label}</button>
+              ))}
             </section>
           ))}
           <section className="detail-command">

@@ -325,7 +325,9 @@ button, input { font: inherit; }
 .detail-relations { margin: 18px 0; }
 .detail-relations h3, .detail-command h3 { margin: 0 0 7px; color: #778398; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
 .detail-relations h3 span { margin-left: 4px; color: #566174; }
-.detail-relations div { padding: 4px 0; overflow: hidden; color: #aeb8c7; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.detail-relations button { display: block; width: 100%; padding: 4px 6px; overflow: hidden; color: #aeb8c7; border: 0; border-radius: 4px; background: transparent; cursor: pointer; font-size: 11px; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+.detail-relations button:hover { color: #edf3ff; background: #283141; }
+.detail-relations button:focus-visible { outline: 1px solid #7aa2f7; outline-offset: 1px; }
 .detail-command { position: relative; margin-top: 22px; }
 .detail-command code { display: block; padding: 9px 50px 9px 10px; overflow-wrap: anywhere; color: #a9b9d0; border: 1px solid #303846; border-radius: 5px; background: #0f1318; font-size: 10px; }
 .detail-command button { position: absolute; right: 5px; bottom: 5px; padding: 4px 7px; color: #aeb8c8; border: 0; border-radius: 3px; background: #283141; cursor: pointer; font-size: 10px; }
