@@ -201,6 +201,19 @@ function startAiryWebLayout(graph: Core): Layouts {
   return layout;
 }
 
+function fitVisibleNodes(graph: Core): void {
+  if (graph.elements().empty()) return;
+  const visibleNodes = graph.nodes().not(".is-context-dimmed");
+  if (visibleNodes.empty()) return;
+  graph.animate({
+    fit: { eles: visibleNodes, padding: 45 },
+    duration: 550,
+    easing: "ease-in-out-cubic",
+    queue: false,
+    complete: () => updateLabelVisibility(graph, true),
+  });
+}
+
 export function GraphView({
   snapshot,
   selectionRequest,
@@ -249,6 +262,19 @@ export function GraphView({
     graph.on("zoom", handleZoom);
     graph.on("select unselect", "node", updateSelectionFocus);
     graph.on("tap", clearOnNonNodeTap);
+    let lastMiddleClickAt = 0;
+    const handleMiddleMouseDown = (event: MouseEvent) => {
+      if (event.button !== 1) return;
+      event.preventDefault();
+      const now = performance.now();
+      if (now - lastMiddleClickAt < 350) fitVisibleNodes(graph);
+      lastMiddleClickAt = now;
+    };
+    const preventMiddleClickDefault = (event: MouseEvent) => {
+      if (event.button === 1) event.preventDefault();
+    };
+    container.addEventListener("mousedown", handleMiddleMouseDown);
+    container.addEventListener("auxclick", preventMiddleClickDefault);
     graphRef.current = graph;
     updateLabelVisibility(graph);
 
@@ -259,6 +285,8 @@ export function GraphView({
       graph.off("zoom", handleZoom);
       graph.off("select unselect", "node", updateSelectionFocus);
       graph.off("tap", clearOnNonNodeTap);
+      container.removeEventListener("mousedown", handleMiddleMouseDown);
+      container.removeEventListener("auxclick", preventMiddleClickDefault);
       graph.destroy();
       resizeObserver.disconnect();
       graphRef.current = null;
@@ -308,16 +336,8 @@ export function GraphView({
 
   const fitGraph = () => {
     const graph = graphRef.current;
-    if (!graph || graph.elements().empty()) return;
-    const visibleNodes = graph.nodes().not(".is-context-dimmed");
-    if (visibleNodes.empty()) return;
-    graph.animate({
-      fit: { eles: visibleNodes, padding: 45 },
-      duration: 550,
-      easing: "ease-in-out-cubic",
-      queue: false,
-      complete: () => updateLabelVisibility(graph, true),
-    });
+    if (!graph) return;
+    fitVisibleNodes(graph);
   };
 
   const zoomGraph = (multiplier: number) => {
@@ -368,6 +388,10 @@ export function GraphView({
 
   return (
     <section className="graph-panel" aria-label="ROS 2 graph">
+      <div className="graph-domain-id" title="ROS_DOMAIN_ID">
+        <span>ROS_DOMAIN_ID</span>
+        <strong>{snapshot?.ros_domain_id ?? "—"}</strong>
+      </div>
       {!snapshot && (
         <div className="empty-state">
           <strong>Waiting for graph data</strong>
