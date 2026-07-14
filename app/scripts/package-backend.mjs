@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
@@ -16,6 +16,21 @@ function run(command, args) {
   });
   if (result.error) throw result.error;
   if (result.status !== 0) process.exit(result.status ?? 1);
+}
+
+function removeNonRuntimeFiles(directory) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const entryPath = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      if (["__pycache__", "test", "tests", ".pytest_cache"].includes(entry.name)) {
+        rmSync(entryPath, { recursive: true, force: true });
+      } else {
+        removeNonRuntimeFiles(entryPath);
+      }
+    } else if (entry.name.endsWith(".pyc")) {
+      rmSync(entryPath, { force: true });
+    }
+  }
 }
 
 rmSync(runtimeDirectory, { recursive: true, force: true });
@@ -51,3 +66,4 @@ rmSync(join(sitePackagesPath, "fastapi", ".agents"), {
   recursive: true,
   force: true,
 });
+removeNonRuntimeFiles(sitePackagesPath);

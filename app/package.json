@@ -38,6 +38,9 @@
     "appId": "io.github.ros2-node-map",
     "productName": "ros2-node-map",
     "asar": true,
+    "electronLanguages": [
+      "en-US"
+    ],
     "directories": {
       "output": "release"
     },
