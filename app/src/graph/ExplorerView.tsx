@@ -8,5 +8,9 @@ export function ExplorerView({ store }: { store: GraphSessionStore }) {
     onSelectNode={(id, additive) => store.requestNodeSelection(id, additive)}
     showDebugResources={state.showDebugResources} onShowDebugResourcesChange={(value) => store.setShowDebugResources(value)}
     showInfrastructureResources={state.showInfrastructureResources}
-    onShowInfrastructureResourcesChange={(value) => store.setShowInfrastructureResources(value)} />;
+    onShowInfrastructureResourcesChange={(value) => store.setShowInfrastructureResources(value)}
+    showCommonServices={state.showCommonServices}
+    onShowCommonServicesChange={(value) => store.setShowCommonServices(value)}
+    showLifecycleServices={state.showLifecycleServices}
+    onShowLifecycleServicesChange={(value) => store.setShowLifecycleServices(value)} />;
 }

@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from typing import Any, Callable
 
 from .graph_model import EdgeKind, GraphEdge, GraphNode, GraphSnapshot, NodeKind
+from .service_reader import ServiceGraphReader
 
 
 class GraphReader:
@@ -27,7 +28,8 @@ class GraphReader:
         nodes: dict[str, GraphNode] = {}
         edges: dict[str, GraphEdge] = {}
 
-        for name, namespace in self._node.get_node_names_and_namespaces():
+        node_names_and_namespaces = tuple(self._node.get_node_names_and_namespaces())
+        for name, namespace in node_names_and_namespaces:
             graph_node = GraphNode.ros_node(name, namespace)
             nodes[graph_node.id] = graph_node
 
@@ -48,6 +50,12 @@ class GraphReader:
                 nodes[subscriber.id] = subscriber
                 edge = GraphEdge.create(EdgeKind.SUBSCRIBE, topic.id, subscriber.id)
                 edges[edge.id] = edge
+
+        service_nodes, service_edges = ServiceGraphReader(self._node).read(
+            node_names_and_namespaces
+        )
+        nodes.update({node.id: node for node in service_nodes})
+        edges.update({edge.id: edge for edge in service_edges})
 
         return GraphSnapshot(
             timestamp=self._now(),

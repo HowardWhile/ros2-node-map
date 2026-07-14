@@ -166,6 +166,8 @@ button, input { font: inherit; }
 
 .graph-sidebar {
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   border-right: 1px solid #292f3a;
@@ -200,14 +202,17 @@ button, input { font: inherit; }
 .sidebar-filter button { width: 22px; height: 22px; padding: 0; color: #748095; border: 0; border-radius: 4px; background: transparent; cursor: pointer; line-height: 1; }
 .sidebar-filter button:hover { color: #d2d8e2; background: #252d39; }
 
-.sidebar-options { display: flex; align-items: center; gap: 6px; min-height: 36px; padding: 5px 8px; border-bottom: 1px solid #252b35; }
+.sidebar-options { display: flex; flex: 0 0 auto; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 36px; padding: 5px 8px; border-bottom: 1px solid #252b35; }
 .filter-toggle { position: relative; display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; color: #7e899b; border: 1px solid #343c49; border-radius: 5px; background: #191e26; cursor: pointer; font-size: 10px; font-weight: 650; letter-spacing: 0.04em; user-select: none; }
 .filter-toggle:hover { color: #c8d0dc; border-color: #4b586b; }
 .filter-toggle.is-active { color: #11151b; border-color: #e0af68; background: #e0af68; box-shadow: 0 0 8px #e0af6844; }
 .filter-toggle input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
 .filter-toggle-infrastructure.is-active { border-color: #7aa2f7; background: #7aa2f7; box-shadow: 0 0 8px #7aa2f744; }
+.filter-toggle-common-services.is-active { border-color: #73daca; background: #73daca; box-shadow: 0 0 8px #73daca44; }
+.filter-toggle-lifecycle.is-active { border-color: #bb9af7; background: #bb9af7; box-shadow: 0 0 8px #bb9af744; }
 .resource-tree {
-  height: calc(100% - 122px);
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 8px 6px 18px;
   overflow-x: hidden;
   overflow-y: auto;

@@ -10,6 +10,10 @@ interface SidebarProps {
   onShowDebugResourcesChange: (show: boolean) => void;
   showInfrastructureResources: boolean;
   onShowInfrastructureResourcesChange: (show: boolean) => void;
+  showCommonServices: boolean;
+  onShowCommonServicesChange: (show: boolean) => void;
+  showLifecycleServices: boolean;
+  onShowLifecycleServicesChange: (show: boolean) => void;
 }
 
 interface TreeGroup { kind: GraphNodeKind; label: string; }
@@ -31,6 +35,8 @@ export function Sidebar({
   snapshot, selectedNodeIds, onSelectNode,
   showDebugResources, onShowDebugResourcesChange,
   showInfrastructureResources, onShowInfrastructureResourcesChange,
+  showCommonServices, onShowCommonServicesChange,
+  showLifecycleServices, onShowLifecycleServicesChange,
 }: SidebarProps) {
   const [filter, setFilter] = useState("");
   const selectedIds = new Set(selectedNodeIds);
@@ -65,6 +71,16 @@ export function Sidebar({
             <input type="checkbox" checked={showInfrastructureResources}
               onChange={(event) => onShowInfrastructureResourcesChange(event.target.checked)} />
             <span>Infrastructure</span>
+          </label>
+          <label className={`filter-toggle filter-toggle-common-services${showCommonServices ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showCommonServices}
+              onChange={(event) => onShowCommonServicesChange(event.target.checked)} />
+            <span>Common services</span>
+          </label>
+          <label className={`filter-toggle filter-toggle-lifecycle${showLifecycleServices ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showLifecycleServices}
+              onChange={(event) => onShowLifecycleServicesChange(event.target.checked)} />
+            <span>Lifecycle</span>
           </label>
         </div>
         <nav className="resource-tree" aria-label="ROS entities by kind">

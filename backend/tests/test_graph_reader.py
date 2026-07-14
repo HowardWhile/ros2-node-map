@@ -30,6 +30,15 @@ class FakeRosNode:
             return [Endpoint("listener", "/demo")]
         return []
 
+    def get_service_names_and_types(self):
+        return []
+
+    def get_client_names_and_types_by_node(self, node_name, namespace):
+        return []
+
+    def get_service_names_and_types_by_node(self, node_name, namespace):
+        return []
+
 
 def test_reader_builds_topic_graph_snapshot() -> None:
     timestamp = datetime(2026, 7, 8, tzinfo=timezone.utc)
@@ -60,3 +69,28 @@ def test_reader_deduplicates_repeated_endpoint_edges() -> None:
     snapshot = GraphReader(RepeatedEndpointNode()).snapshot()
     publish_edges = [edge for edge in snapshot.edges if edge.kind.value == "publish"]
     assert len(publish_edges) == 1
+
+
+def test_reader_builds_service_client_and_server_edges() -> None:
+    class ServiceNode(FakeRosNode):
+        def get_service_names_and_types(self):
+            return [("/add_two_ints", ["example_interfaces/srv/AddTwoInts"])]
+
+        def get_client_names_and_types_by_node(self, node_name, namespace):
+            if (node_name, namespace) == ("listener", "/demo"):
+                return [("/add_two_ints", ["example_interfaces/srv/AddTwoInts"])]
+            return []
+
+        def get_service_names_and_types_by_node(self, node_name, namespace):
+            if (node_name, namespace) == ("talker", "/demo"):
+                return [("/add_two_ints", ["example_interfaces/srv/AddTwoInts"])]
+            return []
+
+    snapshot = GraphReader(ServiceNode()).snapshot()
+
+    service = next(node for node in snapshot.nodes if node.id == "service:/add_two_ints")
+    assert service.types == ("example_interfaces/srv/AddTwoInts",)
+    assert [edge.id for edge in snapshot.edges if edge.kind.value.startswith("service_")] == [
+        "service_client:node:/demo/listener->service:/add_two_ints",
+        "service_server:service:/add_two_ints->node:/demo/talker",
+    ]
