@@ -1,12 +1,12 @@
 import { CommandRegistry } from "@lumino/commands";
 import { Widget } from "@lumino/widgets";
-import { createElement } from "react";
+import { createElement, type ReactNode } from "react";
 import { DetailsView } from "../graph/DetailsView";
 import { ExplorerView } from "../graph/ExplorerView";
 import { GraphPanelView } from "../graph/GraphPanelView";
 import { GraphSessionStore } from "../graph/GraphSessionStore";
 import { ToolbarView } from "../graph/ToolbarView";
-import { PanelRegistry } from "./PanelRegistry";
+import { PanelRegistry, type PanelId } from "./PanelRegistry";
 import { ReactPanelWidget } from "./ReactPanelWidget";
 import { registerCommands } from "./commands";
 import { WorkbenchShell } from "./WorkbenchShell";
@@ -15,18 +15,32 @@ export function bootstrap(root: HTMLElement): () => void {
   const store = new GraphSessionStore();
   const commands = new CommandRegistry();
   const panels = new PanelRegistry();
-  panels.register({ id: "ros2-node-map.explorer", title: "Explorer", closable: true,
-    create: () => new ReactPanelWidget({ id: "ros2-node-map.explorer", title: "Explorer", render: () => createElement(ExplorerView, { store }) }) });
-  panels.register({ id: "ros2-node-map.graph", title: "ROS Graph", closable: false,
-    create: () => new ReactPanelWidget({ id: "ros2-node-map.graph", title: "ROS Graph", closable: false, render: () => createElement(GraphPanelView, { store }) }) });
-  panels.register({ id: "ros2-node-map.details", title: "Details", closable: true,
-    create: () => new ReactPanelWidget({ id: "ros2-node-map.details", title: "Details", render: () => createElement(DetailsView, { store }) }) });
+  const registerPanel = (id: PanelId, title: string, closable: boolean, render: () => ReactNode) => {
+    panels.register({
+      id,
+      title,
+      closable,
+      create: () => new ReactPanelWidget({ id, title, closable, render }),
+    });
+  };
+
+  registerPanel("ros2-node-map.explorer", "Explorer", true,
+    () => createElement(ExplorerView, { store }));
+  registerPanel("ros2-node-map.graph", "ROS Graph", false,
+    () => createElement(GraphPanelView, { store }));
+  registerPanel("ros2-node-map.details", "Details", true,
+    () => createElement(DetailsView, { store }));
 
   const shell = new WorkbenchShell(commands, panels);
-  const toolbar = new ReactPanelWidget({ id: "ros2-node-map.toolbar", title: "Toolbar", closable: false, render: () => createElement(ToolbarView, { store }) });
+  const toolbar = new ReactPanelWidget({
+    id: "ros2-node-map.toolbar",
+    title: "Toolbar",
+    closable: false,
+    render: () => createElement(ToolbarView, { store }),
+  });
   toolbar.addClass("workbench-toolbar");
   shell.insertWidget(1, toolbar);
-  registerCommands(commands, shell, panels);
+  registerCommands(commands, shell);
   Widget.attach(shell, root);
   shell.restoreOrDefault();
 

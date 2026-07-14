@@ -210,6 +210,7 @@ export function GraphView({
   const graphRef = useRef<Core | null>(null);
   const forceLayoutRef = useRef<Layouts | null>(null);
   const topologyRef = useRef("");
+  const zoomTargetRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -308,12 +309,37 @@ export function GraphView({
   const fitGraph = () => {
     const graph = graphRef.current;
     if (!graph || graph.elements().empty()) return;
+    const visibleNodes = graph.nodes().not(".is-context-dimmed");
+    if (visibleNodes.empty()) return;
     graph.animate({
-      fit: { eles: graph.elements(), padding: 45 },
+      fit: { eles: visibleNodes, padding: 45 },
       duration: 550,
       easing: "ease-in-out-cubic",
       queue: false,
       complete: () => updateLabelVisibility(graph, true),
+    });
+  };
+
+  const zoomGraph = (multiplier: number) => {
+    const graph = graphRef.current;
+    if (!graph || graph.elements().empty()) return;
+    const level = Math.min(
+      graph.maxZoom(),
+      Math.max(graph.minZoom(), (zoomTargetRef.current ?? graph.zoom()) * multiplier),
+    );
+    zoomTargetRef.current = level;
+    // Retarget from the current animated value instead of competing with the previous animation.
+    graph.stop();
+    graph.animate({
+      zoom: {
+        level,
+        renderedPosition: { x: graph.width() / 2, y: graph.height() / 2 },
+      },
+      duration: 180,
+      easing: "ease-out-cubic",
+      complete: () => {
+        if (zoomTargetRef.current === level) zoomTargetRef.current = null;
+      },
     });
   };
 
@@ -349,9 +375,17 @@ export function GraphView({
         </div>
       )}
       <div className="graph-controls" aria-label="Graph view controls">
-        <button type="button" onClick={fitGraph} disabled={!snapshot} title="Fit all nodes">
+        <button type="button" onClick={() => zoomGraph(1.2)} disabled={!snapshot} title="Zoom in">
+          <span aria-hidden="true">+</span>
+          <span className="sr-only">Zoom in</span>
+        </button>
+        <button type="button" onClick={() => zoomGraph(1 / 1.2)} disabled={!snapshot} title="Zoom out">
+          <span aria-hidden="true">−</span>
+          <span className="sr-only">Zoom out</span>
+        </button>
+        <button type="button" onClick={fitGraph} disabled={!snapshot} title="Fit visible nodes">
           <span aria-hidden="true">⛶</span>
-          <span className="sr-only">Fit all nodes</span>
+          <span className="sr-only">Fit visible nodes</span>
         </button>
         <button type="button" onClick={resetLayout} disabled={!snapshot} title="Reset layout">
           <span aria-hidden="true">↻</span>

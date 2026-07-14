@@ -55,6 +55,20 @@ button, input { font: inherit; }
 .status-connected > span { background: #9ece6a; box-shadow: 0 0 7px #9ece6a99; }
 .status-connecting > span { background: #e0af68; }
 .status-error > span { background: #f7768e; }
+.ros-domain-id {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  color: #9aa4b4;
+  border: 1px solid #303846;
+  border-radius: 999px;
+  background: #0f1318;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.ros-domain-id span { color: #6f7b8c; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+.ros-domain-id strong { color: #e1e6ee; font-variant-numeric: tabular-nums; font-weight: 700; }
 .graph-stats { display: flex; gap: 12px; margin-left: auto; color: #7e899b; font-size: 12px; white-space: nowrap; }
 
 .graph-panel { position: relative; min-height: 0; overflow: hidden; background: radial-gradient(circle at center, #1a2029 0, #11151b 70%); }
@@ -303,6 +317,7 @@ button, input { font: inherit; }
   .toolbar { gap: 8px; padding: 0 10px; }
   .connection-form { min-width: 0; }
   .connection-form input { min-width: 0; }
+  .ros-domain-id { display: none; }
   .graph-stats { display: none; }
   .connection-status { font-size: 0; }
 }

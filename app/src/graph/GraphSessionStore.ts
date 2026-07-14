@@ -48,9 +48,10 @@ export class GraphSessionStore {
   setShowDebugResources(value: boolean): void { this.update({ showDebugResources: value }); }
   setShowInfrastructureResources(value: boolean): void { this.update({ showInfrastructureResources: value }); }
 
-  connect(): void {
+  connect(force = false): void {
     const backendUrl = this.state.urlInput.trim();
-    if (!backendUrl || backendUrl === this.state.backendUrl) return;
+    if (!backendUrl) return;
+    if (!force && backendUrl === this.state.backendUrl) return;
     this.cleanup?.();
     this.cleanup = null;
     this.update({ backendUrl, snapshot: null, selectedNodeIds: [], selectionRequest: null });
