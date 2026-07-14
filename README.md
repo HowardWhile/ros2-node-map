@@ -1,10 +1,11 @@
 # ros2-node-map
 
-
 `ros2-node-map` is an advanced `rqt_graph`-style viewer for quickly
 understanding the overall topology of a ROS 2 system.
 
-<video controls src="./docs/ros2-node-map.mp4" title="Title"></video>
+![image-20260715015056371](./pic/README/image-20260715015056371.png)
+
+[Watch the demo video](./pic/README/ros2-node-map.mp4)
 
 ## Backend development
 
