@@ -1,24 +1,10 @@
 # ros2-node-map
 
-`ros2-node-map` is a modern ROS 2 topology explorer inspired by Obsidian's
-Graph View. A Python FastAPI backend discovers the ROS graph and streams JSON
-snapshots to an Electron application, keeping ROS 2/DDS dependencies out of the UI.
 
-This worktree is the Lumino Workbench PoC. It keeps the original WebSocket
-protocol, React views, Cytoscape graph, and Electron packaging, while Lumino
-owns the dockable Explorer, ROS Graph, and Details panels. The implementation
-plan and acceptance checklist are in [plan.md](plan.md).
+`ros2-node-map` is an advanced `rqt_graph`-style viewer for quickly
+understanding the overall topology of a ROS 2 system.
 
-> Status: initial project skeleton. Discovery and visualization are implemented
-> in the following milestones described in [SPEC.md](SPEC.md).
-
-## Architecture
-
-```text
-ROS 2 Runtime -> rclpy backend -> WebSocket JSON -> Electron/React frontend
-```
-
-See [docs/architecture.md](docs/architecture.md) for the component boundaries.
+<video controls src="./docs/ros2-node-map.mp4" title="Title"></video>
 
 ## Backend development
 
@@ -39,19 +25,6 @@ environment rather than PyPI. Start the live graph backend with:
 source /opt/ros/jazzy/setup.bash
 uv run ros2-node-map-backend serve
 ```
-
-The backend also exposes a documented HTTP API:
-
-```text
-Swagger UI:  http://127.0.0.1:8766/docs
-OpenAPI:     http://127.0.0.1:8766/openapi.json
-Health:      http://127.0.0.1:8766/api/health
-Snapshot:    http://127.0.0.1:8766/api/snapshot
-WebSocket:   ws://127.0.0.1:8766/ws/graph
-```
-
-The original `ws://127.0.0.1:8766/` graph stream remains available for existing
-frontend clients.
 
 To inspect one snapshot without the UI:
 
@@ -78,7 +51,8 @@ npm run electron:dev
 
 ## Build Linux AppImage
 
-Install the frontend dependencies and build the Linux x86-64 AppImage:
+Build the Linux x86-64 AppImage from an Ubuntu 24.04 / Python 3.12 environment.
+The build machine needs Node.js LTS, npm, Python 3, and [uv](https://docs.astral.sh/uv/):
 
 ```bash
 cd app
@@ -86,19 +60,28 @@ npm install
 npm run dist
 ```
 
+`npm run dist` builds the Electron renderer, creates a minimal Python runtime
+from `backend/uv.lock`, and packages both into one AppImage. Generated runtime
+files and release artifacts are not committed to Git.
+
 The packaged executable is written to:
 
 ```text
 app/release/ros2-node-map-0.1.0-dev.0.AppImage
 ```
 
-The AppImage includes the Python backend and its application dependencies. On
-startup it automatically loads `/opt/ros/jazzy/setup.bash` and starts the graph
-server locally. The target Ubuntu system must have ROS 2 Jazzy installed; ROS 2
-and its DDS libraries are intentionally not bundled into the AppImage.
+The AppImage includes the Electron UI, the Python backend, and the backend's
+application dependencies. On startup it automatically loads
+`/opt/ros/jazzy/setup.bash` and starts the graph server at
+`ws://127.0.0.1:8766`; no separate backend command is required.
 
-`npm run dist` requires `uv` and Python 3 on the build machine so it can create
-the bundled backend runtime from `backend/uv.lock`.
+The target system must be Ubuntu with ROS 2 Jazzy and `rclpy` installed. ROS 2,
+DDS implementations, and their native libraries are intentionally not bundled
+in the AppImage.
+
+The default packaging compression balances download size with application
+startup time. Do not change it to maximum compression unless a smaller download
+is more important than launch responsiveness.
 
 If the system does not provide FUSE 2, run the AppImage in extraction mode:
 
