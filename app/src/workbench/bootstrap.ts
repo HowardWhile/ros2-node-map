@@ -11,6 +11,18 @@ import { ReactPanelWidget } from "./ReactPanelWidget";
 import { registerCommands } from "./commands";
 import { WorkbenchShell } from "./WorkbenchShell";
 
+const EXPLORER_CONTENT_CHROME_WIDTH = 88;
+const STACKED_DETAILS_ASPECT_RATIO = 1.2;
+
+function initialExplorerWidth(root: HTMLElement, longestLabel: string): number {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  if (!context) return Math.floor(root.clientWidth / 3);
+  context.font = "11px Inter, ui-sans-serif, system-ui, sans-serif";
+  const labelWidth = Math.ceil(context.measureText(longestLabel).width);
+  return Math.min(Math.floor(root.clientWidth / 3), labelWidth + EXPLORER_CONTENT_CHROME_WIDTH);
+}
+
 export function bootstrap(root: HTMLElement): () => void {
   const store = new GraphSessionStore();
   const commands = new CommandRegistry();
@@ -44,30 +56,42 @@ export function bootstrap(root: HTMLElement): () => void {
   Widget.attach(shell, root);
   shell.restoreOrDefault();
 
+  let explorerSized = false;
+  let explorerSizingFrame: number | null = null;
+  const sizeExplorerFromLabels = () => {
+    if (explorerSized) return;
+    const labels = (store.getSnapshot().visibleSnapshot?.nodes ?? [])
+      .map((node) => node.label);
+    const longestLabel = labels.reduce((longest, label) => label.length > longest.length ? label : longest, "");
+    if (!longestLabel || root.clientWidth === 0) return;
+    explorerSized = true;
+    explorerSizingFrame = window.requestAnimationFrame(() => {
+      explorerSizingFrame = null;
+      shell.setInitialExplorerWidth(initialExplorerWidth(root, longestLabel));
+    });
+  };
+  const unsubscribeSizing = store.subscribe(sizeExplorerFromLabels);
+  sizeExplorerFromLabels();
+
   let resizeFrame: number | null = null;
+  let detailsBelowExplorer: boolean | null = null;
+  let initialExplorerLimitApplied = false;
   const updateLayout = () => {
     if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
     resizeFrame = window.requestAnimationFrame(() => {
       resizeFrame = null;
-      const pinnedPanels = [
-        panels.findOpen("ros2-node-map.explorer"),
-        panels.findOpen("ros2-node-map.details"),
-      ].flatMap((panel) => {
-        const width = panel?.node.getBoundingClientRect().width ?? 0;
-        if (!panel || width === 0) return [];
-        const { minWidth, maxWidth } = panel.node.style;
-        panel.node.style.minWidth = `${width}px`;
-        panel.node.style.maxWidth = `${width}px`;
-        return [{ panel, minWidth, maxWidth }];
-      });
+      const stackDetails = root.clientWidth / Math.max(root.clientHeight, 1) < STACKED_DETAILS_ASPECT_RATIO;
+      if (detailsBelowExplorer !== stackDetails) {
+        detailsBelowExplorer = stackDetails;
+        shell.setDetailsBelowExplorer(stackDetails);
+      }
+      shell.setExplorerMaxWidth(Math.floor(root.clientWidth / 2));
+      if (!initialExplorerLimitApplied && root.clientWidth > 0) {
+        initialExplorerLimitApplied = true;
+        shell.constrainExplorerWidth(Math.floor(root.clientWidth / 3));
+      }
       shell.fit();
       shell.update();
-      window.requestAnimationFrame(() => {
-        for (const { panel, minWidth, maxWidth } of pinnedPanels) {
-          panel.node.style.minWidth = minWidth;
-          panel.node.style.maxWidth = maxWidth;
-        }
-      });
     });
   };
   const resizeObserver = new ResizeObserver(updateLayout);
@@ -77,6 +101,8 @@ export function bootstrap(root: HTMLElement): () => void {
 
   const cleanup = () => {
     if (resizeFrame !== null) window.cancelAnimationFrame(resizeFrame);
+    if (explorerSizingFrame !== null) window.cancelAnimationFrame(explorerSizingFrame);
+    unsubscribeSizing();
     resizeObserver.disconnect();
     window.removeEventListener("resize", updateLayout);
     shell.saveLayout();
