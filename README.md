@@ -92,14 +92,13 @@ The packaged executable is written to:
 app/release/ros2-node-map-0.1.0-dev.0.AppImage
 ```
 
-The AppImage contains the Electron frontend only. Start the Python backend
-separately before launching it:
+The AppImage includes the Python backend and its application dependencies. On
+startup it automatically loads `/opt/ros/jazzy/setup.bash` and starts the graph
+server locally. The target Ubuntu system must have ROS 2 Jazzy installed; ROS 2
+and its DDS libraries are intentionally not bundled into the AppImage.
 
-```bash
-cd backend
-source /opt/ros/jazzy/setup.bash
-uv run ros2-node-map-backend serve
-```
+`npm run dist` requires `uv` and Python 3 on the build machine so it can create
+the bundled backend runtime from `backend/uv.lock`.
 
 If the system does not provide FUSE 2, run the AppImage in extraction mode:
 
