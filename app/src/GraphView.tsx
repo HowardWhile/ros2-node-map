@@ -182,6 +182,10 @@ function startAiryWebLayout(graph: Core): Layouts {
     idealEdgeLength: () => 135,
   }).run();
 
+  return startContinuousForceLayout(graph);
+}
+
+function startContinuousForceLayout(graph: Core): Layouts {
   const forceOptions = {
     name: "cola",
     animate: true,
@@ -199,6 +203,91 @@ function startAiryWebLayout(graph: Core): Layouts {
   const layout = graph.layout(forceOptions);
   layout.run();
   return layout;
+}
+
+function placeNewNodes(graph: Core, nodeIds: string[]): void {
+  const newNodeIds = new Set(nodeIds);
+  const newNodes = graph.nodes().filter((node) => newNodeIds.has(node.id()));
+  const existingNodes = graph.nodes().not(newNodes);
+  const extent = graph.extent();
+  const fallback = existingNodes.empty()
+    ? { x: graph.width() / 2, y: graph.height() / 2 }
+    : { x: (extent.x1 + extent.x2) / 2, y: (extent.y1 + extent.y2) / 2 };
+  const occupied: Array<{ x: number; y: number }> = [];
+  existingNodes.forEach((node) => { occupied.push(node.position()); });
+
+  newNodes.forEach((node, index) => {
+    const neighbors = node.neighborhood().nodes().not(newNodes);
+    const anchor = neighbors.empty() ? fallback : neighbors.position();
+    const candidates = [{ ...anchor }];
+    for (const radius of [100, 170, 240]) {
+      for (let step = 0; step < 16; step += 1) {
+        const angle = (step / 16) * Math.PI * 2 + index * 0.7;
+        candidates.push({ x: anchor.x + Math.cos(angle) * radius, y: anchor.y + Math.sin(angle) * radius });
+      }
+    }
+    const position = candidates.reduce((best, candidate) => {
+      const closest = occupied.length === 0 ? Infinity : Math.min(...occupied.map((point) =>
+        Math.hypot(candidate.x - point.x, candidate.y - point.y),
+      ));
+      const bestClosest = occupied.length === 0 ? Infinity : Math.min(...occupied.map((point) =>
+        Math.hypot(best.x - point.x, best.y - point.y),
+      ));
+      const candidateScore = closest - Math.hypot(candidate.x - anchor.x, candidate.y - anchor.y) * 0.2;
+      const bestScore = bestClosest - Math.hypot(best.x - anchor.x, best.y - anchor.y) * 0.2;
+      return candidateScore > bestScore ? candidate : best;
+    });
+    node.position(position);
+    occupied.push(position);
+  });
+}
+
+function syncGraphSnapshot(graph: Core, snapshot: GraphSnapshot): {
+  addedNodeIds: string[];
+  needsForceUpdate: boolean;
+} {
+  const nodesById = new Map(snapshot.nodes.map((node) => [node.id, node]));
+  const edgesById = new Map(snapshot.edges.map((edge) => [edge.id, edge]));
+  const addedNodeIds: string[] = [];
+  let needsForceUpdate = false;
+
+  graph.batch(() => {
+    const removedEdges = graph.edges().filter((edge) => !edgesById.has(edge.id()));
+    if (!removedEdges.empty()) needsForceUpdate = true;
+    removedEdges.remove();
+
+    const removedNodes = graph.nodes().filter((node) => !nodesById.has(node.id()));
+    if (!removedNodes.empty()) needsForceUpdate = true;
+    removedNodes.remove();
+
+    for (const node of snapshot.nodes) {
+      const existing = graph.getElementById(node.id);
+      if (existing.empty()) {
+        graph.add({ data: { ...node } });
+        addedNodeIds.push(node.id);
+        needsForceUpdate = true;
+      } else {
+        existing.data({ ...node });
+      }
+    }
+    for (const edge of snapshot.edges) {
+      const existing = graph.getElementById(edge.id);
+      if (existing.empty()) {
+        graph.add({ data: { ...edge } });
+        needsForceUpdate = true;
+        continue;
+      }
+      if (existing.data("source") !== edge.source || existing.data("target") !== edge.target) {
+        existing.remove();
+        graph.add({ data: { ...edge } });
+        needsForceUpdate = true;
+      } else {
+        existing.data({ ...edge });
+      }
+    }
+  });
+
+  return { addedNodeIds, needsForceUpdate };
 }
 
 function fitVisibleNodes(graph: Core): void {
@@ -300,13 +389,22 @@ export function GraphView({
     if (topology === topologyRef.current) return;
     topologyRef.current = topology;
 
-    forceLayoutRef.current?.stop();
-    graph.batch(() => {
-      graph.elements().remove();
+    if (graph.elements().empty()) {
       graph.add(toElements(snapshot));
-    });
+      forceLayoutRef.current?.stop();
+      forceLayoutRef.current = startAiryWebLayout(graph);
+      updateLabelVisibility(graph, true);
+      return;
+    }
 
-    forceLayoutRef.current = startAiryWebLayout(graph);
+    const { addedNodeIds, needsForceUpdate } = syncGraphSnapshot(graph, snapshot);
+    if (addedNodeIds.length > 0) {
+      placeNewNodes(graph, addedNodeIds);
+    }
+    if (needsForceUpdate) {
+      forceLayoutRef.current?.stop();
+      forceLayoutRef.current = startContinuousForceLayout(graph);
+    }
     updateLabelVisibility(graph, true);
   }, [snapshot]);
 
