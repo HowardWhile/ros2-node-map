@@ -54,6 +54,14 @@ export function DetailPanel({
     return [...groups.entries()];
   }, [selected, snapshot]);
 
+  const actionInternals = useMemo(() => {
+    if (!snapshot || selected?.kind !== "ros_action") return [];
+    const prefix = `${selected.label}/_action/`;
+    return snapshot.nodes
+      .filter((node) => (node.kind === "ros_topic" || node.kind === "ros_service") && node.label.startsWith(prefix))
+      .sort((left, right) => left.label.localeCompare(right.label));
+  }, [selected, snapshot]);
+
   const copyCommand = async () => {
     if (!selected) return;
     await navigator.clipboard.writeText(commandFor(selected));
@@ -89,6 +97,17 @@ export function DetailPanel({
               ))}
             </section>
           ))}
+          {actionInternals.length > 0 && (
+            <section className="detail-relations">
+              <h3>Internal channels <span>{actionInternals.length}</span></h3>
+              {actionInternals.map((channel) => (
+                <div className="detail-internal-channel" key={channel.id}>
+                  <span>{channel.kind === "ros_service" ? "Service" : "Topic"}</span>
+                  {channel.label}
+                </div>
+              ))}
+            </section>
+          )}
           <section className="detail-command">
             <h3>ROS 2 command</h3><code>{commandFor(selected)}</code>
             <button type="button" onClick={copyCommand}>{copied ? "Copied" : "Copy"}</button>

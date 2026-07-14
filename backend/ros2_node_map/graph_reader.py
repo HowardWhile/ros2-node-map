@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone
 from typing import Any, Callable
 
+from .action_reader import ActionGraphReader
 from .graph_model import EdgeKind, GraphEdge, GraphNode, GraphSnapshot, NodeKind
 from .service_reader import ServiceGraphReader
 
@@ -56,6 +57,12 @@ class GraphReader:
         )
         nodes.update({node.id: node for node in service_nodes})
         edges.update({edge.id: edge for edge in service_edges})
+
+        action_nodes, action_edges = ActionGraphReader().read(
+            nodes.values(), edges.values()
+        )
+        nodes.update({node.id: node for node in action_nodes})
+        edges.update({edge.id: edge for edge in action_edges})
 
         return GraphSnapshot(
             timestamp=self._now(),

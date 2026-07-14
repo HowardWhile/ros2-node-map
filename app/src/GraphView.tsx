@@ -58,6 +58,8 @@ const graphStyle: cytoscape.StylesheetJson = [
     style: {
       shape: "ellipse",
       "background-color": "#7aa2f7",
+      width: 42,
+      height: 42,
     },
   },
   {

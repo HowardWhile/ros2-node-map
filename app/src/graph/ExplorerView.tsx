@@ -12,5 +12,10 @@ export function ExplorerView({ store }: { store: GraphSessionStore }) {
     showCommonServices={state.showCommonServices}
     onShowCommonServicesChange={(value) => store.setShowCommonServices(value)}
     showLifecycleServices={state.showLifecycleServices}
-    onShowLifecycleServicesChange={(value) => store.setShowLifecycleServices(value)} />;
+    onShowLifecycleServicesChange={(value) => store.setShowLifecycleServices(value)}
+    showActionInternals={state.showActionInternals}
+    onShowActionInternalsChange={(value) => store.setShowActionInternals(value)}
+    showTopics={state.showTopics} onShowTopicsChange={(value) => store.setShowTopics(value)}
+    showServices={state.showServices} onShowServicesChange={(value) => store.setShowServices(value)}
+    showActions={state.showActions} onShowActionsChange={(value) => store.setShowActions(value)} />;
 }

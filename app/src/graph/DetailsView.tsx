@@ -4,6 +4,6 @@ import { useGraphSession } from "./useGraphSession";
 
 export function DetailsView({ store }: { store: GraphSessionStore }) {
   const state = useGraphSession(store);
-  return <DetailPanel snapshot={state.visibleSnapshot} selectedNodeIds={state.selectedNodeIds}
+  return <DetailPanel snapshot={state.snapshot} selectedNodeIds={state.selectedNodeIds}
     onSelectNode={(id) => store.requestNodeSelection(id, false)} />;
 }

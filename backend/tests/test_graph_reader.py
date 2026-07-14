@@ -94,3 +94,39 @@ def test_reader_builds_service_client_and_server_edges() -> None:
         "service_client:node:/demo/listener->service:/add_two_ints",
         "service_server:service:/add_two_ints->node:/demo/talker",
     ]
+
+
+def test_reader_infers_action_from_internal_topics_and_services() -> None:
+    class ActionNode(FakeRosNode):
+        def get_topic_names_and_types(self):
+            return [
+                ("/fibonacci/_action/feedback", ["example_interfaces/action/Fibonacci_FeedbackMessage"]),
+            ]
+
+        def get_publishers_info_by_topic(self, topic_name):
+            return [Endpoint("talker", "/demo")] if "_action/" in topic_name else []
+
+        def get_subscriptions_info_by_topic(self, topic_name):
+            return [Endpoint("listener", "/demo")] if "_action/" in topic_name else []
+
+        def get_service_names_and_types(self):
+            return [("/fibonacci/_action/send_goal", ["example_interfaces/action/Fibonacci_SendGoal"])]
+
+        def get_client_names_and_types_by_node(self, node_name, namespace):
+            if (node_name, namespace) == ("listener", "/demo"):
+                return [("/fibonacci/_action/send_goal", ["example_interfaces/action/Fibonacci_SendGoal"])]
+            return []
+
+        def get_service_names_and_types_by_node(self, node_name, namespace):
+            if (node_name, namespace) == ("talker", "/demo"):
+                return [("/fibonacci/_action/send_goal", ["example_interfaces/action/Fibonacci_SendGoal"])]
+            return []
+
+    snapshot = GraphReader(ActionNode()).snapshot()
+
+    action = next(node for node in snapshot.nodes if node.id == "action:/fibonacci")
+    assert action.types == ("example_interfaces/action/Fibonacci",)
+    assert [edge.id for edge in snapshot.edges if edge.kind.value.startswith("action_")] == [
+        "action_client:node:/demo/listener->action:/fibonacci",
+        "action_server:action:/fibonacci->node:/demo/talker",
+    ]

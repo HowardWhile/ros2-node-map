@@ -14,6 +14,14 @@ interface SidebarProps {
   onShowCommonServicesChange: (show: boolean) => void;
   showLifecycleServices: boolean;
   onShowLifecycleServicesChange: (show: boolean) => void;
+  showActionInternals: boolean;
+  onShowActionInternalsChange: (show: boolean) => void;
+  showTopics: boolean;
+  onShowTopicsChange: (show: boolean) => void;
+  showServices: boolean;
+  onShowServicesChange: (show: boolean) => void;
+  showActions: boolean;
+  onShowActionsChange: (show: boolean) => void;
 }
 
 interface TreeGroup { kind: GraphNodeKind; label: string; }
@@ -37,6 +45,10 @@ export function Sidebar({
   showInfrastructureResources, onShowInfrastructureResourcesChange,
   showCommonServices, onShowCommonServicesChange,
   showLifecycleServices, onShowLifecycleServicesChange,
+  showActionInternals, onShowActionInternalsChange,
+  showTopics, onShowTopicsChange,
+  showServices, onShowServicesChange,
+  showActions, onShowActionsChange,
 }: SidebarProps) {
   const [filter, setFilter] = useState("");
   const selectedIds = new Set(selectedNodeIds);
@@ -62,6 +74,21 @@ export function Sidebar({
           {filter && <button type="button" aria-label="Clear filter" onClick={() => setFilter("")}>x</button>}
         </div>
         <div className="sidebar-options">
+          <label className={`filter-toggle filter-toggle-entity${showTopics ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showTopics}
+              onChange={(event) => onShowTopicsChange(event.target.checked)} />
+            <span>Topics</span>
+          </label>
+          <label className={`filter-toggle filter-toggle-entity${showServices ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showServices}
+              onChange={(event) => onShowServicesChange(event.target.checked)} />
+            <span>Services</span>
+          </label>
+          <label className={`filter-toggle filter-toggle-entity${showActions ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showActions}
+              onChange={(event) => onShowActionsChange(event.target.checked)} />
+            <span>Actions</span>
+          </label>
           <label className={`filter-toggle${showDebugResources ? " is-active" : ""}`}>
             <input type="checkbox" checked={showDebugResources}
               onChange={(event) => onShowDebugResourcesChange(event.target.checked)} />
@@ -81,6 +108,11 @@ export function Sidebar({
             <input type="checkbox" checked={showLifecycleServices}
               onChange={(event) => onShowLifecycleServicesChange(event.target.checked)} />
             <span>Lifecycle</span>
+          </label>
+          <label className={`filter-toggle filter-toggle-action-internals${showActionInternals ? " is-active" : ""}`}>
+            <input type="checkbox" checked={showActionInternals}
+              onChange={(event) => onShowActionInternalsChange(event.target.checked)} />
+            <span>Action internals</span>
           </label>
         </div>
         <nav className="resource-tree" aria-label="ROS entities by kind">

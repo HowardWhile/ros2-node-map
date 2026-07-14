@@ -13,12 +13,15 @@ const LIFECYCLE_SERVICE_NAMES = new Set([
   "change_state", "get_state", "get_available_states", "get_available_transitions",
   "get_transition_graph",
 ]);
+const ACTION_INTERNAL_MARKER = "/_action/";
 
 const isInfrastructureResource = (label: string) =>
   INFRASTRUCTURE_RESOURCE_NAMES.has(label) || label.endsWith("/transition_event");
 const serviceName = (label: string) => label.slice(label.lastIndexOf("/") + 1);
 const isCommonService = (label: string) => COMMON_SERVICE_NAMES.has(serviceName(label));
 const isLifecycleService = (label: string) => LIFECYCLE_SERVICE_NAMES.has(serviceName(label));
+const isActionInternalResource = (kind: string, label: string) =>
+  (kind === "ros_topic" || kind === "ros_service") && label.includes(ACTION_INTERNAL_MARKER);
 
 export interface GraphSessionState {
   urlInput: string;
@@ -33,6 +36,10 @@ export interface GraphSessionState {
   showInfrastructureResources: boolean;
   showCommonServices: boolean;
   showLifecycleServices: boolean;
+  showActionInternals: boolean;
+  showTopics: boolean;
+  showServices: boolean;
+  showActions: boolean;
 }
 
 export class GraphSessionStore {
@@ -47,7 +54,8 @@ export class GraphSessionStore {
       connectionStatus: "connecting", statusMessage: "", snapshot: null,
       visibleSnapshot: null, selectionRequest: null, selectedNodeIds: [],
       showDebugResources: false, showInfrastructureResources: false,
-      showCommonServices: false, showLifecycleServices: false,
+      showCommonServices: false, showLifecycleServices: false, showActionInternals: false,
+      showTopics: true, showServices: true, showActions: true,
     });
     this.connectStream();
   }
@@ -64,6 +72,10 @@ export class GraphSessionStore {
   setShowInfrastructureResources(value: boolean): void { this.update({ showInfrastructureResources: value }); }
   setShowCommonServices(value: boolean): void { this.update({ showCommonServices: value }); }
   setShowLifecycleServices(value: boolean): void { this.update({ showLifecycleServices: value }); }
+  setShowActionInternals(value: boolean): void { this.update({ showActionInternals: value }); }
+  setShowTopics(value: boolean): void { this.update({ showTopics: value }); }
+  setShowServices(value: boolean): void { this.update({ showServices: value }); }
+  setShowActions(value: boolean): void { this.update({ showActions: value }); }
 
   connect(force = false): void {
     const backendUrl = this.state.urlInput.trim();
@@ -109,7 +121,11 @@ export class GraphSessionStore {
       (state.showDebugResources || !DEBUG_RESOURCE_NAMES.has(node.label)) &&
       (state.showInfrastructureResources || !isInfrastructureResource(node.label)) &&
       (state.showCommonServices || node.kind !== "ros_service" || !isCommonService(node.label)) &&
-      (state.showLifecycleServices || node.kind !== "ros_service" || !isLifecycleService(node.label)),
+      (state.showLifecycleServices || node.kind !== "ros_service" || !isLifecycleService(node.label)) &&
+      (state.showActionInternals || !isActionInternalResource(node.kind, node.label)) &&
+      (state.showTopics || node.kind !== "ros_topic") &&
+      (state.showServices || node.kind !== "ros_service") &&
+      (state.showActions || node.kind !== "ros_action"),
     );
     const visibleIds = new Set(nodes.map((node) => node.id));
     return { ...state, visibleSnapshot: { ...snapshot, nodes, edges: snapshot.edges.filter((edge) =>
