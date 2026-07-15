@@ -74,27 +74,27 @@ export function Sidebar({
           {filter && <button type="button" aria-label="Clear filter" onClick={() => setFilter("")}>x</button>}
         </div>
         <div className="sidebar-options">
-          <label className={`filter-toggle filter-toggle-entity${showTopics ? " is-active" : ""}`}>
+          <label className={`filter-toggle filter-toggle-topic${showTopics ? " is-active" : ""}`}>
             <input type="checkbox" checked={showTopics}
               onChange={(event) => onShowTopicsChange(event.target.checked)} />
             <span>Topics</span>
           </label>
-          <label className={`filter-toggle filter-toggle-entity${showServices ? " is-active" : ""}`}>
+          <label className={`filter-toggle filter-toggle-service${showServices ? " is-active" : ""}`}>
             <input type="checkbox" checked={showServices}
               onChange={(event) => onShowServicesChange(event.target.checked)} />
             <span>Services</span>
           </label>
-          <label className={`filter-toggle filter-toggle-entity${showActions ? " is-active" : ""}`}>
+          <label className={`filter-toggle filter-toggle-action${showActions ? " is-active" : ""}`}>
             <input type="checkbox" checked={showActions}
               onChange={(event) => onShowActionsChange(event.target.checked)} />
             <span>Actions</span>
           </label>
-          <label className={`filter-toggle${showDebugResources ? " is-active" : ""}`}>
+          <label className={`filter-toggle filter-toggle-topic${showDebugResources ? " is-active" : ""}`}>
             <input type="checkbox" checked={showDebugResources}
               onChange={(event) => onShowDebugResourcesChange(event.target.checked)} />
             <span>Debug</span>
           </label>
-          <label className={`filter-toggle filter-toggle-infrastructure${showInfrastructureResources ? " is-active" : ""}`}>
+          <label className={`filter-toggle filter-toggle-topic${showInfrastructureResources ? " is-active" : ""}`}>
             <input type="checkbox" checked={showInfrastructureResources}
               onChange={(event) => onShowInfrastructureResourcesChange(event.target.checked)} />
             <span>Infrastructure</span>

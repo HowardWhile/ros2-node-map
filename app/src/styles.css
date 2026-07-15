@@ -207,11 +207,12 @@ button, input { font: inherit; }
 .filter-toggle:hover { color: #c8d0dc; border-color: #4b586b; }
 .filter-toggle.is-active { color: #11151b; border-color: #e0af68; background: #e0af68; box-shadow: 0 0 8px #e0af6844; }
 .filter-toggle input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
-.filter-toggle-infrastructure.is-active { border-color: #7aa2f7; background: #7aa2f7; box-shadow: 0 0 8px #7aa2f744; }
-.filter-toggle-common-services.is-active { border-color: #73daca; background: #73daca; box-shadow: 0 0 8px #73daca44; }
-.filter-toggle-lifecycle.is-active { border-color: #bb9af7; background: #bb9af7; box-shadow: 0 0 8px #bb9af744; }
-.filter-toggle-action-internals.is-active { border-color: #f7768e; background: #f7768e; box-shadow: 0 0 8px #f7768e44; }
-.filter-toggle-entity.is-active { border-color: #7aa2f7; background: #7aa2f7; box-shadow: 0 0 8px #7aa2f744; }
+.filter-toggle-common-services.is-active,
+.filter-toggle-lifecycle.is-active { border-color: #e0af68; background: #e0af68; box-shadow: 0 0 8px #e0af6844; }
+.filter-toggle-action-internals.is-active { border-color: #bb9af7; background: #bb9af7; box-shadow: 0 0 8px #bb9af744; }
+.filter-toggle-topic.is-active { border-color: #73daca; background: #73daca; box-shadow: 0 0 8px #73daca44; }
+.filter-toggle-service.is-active { border-color: #e0af68; background: #e0af68; box-shadow: 0 0 8px #e0af6844; }
+.filter-toggle-action.is-active { border-color: #bb9af7; background: #bb9af7; box-shadow: 0 0 8px #bb9af744; }
 .resource-tree {
   flex: 1 1 auto;
   min-height: 0;
