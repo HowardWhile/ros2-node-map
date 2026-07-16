@@ -1,11 +1,60 @@
-import { app, BrowserWindow } from "electron";
-import { existsSync } from "node:fs";
+import { app, BrowserWindow, ipcMain } from "electron";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { spawn, type ChildProcess } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const currentDirectory = dirname(fileURLToPath(import.meta.url));
 let backendProcess: ChildProcess | undefined;
+type DomainMode = "system" | "custom";
+interface DomainSettings { mode: DomainMode; customDomainId?: string; }
+let domainSettings: DomainSettings = { mode: "system" };
+
+function validDomainId(value: string): boolean {
+  return /^\d+$/.test(value) && Number(value) <= 232;
+}
+
+function systemDomainId(): string {
+  const value = process.env.ROS_DOMAIN_ID?.trim() ?? "";
+  return validDomainId(value) ? value : "0";
+}
+
+function domainSettingsPath(): string {
+  return join(app.getPath("userData"), "domain-settings.json");
+}
+
+function loadDomainSettings(): DomainSettings {
+  try {
+    const value = JSON.parse(readFileSync(domainSettingsPath(), "utf8")) as Partial<DomainSettings>;
+    if (value.mode === "custom" && value.customDomainId && validDomainId(value.customDomainId)) {
+      return { mode: "custom", customDomainId: value.customDomainId };
+    }
+  } catch {
+    // Missing or malformed settings fall back to the inherited ROS environment.
+  }
+  return { mode: "system" };
+}
+
+function saveDomainSettings(settings: DomainSettings): void {
+  mkdirSync(dirname(domainSettingsPath()), { recursive: true });
+  writeFileSync(domainSettingsPath(), `${JSON.stringify(settings, null, 2)}\n`, "utf8");
+}
+
+function effectiveDomainId(): string {
+  return domainSettings.mode === "custom" && domainSettings.customDomainId
+    ? domainSettings.customDomainId
+    : systemDomainId();
+}
+
+function domainConfig() {
+  return {
+    configurable: app.isPackaged,
+    mode: domainSettings.mode,
+    systemDomainId: systemDomainId(),
+    customDomainId: domainSettings.customDomainId ?? "",
+    effectiveDomainId: effectiveDomainId(),
+  };
+}
 
 function startPackagedBackend(): void {
   if (!app.isPackaged) return;
@@ -34,6 +83,7 @@ function startPackagedBackend(): void {
     {
       env: {
         ...process.env,
+        ROS_DOMAIN_ID: effectiveDomainId(),
         PYTHONPATH: [
           join(backendDirectory, "site-packages"),
           backendDirectory,
@@ -46,11 +96,63 @@ function startPackagedBackend(): void {
   backendProcess.on("error", (error) => {
     console.error("Unable to start the bundled backend:", error);
   });
+  const startedProcess = backendProcess;
+  backendProcess.on("exit", () => {
+    if (backendProcess === startedProcess) backendProcess = undefined;
+  });
 }
 
-function stopPackagedBackend(): void {
-  backendProcess?.kill();
+async function stopPackagedBackend(): Promise<void> {
+  const processToStop = backendProcess;
   backendProcess = undefined;
+  if (!processToStop || processToStop.exitCode !== null) return;
+
+  const exited = new Promise<void>((resolve) => {
+    processToStop.once("exit", () => resolve());
+    processToStop.once("error", () => resolve());
+  });
+  processToStop.kill("SIGTERM");
+  await Promise.race([
+    exited,
+    new Promise<void>((resolve) => setTimeout(resolve, 2000)),
+  ]);
+  if (processToStop.exitCode === null && processToStop.signalCode === null) {
+    processToStop.kill("SIGKILL");
+    await Promise.race([
+      exited,
+      new Promise<void>((resolve) => setTimeout(resolve, 500)),
+    ]);
+  }
+}
+
+async function restartPackagedBackend(): Promise<void> {
+  await stopPackagedBackend();
+  startPackagedBackend();
+}
+
+function registerDomainHandlers(): void {
+  ipcMain.handle("domain:get", () => domainConfig());
+  ipcMain.handle("domain:set", async (_event, value: unknown) => {
+    if (!app.isPackaged) throw new Error("Domain switching is available in the packaged app.");
+    if (!value || typeof value !== "object") throw new Error("Invalid domain settings.");
+
+    const request = value as { mode?: unknown; customDomainId?: unknown };
+    if (request.mode !== "system" && request.mode !== "custom") {
+      throw new Error("Invalid domain mode.");
+    }
+    const customDomainId = String(request.customDomainId ?? "").trim();
+    if (request.mode === "custom" && !validDomainId(customDomainId)) {
+      throw new Error("ROS_DOMAIN_ID must be an integer from 0 to 232.");
+    }
+
+    domainSettings = {
+      mode: request.mode,
+      customDomainId: customDomainId || domainSettings.customDomainId,
+    };
+    saveDomainSettings(domainSettings);
+    await restartPackagedBackend();
+    return domainConfig();
+  });
 }
 
 function createWindow(): void {
@@ -74,6 +176,8 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
+  domainSettings = loadDomainSettings();
+  registerDomainHandlers();
   startPackagedBackend();
   createWindow();
   app.on("activate", () => {
@@ -85,4 +189,4 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-app.on("before-quit", stopPackagedBackend);
+app.on("before-quit", () => { void stopPackagedBackend(); });

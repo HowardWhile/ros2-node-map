@@ -25,8 +25,13 @@ Swagger UI:  http://127.0.0.1:8766/docs
 OpenAPI:     http://127.0.0.1:8766/openapi.json
 Health:      http://127.0.0.1:8766/api/health
 Snapshot:    http://127.0.0.1:8766/api/snapshot
+ROS domain:  http://127.0.0.1:8766/api/domain
 WebSocket:   ws://127.0.0.1:8766/ws/graph
 ```
+
+`GET /api/domain` reports the system and effective domain settings. Sending a
+`PUT` request to `/api/domain` switches between the system value and a custom
+domain, then restarts ROS discovery while clients reconnect to the same endpoint.
 
 The original `ws://127.0.0.1:8766/` graph stream remains available for
 existing clients.

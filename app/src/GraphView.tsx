@@ -6,6 +6,7 @@ import cytoscape, {
 import cola from "cytoscape-cola";
 import { useEffect, useRef } from "react";
 
+import { DomainControl } from "./DomainControl";
 import type { GraphSnapshot } from "./types";
 
 export interface GraphSelectionRequest {
@@ -16,6 +17,7 @@ export interface GraphSelectionRequest {
 
 interface GraphViewProps {
   snapshot: GraphSnapshot | null;
+  backendUrl: string;
   selectionRequest: GraphSelectionRequest | null;
   onSelectionChange: (selectedIds: string[]) => void;
 }
@@ -307,6 +309,7 @@ function fitVisibleNodes(graph: Core): void {
 
 export function GraphView({
   snapshot,
+  backendUrl,
   selectionRequest,
   onSelectionChange,
 }: GraphViewProps) {
@@ -488,10 +491,7 @@ export function GraphView({
 
   return (
     <section className="graph-panel" aria-label="ROS 2 graph">
-      <div className="graph-domain-id" title="ROS_DOMAIN_ID">
-        <span>ROS_DOMAIN_ID</span>
-        <strong>{snapshot?.ros_domain_id ?? "—"}</strong>
-      </div>
+      <DomainControl displayedDomainId={snapshot?.ros_domain_id ?? "—"} backendUrl={backendUrl} />
       {!snapshot && (
         <div className="empty-state">
           <strong>Waiting for graph data</strong>

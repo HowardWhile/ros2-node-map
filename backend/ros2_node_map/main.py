@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from collections.abc import Sequence
 from contextlib import contextmanager
@@ -41,12 +42,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 @contextmanager
-def _ros_node(wait: float) -> Iterator[Any]:
+def _ros_node(wait: float, domain_id: str | None = None) -> Iterator[Any]:
     if wait < 0:
         raise ValueError("--wait must be zero or greater")
     import rclpy
 
-    rclpy.init(args=[])
+    init_kwargs = {"domain_id": int(domain_id)} if domain_id is not None else {}
+    rclpy.init(args=[], **init_kwargs)
     node = rclpy.create_node("ros2_node_map_backend")
     try:
         rclpy.spin_once(node, timeout_sec=wait)
@@ -65,11 +67,26 @@ def _snapshot(wait: float, pretty: bool) -> int:
 
 
 def _serve(host: str, port: int, interval: float, wait: float) -> int:
-    from .graph_server import run_server
+    from .graph_server import DomainController, run_server
 
-    with _ros_node(wait) as node:
-        print(f"Serving ROS graph at ws://{host}:{port}", file=sys.stderr)
-        run_server(node, host=host, port=port, interval=interval)
+    system_domain_id = os.environ.get("ROS_DOMAIN_ID", "0")
+    controller = DomainController(system_domain_id)
+    domain_id = system_domain_id
+    while True:
+        os.environ["ROS_DOMAIN_ID"] = domain_id
+        with _ros_node(wait, domain_id) as node:
+            print(
+                f"Serving ROS graph at ws://{host}:{port} on domain {domain_id}",
+                file=sys.stderr,
+            )
+            run_server(
+                node, host=host, port=port, interval=interval,
+                domain_controller=controller,
+            )
+        next_domain_id = controller.consume_restart()
+        if next_domain_id is None:
+            break
+        domain_id = next_domain_id
     return 0
 
 
