@@ -100,3 +100,9 @@ app/vite.config.d.ts
 .idea/
 .vscode/
 .DS_Store
+
+# Understand-Anything generated working files
+.ua/.trash-*/
+.ua/tmp/
+.ua/intermediate/*
+!.ua/intermediate/scan-result.json

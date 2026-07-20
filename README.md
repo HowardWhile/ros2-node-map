@@ -116,3 +116,49 @@ If the system does not provide FUSE 2, run the AppImage in extraction mode:
 ## License
 
 [MIT](LICENSE)
+
+## Knowledge graph
+
+This project uses [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
+to analyze the codebase and generate a knowledge graph that describes its
+structure, component relationships, and guided exploration paths.
+
+The graph can be used in two ways: users can explore it through the interactive
+dashboard, while AI agents can inspect the JSON graph directly.
+
+### For AI agents
+
+Include the following instruction in your prompt:
+
+> Read `.ua/knowledge-graph.json`. It is the knowledge graph for this project.
+
+> [!WARNING]
+> The source code remains the final source of truth. If the graph was generated
+> from an older revision than the current codebase, regenerate it before relying
+> on its contents.
+
+### For users
+
+#### Prerequisites
+
+Install [Node.js LTS](https://nodejs.org/) to obtain the `npm` and `npx`
+commands. Verify the installation with:
+
+```bash
+node --version
+npx --version
+```
+
+Install the latest Understand-Anything viewer:
+
+```bash
+npm install --global https://github.com/Egonex-AI/Understand-Anything/releases/latest/download/understand-anything-viewer.tgz
+```
+
+#### Launch the dashboard
+
+From the project root, run:
+
+```bash
+understand-anything-viewer .
+```
