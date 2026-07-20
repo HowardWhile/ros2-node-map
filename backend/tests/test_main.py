@@ -1,5 +1,6 @@
 import pytest
 
+from ros2_node_map import __version__
 from ros2_node_map.main import build_parser
 
 
@@ -13,6 +14,12 @@ def test_snapshot_cli_defaults() -> None:
 def test_cli_requires_a_command() -> None:
     with pytest.raises(SystemExit):
         build_parser().parse_args([])
+
+
+def test_cli_reports_the_package_version(capsys: pytest.CaptureFixture[str]) -> None:
+    with pytest.raises(SystemExit):
+        build_parser().parse_args(["--version"])
+    assert capsys.readouterr().out.strip() == f"ros2-node-map-backend {__version__}"
 
 
 def test_serve_cli_defaults() -> None:

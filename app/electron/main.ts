@@ -120,6 +120,7 @@ function startPackagedBackend(): void {
     {
       env: {
         ...process.env,
+        ROS2_NODE_MAP_VERSION: app.getVersion(),
         ROS_DOMAIN_ID: effectiveDomainId(),
         PYTHONPATH: [
           join(backendDirectory, "site-packages"),

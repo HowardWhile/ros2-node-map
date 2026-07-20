@@ -81,8 +81,12 @@ files and release artifacts are not committed to Git.
 The packaged executable is written to:
 
 ```text
-app/release/ros2-node-map-0.1.0-dev.0.AppImage
+app/release/ros2-node-map-<version>-linux-<architecture>.AppImage
 ```
+
+For example, an x86-64 build of version `0.2.0` is named
+`ros2-node-map-0.2.0-linux-x86_64.AppImage`. The architecture suffix is derived
+from the target selected by electron-builder.
 
 The AppImage includes the Electron UI, the Python backend, and the backend's
 application dependencies. On startup it automatically loads
@@ -101,11 +105,26 @@ is more important than launch responsiveness.
 If the system does not provide FUSE 2, run the AppImage in extraction mode:
 
 ```bash
-./app/release/ros2-node-map-0.1.0-dev.0.AppImage --appimage-extract-and-run
+./app/release/ros2-node-map-*-linux-*.AppImage --appimage-extract-and-run
 ```
+
+## Versioning
+
+Product versions contain exactly three numeric components, such as `0.2.0`.
+Update the frontend, backend, and generated lockfile entries together from the
+repository root:
+
+```bash
+node scripts/version.mjs set 0.2.0
+```
+
+Run `node scripts/version.mjs check` to verify that they remain synchronized.
+The graph JSON `schema_version` is an independent compatibility version and is
+not changed during a normal product release.
 
 ## Documentation
 
+- [Changelog](CHANGELOG.md)
 - [Architecture](docs/architecture.md)
 - [Graph JSON schema](docs/graph-json-schema.md)
 - [Testing](docs/testing.md)

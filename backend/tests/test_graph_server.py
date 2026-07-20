@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import pytest
 from fastapi.testclient import TestClient
 
+from ros2_node_map import __version__
 from ros2_node_map.graph_model import GraphNode, GraphSnapshot, NodeKind
 from ros2_node_map.graph_server import DomainController, GraphServer, create_app, snapshot_response
 
@@ -32,6 +33,10 @@ def test_server_validates_configuration() -> None:
         GraphServer(FakeReader(), port=0)
     with pytest.raises(ValueError, match="interval"):
         GraphServer(FakeReader(), interval=0)
+
+
+def test_server_uses_the_package_version() -> None:
+    assert create_app(FakeReader()).version == __version__
 
 
 def test_http_endpoints_are_documented_and_return_a_snapshot() -> None:

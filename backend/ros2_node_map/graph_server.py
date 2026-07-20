@@ -13,6 +13,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from . import __version__
 from .graph_reader import GraphReader
 from .graph_model import GraphSnapshot
 
@@ -157,7 +158,7 @@ def create_app(
 
     app = FastAPI(
         title="ROS 2 Node Map API",
-        version="0.1.0",
+        version=__version__,
         description=(
             "HTTP and WebSocket API for complete ROS 2 graph snapshots. "
             "Swagger UI is available at /docs."

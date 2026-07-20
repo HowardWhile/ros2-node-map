@@ -9,6 +9,8 @@ from collections.abc import Sequence
 from contextlib import contextmanager
 from typing import Any, Iterator
 
+from . import __version__
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -16,7 +18,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Discover and stream the ROS 2 computation graph",
     )
     parser.add_argument(
-        "--version", action="version", version="%(prog)s 0.1.0.dev0"
+        "--version", action="version", version=f"%(prog)s {__version__}"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
