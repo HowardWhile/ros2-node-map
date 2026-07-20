@@ -10,9 +10,9 @@ function containsWidget(area: DockLayout.AreaConfig, widget: Widget): boolean {
     : area.children.some((child) => containsWidget(child, widget));
 }
 
-function setExplorerSplitSize(area: DockLayout.AreaConfig, explorer: Widget, ratio: number): boolean {
+function setPanelSplitSize(area: DockLayout.AreaConfig, panel: Widget, ratio: number): boolean {
   if (area.type === "tab-area") return false;
-  const index = area.children.findIndex((child) => containsWidget(child, explorer));
+  const index = area.children.findIndex((child) => containsWidget(child, panel));
   if (index === -1) return false;
   if (area.orientation === "horizontal") {
     const otherTotal = area.sizes.reduce((total, size, childIndex) => childIndex === index ? total : total + size, 0);
@@ -22,14 +22,16 @@ function setExplorerSplitSize(area: DockLayout.AreaConfig, explorer: Widget, rat
     );
     return true;
   }
-  return setExplorerSplitSize(area.children[index], explorer, ratio);
+  return setPanelSplitSize(area.children[index], panel, ratio);
 }
+
+const MAX_SIDE_PANEL_RATIO = 0.5;
 
 export class WorkbenchShell extends BoxPanel {
   readonly dock = new DockPanel();
   private readonly menu: Widget;
   private saveTimer: number | null = null;
-  private explorerHandleDrag: { handle: HTMLDivElement; deltaX: number; deltaY: number } | null = null;
+  private panelHandleDrag: { handle: HTMLDivElement; side: "left" | "right"; deltaX: number; deltaY: number } | null = null;
 
   constructor(readonly commands: CommandRegistry, readonly panels: PanelRegistry) {
     super({ direction: "top-to-bottom" });
@@ -42,7 +44,7 @@ export class WorkbenchShell extends BoxPanel {
     this.addWidget(this.dock);
     BoxPanel.setStretch(this.dock, 1);
     this.dock.layoutModified.connect(() => this.debouncedSave());
-    this.dock.node.addEventListener("pointerdown", this.captureExplorerHandle, true);
+    this.dock.node.addEventListener("pointerdown", this.capturePanelHandle, true);
   }
 
   openPanel(id: PanelId): Widget {
@@ -65,13 +67,24 @@ export class WorkbenchShell extends BoxPanel {
     const layout = this.dock.saveLayout();
     if (!layout.main) return;
     const ratio = Math.min(0.95, Math.max(0.05, width / dockWidth));
-    if (setExplorerSplitSize(layout.main, explorer, ratio)) this.dock.restoreLayout(layout);
+    if (setPanelSplitSize(layout.main, explorer, ratio)) this.dock.restoreLayout(layout);
   }
 
   constrainExplorerWidth(maxWidth: number): void {
     const explorer = this.panels.findOpen("ros2-node-map.explorer");
     if (!explorer || maxWidth <= 0 || explorer.node.getBoundingClientRect().width <= maxWidth) return;
     this.setInitialExplorerWidth(maxWidth);
+  }
+
+  constrainDetailsWidth(maxWidth: number): void {
+    const details = this.panels.findOpen("ros2-node-map.details");
+    if (!details || maxWidth <= 0 || details.node.getBoundingClientRect().width <= maxWidth) return;
+    const dockWidth = this.dock.node.clientWidth;
+    if (dockWidth <= 0) return;
+    const layout = this.dock.saveLayout();
+    if (!layout.main) return;
+    const ratio = Math.min(0.95, Math.max(0.05, maxWidth / dockWidth));
+    if (setPanelSplitSize(layout.main, details, ratio)) this.dock.restoreLayout(layout);
   }
 
   setExplorerMaxWidth(maxWidth: number): void {
@@ -111,8 +124,8 @@ export class WorkbenchShell extends BoxPanel {
 
   dispose(): void {
     if (this.saveTimer !== null) window.clearTimeout(this.saveTimer);
-    this.releaseExplorerHandle();
-    this.dock.node.removeEventListener("pointerdown", this.captureExplorerHandle, true);
+    this.releasePanelHandle();
+    this.dock.node.removeEventListener("pointerdown", this.capturePanelHandle, true);
     super.dispose();
   }
 
@@ -121,45 +134,52 @@ export class WorkbenchShell extends BoxPanel {
     this.saveTimer = window.setTimeout(() => this.saveLayout(), 500);
   }
 
-  private captureExplorerHandle = (event: PointerEvent): void => {
+  private capturePanelHandle = (event: PointerEvent): void => {
     if (event.button !== 0) return;
     const explorer = this.panels.findOpen("ros2-node-map.explorer");
+    const details = this.panels.findOpen("ros2-node-map.details");
     const target = event.target as Node | null;
     const handle = Array.from(this.dock.handles()).find((candidate) => target && candidate.contains(target));
-    if (!explorer || !handle || handle.dataset.orientation !== "horizontal") return;
+    if (!handle || handle.dataset.orientation !== "horizontal") return;
     const handleRect = handle.getBoundingClientRect();
-    if (Math.abs(handleRect.left - explorer.node.getBoundingClientRect().right) > 12) return;
-    this.explorerHandleDrag = {
+    const explorerRight = explorer?.node.getBoundingClientRect().right;
+    const detailsLeft = details?.node.getBoundingClientRect().left;
+    const nearExplorer = explorerRight !== undefined && Math.abs(handleRect.left - explorerRight) <= 12;
+    const nearDetails = detailsLeft !== undefined && Math.abs(handleRect.right - detailsLeft) <= 12;
+    if (!nearExplorer && !nearDetails) return;
+    this.panelHandleDrag = {
       handle,
+      side: nearExplorer ? "left" : "right",
       deltaX: event.clientX - handleRect.left,
       deltaY: event.clientY - handleRect.top,
     };
-    document.addEventListener("pointermove", this.limitExplorerHandle, true);
-    document.addEventListener("pointerup", this.releaseExplorerHandle, true);
-    document.addEventListener("pointercancel", this.releaseExplorerHandle, true);
+    document.addEventListener("pointermove", this.limitPanelHandle, true);
+    document.addEventListener("pointerup", this.releasePanelHandle, true);
+    document.addEventListener("pointercancel", this.releasePanelHandle, true);
   };
 
-  private limitExplorerHandle = (event: PointerEvent): void => {
-    const drag = this.explorerHandleDrag;
+  private limitPanelHandle = (event: PointerEvent): void => {
+    const drag = this.panelHandleDrag;
     if (!drag) return;
     const dockRect = this.dock.node.getBoundingClientRect();
     const x = event.clientX - dockRect.left - drag.deltaX;
-    const maxX = this.dock.node.clientWidth / 2;
-    if (x <= maxX) return;
+    const limitX = this.dock.node.clientWidth * MAX_SIDE_PANEL_RATIO;
+    const exceedsLimit = drag.side === "left" ? x > limitX : x < limitX;
+    if (!exceedsLimit) return;
     event.preventDefault();
     event.stopImmediatePropagation();
     (this.dock.layout as DockLayout).moveHandle(
       drag.handle,
-      maxX,
+      limitX,
       event.clientY - dockRect.top - drag.deltaY,
     );
   };
 
-  private releaseExplorerHandle = (): void => {
-    this.explorerHandleDrag = null;
-    document.removeEventListener("pointermove", this.limitExplorerHandle, true);
-    document.removeEventListener("pointerup", this.releaseExplorerHandle, true);
-    document.removeEventListener("pointercancel", this.releaseExplorerHandle, true);
+  private releasePanelHandle = (): void => {
+    this.panelHandleDrag = null;
+    document.removeEventListener("pointermove", this.limitPanelHandle, true);
+    document.removeEventListener("pointerup", this.releasePanelHandle, true);
+    document.removeEventListener("pointercancel", this.releasePanelHandle, true);
   };
 
   private createMenu(): Widget {

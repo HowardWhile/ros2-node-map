@@ -120,7 +120,10 @@ export function bootstrap(root: HTMLElement): () => void {
         detailsBelowExplorer = stackDetails;
         shell.setDetailsBelowExplorer(stackDetails);
       }
-      shell.setExplorerMaxWidth(Math.floor(root.clientWidth / 2));
+      const maxSidePanelWidth = Math.floor(root.clientWidth / 2);
+      shell.setExplorerMaxWidth(maxSidePanelWidth);
+      shell.constrainExplorerWidth(maxSidePanelWidth);
+      shell.constrainDetailsWidth(maxSidePanelWidth);
       if (!initialExplorerLimitApplied && root.clientWidth > 0) {
         initialExplorerLimitApplied = true;
         shell.constrainExplorerWidth(Math.floor(root.clientWidth / 3));
@@ -132,6 +135,7 @@ export function bootstrap(root: HTMLElement): () => void {
   const resizeObserver = new ResizeObserver(updateLayout);
   resizeObserver.observe(root);
   window.addEventListener("resize", updateLayout);
+  document.addEventListener("fullscreenchange", updateLayout);
   updateLayout();
 
   const cleanup = () => {
@@ -140,6 +144,7 @@ export function bootstrap(root: HTMLElement): () => void {
     unsubscribeSizing();
     resizeObserver.disconnect();
     window.removeEventListener("resize", updateLayout);
+    document.removeEventListener("fullscreenchange", updateLayout);
     window.removeEventListener("dragenter", handleFileDragEnter);
     window.removeEventListener("dragover", handleFileDragOver);
     window.removeEventListener("dragleave", handleFileDragLeave);
