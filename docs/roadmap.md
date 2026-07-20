@@ -9,6 +9,6 @@
 7. Infer and display actions while hiding internal channels by default.
 8. Add search and filters.
 9. Add item details and copyable ROS CLI commands.
-10. Export JSON, Mermaid, and Obsidian Markdown.
+10. Export JSON and Mermaid Markdown.
 
 Detailed goals and acceptance criteria live in [SPEC.md](../SPEC.md).

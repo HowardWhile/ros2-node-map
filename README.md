@@ -52,9 +52,10 @@ npm run electron:dev
 
 ## Snapshot files and exports
 
-The graph export menu can save the currently visible topology as PNG, graph
-JSON, Mermaid Markdown, or an Obsidian vault ZIP. Extract the vault ZIP and
-open that directory in Obsidian to browse entity pages and their links.
+The graph export menu can save the current view as PNG or portable Mermaid
+Markdown, and save the complete source snapshot as graph JSON. JSON exports
+are unaffected by active display filters; filters are applied again by the app
+when that file is reopened.
 
 Open a graph JSON snapshot with the **Open JSON** button or drag one JSON file
 anywhere onto the application window. A file is validated against graph schema

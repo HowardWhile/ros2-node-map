@@ -10,7 +10,6 @@ import { DomainControl } from "./DomainControl";
 import {
   downloadGraphJson,
   downloadMermaidMarkdown,
-  downloadObsidianVault,
 } from "./graph/downloads";
 import type { GraphSnapshot } from "./types";
 
@@ -22,6 +21,7 @@ export interface GraphSelectionRequest {
 
 interface GraphViewProps {
   snapshot: GraphSnapshot | null;
+  exportSnapshot: GraphSnapshot | null;
   backendUrl: string;
   sourceMode: "live" | "file";
   fileName: string;
@@ -323,6 +323,7 @@ function fitVisibleNodes(graph: Core): void {
 
 export function GraphView({
   snapshot,
+  exportSnapshot,
   backendUrl,
   sourceMode,
   fileName,
@@ -521,9 +522,9 @@ export function GraphView({
     exportMenuRef.current?.removeAttribute("open");
   };
 
-  const runExport = (exporter: (value: GraphSnapshot) => void) => {
-    if (!snapshot) return;
-    exporter(snapshot);
+  const runExport = (exporter: (value: GraphSnapshot) => void, value = snapshot) => {
+    if (!value) return;
+    exporter(value);
     exportMenuRef.current?.removeAttribute("open");
   };
 
@@ -570,10 +571,15 @@ export function GraphView({
             <span aria-hidden="true">⇩</span><span className="sr-only">Export graph</span>
           </summary>
           <div className="graph-export-options">
-            <button type="button" onClick={saveImage}>Download PNG</button>
-            <button type="button" onClick={() => runExport(downloadGraphJson)}>Download JSON</button>
-            <button type="button" onClick={() => runExport(downloadMermaidMarkdown)}>Download Mermaid Markdown</button>
-            <button type="button" onClick={() => runExport(downloadObsidianVault)}>Download Obsidian vault</button>
+            <button type="button" onClick={saveImage} title="Download PNG" aria-label="Download PNG">
+              <span className="export-file-icon export-file-icon-png" aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => runExport(downloadGraphJson, exportSnapshot)} title="Download JSON" aria-label="Download JSON">
+              <span className="export-file-icon export-file-icon-json" aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => runExport(downloadMermaidMarkdown)} title="Download Mermaid Markdown" aria-label="Download Mermaid Markdown">
+              <span className="export-file-icon export-file-icon-md" aria-hidden="true" />
+            </button>
           </div>
         </details>
       </div>

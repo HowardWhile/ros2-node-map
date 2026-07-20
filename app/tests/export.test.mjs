@@ -2,10 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
-  createVaultZip,
   graphToJson,
   graphToMermaidMarkdown,
-  graphToObsidianVault,
 } from "../src/graph/exporters.ts";
 import { parseGraphSnapshot } from "../src/graph/snapshot.ts";
 import { GraphSessionStore } from "../src/graph/GraphSessionStore.ts";
@@ -53,16 +51,24 @@ test("exports round-trippable JSON and directed Mermaid Markdown", () => {
   assert.match(markdown, /ROS_DOMAIN_ID: 49/);
 });
 
-test("builds an Obsidian vault with linked entity pages and a ZIP archive", () => {
-  const files = graphToObsidianVault(snapshot);
-  assert.equal(files.length, 3);
-  assert.equal(files[0].path, "ROS 2 Graph.md");
-  assert.match(files[0].content, /\[\[Entities\/node-talker\|\/talker\]\]/);
-  assert.match(files.find((file) => file.path.includes("node-talker")).content, /publish/);
+test("keeps imported data complete while applying filters only to the visible graph", () => {
+  globalThis.window = {};
+  const store = new GraphSessionStore();
+  const completeSnapshot = structuredClone(snapshot);
+  completeSnapshot.nodes.push({
+    id: "topic:/rosout",
+    kind: "ros_topic",
+    label: "/rosout",
+    types: ["rcl_interfaces/msg/Log"],
+  });
 
-  const zip = createVaultZip(files, new Date(2026, 0, 1));
-  assert.equal(new DataView(zip.buffer).getUint32(0, true), 0x04034b50);
-  assert.equal(new DataView(zip.buffer).getUint32(zip.length - 22, true), 0x06054b50);
+  assert.equal(store.importSnapshotText(JSON.stringify(completeSnapshot), "complete.json"), true);
+  const state = store.getSnapshot();
+  assert.equal(state.snapshot.nodes.length, 3);
+  assert.equal(state.visibleSnapshot.nodes.length, 2);
+  assert.deepEqual(parseGraphSnapshot(graphToJson(state.snapshot)), completeSnapshot);
+  store.dispose();
+  delete globalThis.window;
 });
 
 test("keeps the current graph when a file fails validation", () => {

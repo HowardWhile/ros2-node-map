@@ -4,7 +4,7 @@
 
 `ros2-node-map` 是一個用來取代 `rqt_graph` 的 ROS 2 拓撲視覺化工具。
 
-本工具的目標是以更直覺、現代、接近 Obsidian 關聯圖的方式，顯示 ROS 2 系統中的：
+本工具的目標是以更直覺、現代的互動式關聯圖，顯示 ROS 2 系統中的：
 
 * Node
 * Topic
@@ -24,14 +24,14 @@
 
 `ros2-node-map` 的設計重點是：
 
-* 像 Obsidian Graph View 一樣探索節點關係
+* 以互動式 Graph View 探索節點關係
 * 支援搜尋、篩選、聚焦
 * 能清楚看出 node/topic/service/action 的關聯
 * 預設隱藏系統雜訊，例如 `/rosout`、`/parameter_events`
 * Action 的底層 topic/service 預設收合，不直接攤開
 * 支援遠端 ROS 2 系統
 * 前端與 ROS 2 discovery 解耦
-* 未來可匯出 JSON、Mermaid、Obsidian Markdown
+* 可匯出 JSON 與 Mermaid Markdown
 
 ---
 
@@ -429,7 +429,7 @@ Show isolated nodes
 ┌──────────────┬───────────────────────────────┬─────────────────────┐
 │ Sidebar      │ Graph View                     │ Detail Panel        │
 │              │                               │                     │
-│ Search       │ Obsidian-like graph            │ Selected item       │
+│ Search       │ Interactive graph              │ Selected item       │
 │ Namespace    │ Zoom / Drag / Highlight        │ Node info           │
 │ Filters      │                               │ Topic info          │
 │ Layout       │                               │ ROS commands        │
@@ -510,21 +510,21 @@ Graph View 功能：
 Graph View 的既有 `Save graph as PNG` 控制項應改為匯出下拉選單，至少提供：
 
 * Download PNG：下載目前畫面的 graph 圖片
-* Download JSON：下載目前顯示的 graph snapshot JSON
+* Download JSON：下載資料來源的完整 graph snapshot JSON，不套用前端顯示篩選
 * Download Mermaid Markdown：下載包含 Mermaid graph 語法的 `.md` 檔
-* Download Obsidian vault：下載包含索引、Mermaid graph 與 entity Markdown 的 `.zip`
 
 Mermaid Markdown 必須以 `mermaid` code fence 包住可直接貼入支援 Mermaid 的
 Markdown renderer 的圖表定義，並保留目前顯示 topology 的 node、edge、label
 與關係方向。
 
-Obsidian vault ZIP 解壓縮後必須可以直接作為 vault 開啟；每個 graph entity
-使用獨立 Markdown 檔，並以 Obsidian wikilink 保留 entity 之間的 edge 關係。
-
 使用者可將符合 graph schema 的 `.json` 檔拖放至應用程式視窗，或透過檔案
 選擇器開啟。載入成功後，前端必須使用該 snapshot 渲染 graph、sidebar 與
 detail panel；載入失敗時必須顯示可理解的 schema／JSON 錯誤訊息，且不可
 覆蓋目前已成功顯示的 graph。
+
+匯入的 JSON 必須完整保存在前端資料層；系統資源、類型與其他顯示篩選只在
+渲染階段套用，不可刪除原始 snapshot 中的 node 或 edge。再次匯出 JSON 時
+必須輸出完整 snapshot。
 
 ROS domain 控制項必須顯示目前資料來源，並支援以下三種模式：
 
@@ -565,7 +565,7 @@ service_client/server     = dashed line
 action_client/server      = dotted line
 ```
 
-顏色可以先使用低對比、深色背景風格，接近 Obsidian Graph View。
+顏色可以先使用低對比、深色背景風格。
 
 第一版不需要過度追求美術設計，應優先完成：
 
@@ -807,7 +807,7 @@ examples/ros2_demo_graph/
 它應該具備：
 
 * 即時 ROS 2 graph 可視化
-* Obsidian-like graph exploration
+* 互動式 graph exploration
 * 清楚的 node/topic/service/action 分類
 * 遠端 robot 支援
 * 可搜尋、可篩選、可聚焦

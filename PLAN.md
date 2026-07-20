@@ -158,23 +158,22 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 
 目標：
 
-* 透過 Graph View 匯出目前顯示的 graph JSON
-* 將 PNG 匯出改為 PNG／JSON／Mermaid／Obsidian 匯出選單
+* 透過 Graph View 匯出未套用前端顯示篩選的完整 graph JSON
+* 將 PNG 匯出改為 PNG／JSON／Mermaid 匯出選單
 * 匯出包含 Mermaid graph 語法的 Markdown 檔
 * 支援拖放或選取 graph JSON 檔並以 File mode 顯示
 * ROS runtime 不可用時自動進入 File-only Mode
-* 匯出 Obsidian Markdown vault
 
 完成條件：
 
-* 可以下載目前顯示 topology 的 PNG 與 JSON
+* PNG 反映目前畫面，JSON 則包含資料來源中的完整 topology
 * 可以下載並在支援 Mermaid 的 Markdown renderer 中顯示的 Mermaid Markdown
 * 匯出的 JSON 可拖放回 app 並呈現相同的 graph 資料
+* JSON 載回後保留完整資料，畫面再依目前 filter 設定顯示
 * JSON schema 不相容或檔案格式錯誤時可顯示錯誤且保留既有畫面
 * 沒有 ROS 2 Jazzy 的主機仍可開啟 app、載入 JSON 並探索 graph
 * File mode 中不可變更 ROS domain
 * 可以產生 Markdown 文件
-* 可以在 Obsidian 中查看關聯圖
 
 驗證命令：
 
@@ -317,4 +316,3 @@ Add graph export features
 * export Mermaid Markdown
 * import graph JSON by drag and drop
 * File-only Mode when ROS 2 is unavailable
-* export Obsidian Markdown

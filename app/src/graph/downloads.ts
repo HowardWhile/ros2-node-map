@@ -1,10 +1,5 @@
 import type { GraphSnapshot } from "../types";
-import {
-  createVaultZip,
-  graphToJson,
-  graphToMermaidMarkdown,
-  graphToObsidianVault,
-} from "./exporters";
+import { graphToJson, graphToMermaidMarkdown } from "./exporters";
 
 function timestampSuffix(): string {
   return new Date().toISOString().replace(/[:.]/g, "-");
@@ -38,14 +33,5 @@ export function downloadMermaidMarkdown(snapshot: GraphSnapshot): void {
     graphToMermaidMarkdown(snapshot),
     `ros2-node-map-${timestampSuffix()}.md`,
     "text/markdown;charset=utf-8",
-  );
-}
-
-export function downloadObsidianVault(snapshot: GraphSnapshot): void {
-  const bytes = createVaultZip(graphToObsidianVault(snapshot));
-  const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
-  downloadBlob(
-    new Blob([buffer], { type: "application/zip" }),
-    `ros2-node-map-obsidian-${timestampSuffix()}.zip`,
   );
 }
