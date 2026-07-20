@@ -1,6 +1,6 @@
 {
   "name": "ros2-node-map-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "main": "dist-electron/main.js",
@@ -61,7 +61,7 @@
       }
     ],
     "linux": {
-      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "artifactName": "${productName}-v${version}-${os}-${arch}.${ext}",
       "target": [
         "AppImage"
       ],

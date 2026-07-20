@@ -75,11 +75,11 @@ npm run dist
 ```
 
 ```text
-app/release/ros2-node-map-<version>-linux-<architecture>.AppImage
+app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 ```
 
-For example, an x86-64 build of version `0.2.0` is named
-`ros2-node-map-0.2.0-linux-x86_64.AppImage`. The architecture suffix is derived
+For example, an x86-64 build of version `0.2.1` is named
+`ros2-node-map-v0.2.1-linux-x86_64.AppImage`. The architecture suffix is derived
 from the target selected by electron-builder.
 
 ## Documentation

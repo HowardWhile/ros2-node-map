@@ -5,7 +5,13 @@
 本文件格式依循 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本編號遵循[語意化版本](https://semver.org/lang/zh-TW/)。
 
-## [0.2.0] - 2026-07-20
+## [v0.2.1] - 2026-07-20
+
+### 新增
+
+- 在 Graph View 右下角顯示產品版本。
+
+## [v0.2.0] - 2026-07-20
 
 ### 新增
 
@@ -27,6 +33,7 @@
 - 將功能規格與開發里程碑分別維護於 `SPEC.md` 和 `PLAN.md`。
 - 產品版本統一使用三段數字，並提供單一指令同步 Frontend、Backend 與鎖檔版本。
 - Release 檔名加入作業系統與 CPU 架構資訊。
+- Release 檔名的產品版本改用 `v0.2.0` 格式。
 - 新增繁體中文 README，並提供中英文文件切換連結。
 
 ### 修正
@@ -35,4 +42,5 @@
 - 修正 Details 與 Explorer 側邊欄可拖曳超出合理寬度的問題。
 - 改善工作台在不同視窗尺寸下的版面與面板限制。
 
-[0.2.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.0
+[v0.2.1]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.1
+[v0.2.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.0

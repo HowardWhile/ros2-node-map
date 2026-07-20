@@ -437,6 +437,9 @@ Show isolated nodes
 └──────────────┴───────────────────────────────┴─────────────────────┘
 ```
 
+Graph View 右下角必須顯示產品版本，格式為 `vX.Y.Z`，且版本值必須來自
+Frontend 的產品版本來源。
+
 ### 11.1 Sidebar
 
 Sidebar 功能：
@@ -795,7 +798,7 @@ examples/ros2_demo_graph/
 * graph schema 必須保持穩定
 * 產品版本必須使用 `x.y.z` 三段數字格式，Frontend 與 Backend 版本必須一致
 * 產品版本與 graph schema 版本必須分開管理；一般產品升版不得連帶修改 schema 版本
-* Release 檔名必須包含產品版本、作業系統與 CPU 架構
+* Release 檔名必須包含以 `v` 開頭的產品版本、作業系統與 CPU 架構
 * action internal channels 預設必須隱藏
 * 不要在第一版實作 topic echo、service call、action goal send
 * 不要在第一版實作 parameter edit
