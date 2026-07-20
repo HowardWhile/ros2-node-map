@@ -5,6 +5,7 @@ import cytoscape, {
 } from "cytoscape";
 import cola from "cytoscape-cola";
 import { useEffect, useRef } from "react";
+import packageJson from "../package.json";
 
 import { DomainControl } from "./DomainControl";
 import type { ConnectionStatus } from "./api";
@@ -551,6 +552,9 @@ export function GraphView({
       {fileDragActive && <div className="file-drop-overlay">
         <strong>Drop graph JSON to open</strong><span>The current graph changes only after validation succeeds.</span>
       </div>}
+      <small className="graph-version" title={`ros2-node-map v${packageJson.version}`}>
+        v{packageJson.version}
+      </small>
       <div className="graph-controls" aria-label="Graph view controls">
         <button type="button" onClick={() => zoomGraph(1.2)} disabled={!snapshot} title="Zoom in">
           <span aria-hidden="true">+</span>
