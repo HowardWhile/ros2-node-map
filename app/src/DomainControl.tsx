@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 interface DomainControlProps {
   displayedDomainId: string;
   backendUrl: string;
+  sourceMode: "live" | "file";
+  fileName: string;
+  liveAvailable: boolean;
+  onOpenFile: () => void;
+  onResumeLive: () => void;
 }
 
 interface BackendDomainConfig {
@@ -48,10 +53,18 @@ async function requestBackendConfig(
   return normalizeBackendConfig(await response.json() as BackendDomainConfig);
 }
 
-export function DomainControl({ displayedDomainId, backendUrl }: DomainControlProps) {
+export function DomainControl({
+  displayedDomainId,
+  backendUrl,
+  sourceMode,
+  fileName,
+  liveAvailable,
+  onOpenFile,
+  onResumeLive,
+}: DomainControlProps) {
   const [open, setOpen] = useState(false);
   const [config, setConfig] = useState<Ros2NodeMapDomainConfig | null>(null);
-  const [mode, setMode] = useState<"system" | "custom">("system");
+  const [mode, setMode] = useState<"system" | "custom" | "file">("system");
   const [customDomainId, setCustomDomainId] = useState("");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
@@ -60,6 +73,12 @@ export function DomainControl({ displayedDomainId, backendUrl }: DomainControlPr
     if (!open) return;
     let cancelled = false;
     setMessage("");
+    if (sourceMode === "file") setMode("file");
+    if (!liveAvailable) {
+      setConfig(null);
+      setMode("file");
+      return;
+    }
     const loadConfig = async () => {
       const electronConfig = await window.ros2NodeMap?.getDomainConfig();
       if (electronConfig?.configurable) return electronConfig;
@@ -68,17 +87,22 @@ export function DomainControl({ displayedDomainId, backendUrl }: DomainControlPr
     void loadConfig().then((value) => {
       if (cancelled) return;
       setConfig(value);
-      setMode(value.mode);
+      if (sourceMode === "live") setMode(value.mode);
       setCustomDomainId(value.customDomainId || value.effectiveDomainId);
     }).catch((error: unknown) => {
       if (!cancelled) setMessage(error instanceof Error ? error.message : "Unable to read domain settings.");
     });
     return () => { cancelled = true; };
-  }, [backendUrl, open]);
+  }, [backendUrl, liveAvailable, open, sourceMode]);
 
   const customIsValid = /^\d+$/.test(customDomainId) && Number(customDomainId) <= 232;
   const apply = async () => {
-    if (!config?.configurable || (mode === "custom" && !customIsValid)) return;
+    if (mode === "file") {
+      onOpenFile();
+      setOpen(false);
+      return;
+    }
+    if (!liveAvailable || !config?.configurable || (mode === "custom" && !customIsValid)) return;
     setSaving(true);
     setMessage("Restarting ROS discovery…");
     try {
@@ -88,6 +112,7 @@ export function DomainControl({ displayedDomainId, backendUrl }: DomainControlPr
         : await requestBackendConfig(backendUrl, { mode, customDomainId });
       setConfig(value);
       setMessage(`Switching to domain ${value.effectiveDomainId}…`);
+      onResumeLive();
       window.setTimeout(() => setOpen(false), 500);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Unable to change ROS domain.");
@@ -102,6 +127,7 @@ export function DomainControl({ displayedDomainId, backendUrl }: DomainControlPr
         aria-expanded={open} onClick={() => setOpen((value) => !value)}>
         <span>ROS_DOMAIN_ID</span>
         <strong>{displayedDomainId}</strong>
+        <em>{sourceMode === "file" ? "FILE" : "LIVE"}</em>
         <i aria-hidden="true">⌄</i>
       </button>
       {open && (
@@ -112,26 +138,34 @@ export function DomainControl({ displayedDomainId, backendUrl }: DomainControlPr
           </div>
           <label className="domain-option">
             <input type="radio" name="domain-mode" checked={mode === "system"}
+              disabled={!liveAvailable}
               onChange={() => setMode("system")} />
             <span><strong>System</strong><small>ROS_DOMAIN_ID {config?.systemDomainId ?? displayedDomainId}</small></span>
           </label>
           <label className="domain-option">
             <input type="radio" name="domain-mode" checked={mode === "custom"}
+              disabled={!liveAvailable}
               onChange={() => setMode("custom")} />
             <span><strong>Custom</strong><small>Use a different discovery domain</small></span>
           </label>
+          <label className="domain-option">
+            <input type="radio" name="domain-mode" checked={mode === "file"}
+              onChange={() => setMode("file")} />
+            <span><strong>File</strong><small>{fileName || "Open a graph JSON snapshot"}</small></span>
+          </label>
           <input className="domain-input" type="number" min="0" max="232" inputMode="numeric"
-            value={customDomainId} disabled={mode !== "custom"}
+            value={customDomainId} disabled={mode !== "custom" || !liveAvailable}
             aria-label="Custom ROS domain ID" onChange={(event) => setCustomDomainId(event.target.value)} />
           {mode === "custom" && customDomainId && !customIsValid && (
             <p className="domain-message is-error">Enter an integer from 0 to 232.</p>
           )}
           {message && <p className="domain-message">{message}</p>}
+          {!liveAvailable && <p className="domain-message">ROS 2 is unavailable. Live domain options are disabled.</p>}
           <div className="domain-actions">
             <button type="button" onClick={() => setOpen(false)}>Cancel</button>
             <button type="button" className="is-primary" onClick={() => { void apply(); }}
-              disabled={saving || !config?.configurable || (mode === "custom" && !customIsValid)}>
-              {saving ? "Applying…" : "Apply & reconnect"}
+              disabled={saving || (mode !== "file" && (!liveAvailable || !config?.configurable)) || (mode === "custom" && !customIsValid)}>
+              {saving ? "Applying…" : mode === "file" ? "Open JSON…" : "Apply & reconnect"}
             </button>
           </div>
         </div>

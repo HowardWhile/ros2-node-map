@@ -9,6 +9,7 @@
     "strict": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -16,4 +17,3 @@
   },
   "include": ["src"]
 }
-

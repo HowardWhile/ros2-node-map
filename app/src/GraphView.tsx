@@ -7,6 +7,11 @@ import cola from "cytoscape-cola";
 import { useEffect, useRef } from "react";
 
 import { DomainControl } from "./DomainControl";
+import {
+  downloadGraphJson,
+  downloadMermaidMarkdown,
+  downloadObsidianVault,
+} from "./graph/downloads";
 import type { GraphSnapshot } from "./types";
 
 export interface GraphSelectionRequest {
@@ -18,8 +23,17 @@ export interface GraphSelectionRequest {
 interface GraphViewProps {
   snapshot: GraphSnapshot | null;
   backendUrl: string;
+  sourceMode: "live" | "file";
+  fileName: string;
+  fileError: string;
+  fileDragActive: boolean;
+  runtimeReady: boolean;
+  liveAvailable: boolean;
+  runtimeMessage: string;
   selectionRequest: GraphSelectionRequest | null;
   onSelectionChange: (selectedIds: string[]) => void;
+  onOpenFile: () => void;
+  onResumeLive: () => void;
 }
 
 cytoscape.use(cola);
@@ -310,14 +324,24 @@ function fitVisibleNodes(graph: Core): void {
 export function GraphView({
   snapshot,
   backendUrl,
+  sourceMode,
+  fileName,
+  fileError,
+  fileDragActive,
+  runtimeReady,
+  liveAvailable,
+  runtimeMessage,
   selectionRequest,
   onSelectionChange,
+  onOpenFile,
+  onResumeLive,
 }: GraphViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Core | null>(null);
   const forceLayoutRef = useRef<Layouts | null>(null);
   const topologyRef = useRef("");
   const zoomTargetRef = useRef<number | null>(null);
+  const exportMenuRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -389,7 +413,14 @@ export function GraphView({
 
   useEffect(() => {
     const graph = graphRef.current;
-    if (!graph || !snapshot) return;
+    if (!graph) return;
+    if (!snapshot) {
+      forceLayoutRef.current?.stop();
+      graph.elements().remove();
+      topologyRef.current = "";
+      onSelectionChange([]);
+      return;
+    }
     const topology = JSON.stringify({ nodes: snapshot.nodes, edges: snapshot.edges });
     if (topology === topologyRef.current) return;
     topologyRef.current = topology;
@@ -487,17 +518,35 @@ export function GraphView({
     link.href = image;
     link.download = `ros2-node-map-${timestamp}.png`;
     link.click();
+    exportMenuRef.current?.removeAttribute("open");
   };
+
+  const runExport = (exporter: (value: GraphSnapshot) => void) => {
+    if (!snapshot) return;
+    exporter(snapshot);
+    exportMenuRef.current?.removeAttribute("open");
+  };
+
+  const fileOnly = runtimeReady && !liveAvailable;
 
   return (
     <section className="graph-panel" aria-label="ROS 2 graph">
-      <DomainControl displayedDomainId={snapshot?.ros_domain_id ?? "—"} backendUrl={backendUrl} />
+      <DomainControl displayedDomainId={snapshot?.ros_domain_id ?? "—"} backendUrl={backendUrl}
+        sourceMode={sourceMode} fileName={fileName} liveAvailable={liveAvailable}
+        onOpenFile={onOpenFile} onResumeLive={onResumeLive} />
       {!snapshot && (
         <div className="empty-state">
-          <strong>Waiting for graph data</strong>
-          <span>Start the backend or check the WebSocket URL.</span>
+          <strong>{!runtimeReady ? "Checking ROS 2 runtime" : fileOnly ? "File-only mode" : "Waiting for graph data"}</strong>
+          <span>{fileOnly
+            ? runtimeMessage || "ROS 2 is unavailable. Open or drop a graph JSON snapshot."
+            : "Start the backend, open a graph JSON file, or check the WebSocket URL."}</span>
+          <button type="button" onClick={onOpenFile}>Open graph JSON</button>
         </div>
       )}
+      {fileError && <div className="file-error-banner" role="alert">{fileError}</div>}
+      {fileDragActive && <div className="file-drop-overlay">
+        <strong>Drop graph JSON to open</strong><span>The current graph changes only after validation succeeds.</span>
+      </div>}
       <div className="graph-controls" aria-label="Graph view controls">
         <button type="button" onClick={() => zoomGraph(1.2)} disabled={!snapshot} title="Zoom in">
           <span aria-hidden="true">+</span>
@@ -515,10 +564,18 @@ export function GraphView({
           <span aria-hidden="true">↻</span>
           <span className="sr-only">Reset layout</span>
         </button>
-        <button type="button" onClick={saveImage} disabled={!snapshot} title="Save graph as PNG">
-          <span aria-hidden="true">⇩</span>
-          <span className="sr-only">Save graph as PNG</span>
-        </button>
+        <details className="graph-export-menu" ref={exportMenuRef}>
+          <summary title="Export graph" aria-disabled={!snapshot}
+            onClick={(event) => { if (!snapshot) event.preventDefault(); }}>
+            <span aria-hidden="true">⇩</span><span className="sr-only">Export graph</span>
+          </summary>
+          <div className="graph-export-options">
+            <button type="button" onClick={saveImage}>Download PNG</button>
+            <button type="button" onClick={() => runExport(downloadGraphJson)}>Download JSON</button>
+            <button type="button" onClick={() => runExport(downloadMermaidMarkdown)}>Download Mermaid Markdown</button>
+            <button type="button" onClick={() => runExport(downloadObsidianVault)}>Download Obsidian vault</button>
+          </div>
+        </details>
       </div>
       <div className="graph-canvas" ref={containerRef} />
     </section>

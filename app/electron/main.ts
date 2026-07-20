@@ -6,9 +6,48 @@ import { fileURLToPath } from "node:url";
 
 const currentDirectory = dirname(fileURLToPath(import.meta.url));
 let backendProcess: ChildProcess | undefined;
+let quitting = false;
 type DomainMode = "system" | "custom";
 interface DomainSettings { mode: DomainMode; customDomainId?: string; }
+interface RuntimeStatus {
+  rosAvailable: boolean;
+  backendAvailable: boolean;
+  liveAvailable: boolean;
+  reason?: string;
+}
 let domainSettings: DomainSettings = { mode: "system" };
+let runtimeStatus: RuntimeStatus = {
+  rosAvailable: false,
+  backendAvailable: false,
+  liveAvailable: false,
+  reason: "ROS 2 runtime has not been inspected yet.",
+};
+
+function rosSetupPath(): string {
+  return join("/opt/ros", process.env.ROS_DISTRO ?? "jazzy", "setup.bash");
+}
+
+function bundledBackendAvailable(): boolean {
+  return !app.isPackaged || existsSync(join(process.resourcesPath, "backend", "ros2_node_map", "main.py"));
+}
+
+function inspectRuntime(): RuntimeStatus {
+  const rosAvailable = existsSync(rosSetupPath());
+  const backendAvailable = bundledBackendAvailable();
+  const reason = !rosAvailable
+    ? `ROS 2 was not found at ${rosSetupPath()}.`
+    : !backendAvailable
+      ? "The bundled ros2-node-map backend is missing."
+      : undefined;
+  return { rosAvailable, backendAvailable, liveAvailable: rosAvailable && backendAvailable, reason };
+}
+
+function publishRuntimeStatus(status: RuntimeStatus): void {
+  runtimeStatus = status;
+  for (const window of BrowserWindow.getAllWindows()) {
+    window.webContents.send("runtime:status", status);
+  }
+}
 
 function validDomainId(value: string): boolean {
   return /^\d+$/.test(value) && Number(value) <= 232;
@@ -48,7 +87,7 @@ function effectiveDomainId(): string {
 
 function domainConfig() {
   return {
-    configurable: app.isPackaged,
+    configurable: app.isPackaged && runtimeStatus.liveAvailable,
     mode: domainSettings.mode,
     systemDomainId: systemDomainId(),
     customDomainId: domainSettings.customDomainId ?? "",
@@ -58,14 +97,12 @@ function domainConfig() {
 
 function startPackagedBackend(): void {
   if (!app.isPackaged) return;
-
-  const rosDistro = process.env.ROS_DISTRO ?? "jazzy";
-  const rosSetup = join("/opt/ros", rosDistro, "setup.bash");
-  if (!existsSync(rosSetup)) {
-    console.error(`ROS 2 ${rosDistro} was not found at ${rosSetup}`);
+  if (!runtimeStatus.liveAvailable) {
+    console.error(runtimeStatus.reason ?? "ROS 2 live mode is unavailable.");
     return;
   }
 
+  const rosSetup = rosSetupPath();
   const backendDirectory = join(process.resourcesPath, "backend");
   const existingPythonPath = process.env.PYTHONPATH;
   backendProcess = spawn(
@@ -95,10 +132,25 @@ function startPackagedBackend(): void {
   );
   backendProcess.on("error", (error) => {
     console.error("Unable to start the bundled backend:", error);
+    publishRuntimeStatus({
+      ...runtimeStatus,
+      backendAvailable: false,
+      liveAvailable: false,
+      reason: `Unable to start the bundled backend: ${error.message}`,
+    });
   });
   const startedProcess = backendProcess;
-  backendProcess.on("exit", () => {
-    if (backendProcess === startedProcess) backendProcess = undefined;
+  backendProcess.on("exit", (code, signal) => {
+    if (backendProcess !== startedProcess) return;
+    backendProcess = undefined;
+    if (!quitting) {
+      publishRuntimeStatus({
+        ...runtimeStatus,
+        backendAvailable: false,
+        liveAvailable: false,
+        reason: `Bundled backend stopped unexpectedly (${signal ?? code ?? "unknown"}).`,
+      });
+    }
   });
 }
 
@@ -134,6 +186,7 @@ function registerDomainHandlers(): void {
   ipcMain.handle("domain:get", () => domainConfig());
   ipcMain.handle("domain:set", async (_event, value: unknown) => {
     if (!app.isPackaged) throw new Error("Domain switching is available in the packaged app.");
+    if (!runtimeStatus.liveAvailable) throw new Error("ROS 2 live mode is unavailable.");
     if (!value || typeof value !== "object") throw new Error("Invalid domain settings.");
 
     const request = value as { mode?: unknown; customDomainId?: unknown };
@@ -153,6 +206,10 @@ function registerDomainHandlers(): void {
     await restartPackagedBackend();
     return domainConfig();
   });
+}
+
+function registerRuntimeHandlers(): void {
+  ipcMain.handle("runtime:get", () => runtimeStatus);
 }
 
 function createWindow(): void {
@@ -177,7 +234,9 @@ function createWindow(): void {
 
 app.whenReady().then(() => {
   domainSettings = loadDomainSettings();
+  runtimeStatus = inspectRuntime();
   registerDomainHandlers();
+  registerRuntimeHandlers();
   startPackagedBackend();
   createWindow();
   app.on("activate", () => {
@@ -189,4 +248,7 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-app.on("before-quit", () => { void stopPackagedBackend(); });
+app.on("before-quit", () => {
+  quitting = true;
+  void stopPackagedBackend();
+});

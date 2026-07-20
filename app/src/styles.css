@@ -49,12 +49,16 @@ button, input { font: inherit; }
   background: #7aa2f7;
   cursor: pointer;
 }
+.connection-form input:disabled, .connection-form button:disabled { cursor: default; opacity: 0.4; }
+.open-file-button { padding: 7px 11px; color: #b8c5d8; border: 1px solid #39465a; border-radius: 6px; background: #202936; cursor: pointer; white-space: nowrap; }
+.open-file-button:hover { color: #edf3ff; border-color: #60789d; background: #2a3648; }
 
 .connection-status { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #929cad; text-transform: capitalize; }
 .connection-status > span { width: 8px; height: 8px; border-radius: 50%; background: #667085; }
 .status-connected > span { background: #9ece6a; box-shadow: 0 0 7px #9ece6a99; }
 .status-connecting > span { background: #e0af68; }
 .status-error > span { background: #f7768e; }
+.status-file > span { background: #bb9af7; box-shadow: 0 0 7px #bb9af799; }
 .ros-domain-id {
   display: flex;
   align-items: center;
@@ -105,6 +109,7 @@ button, input { font: inherit; }
 .graph-domain-id:hover, .graph-domain-id[aria-expanded="true"] { border-color: #7aa2f7; background: #1d2a40f2; }
 .graph-domain-id span { color: #8da8d9; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
 .graph-domain-id strong { color: #e8f0ff; font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1; }
+.graph-domain-id em { padding: 2px 5px; color: #aebbd0; border: 1px solid #405271; border-radius: 4px; font-size: 8px; font-style: normal; letter-spacing: 0.08em; }
 .graph-domain-id i { color: #8da8d9; font-size: 13px; font-style: normal; }
 .domain-popover { width: 286px; margin-top: 8px; padding: 12px; color: #c7cfdb; border: 1px solid #3b4657; border-radius: 9px; background: #171c24f7; box-shadow: 0 12px 34px #0009; backdrop-filter: blur(12px); }
 .domain-popover-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 12px; }
@@ -140,7 +145,7 @@ button, input { font: inherit; }
   box-shadow: 0 5px 18px #0005;
   backdrop-filter: blur(8px);
 }
-.graph-controls button {
+.graph-controls > button, .graph-export-menu > summary {
   display: grid;
   width: 32px;
   height: 30px;
@@ -153,10 +158,16 @@ button, input { font: inherit; }
   cursor: pointer;
   font-size: 18px;
   line-height: 1;
+  list-style: none;
 }
-.graph-controls button:hover:not(:disabled) { color: #f0f4fa; background: #2a3341; }
-.graph-controls button:active:not(:disabled) { background: #354156; transform: translateY(1px); }
-.graph-controls button:disabled { cursor: default; opacity: 0.3; }
+.graph-export-menu > summary::-webkit-details-marker { display: none; }
+.graph-controls > button:hover:not(:disabled), .graph-export-menu > summary:hover { color: #f0f4fa; background: #2a3341; }
+.graph-controls > button:active:not(:disabled), .graph-export-menu > summary:active { background: #354156; transform: translateY(1px); }
+.graph-controls > button:disabled, .graph-export-menu > summary[aria-disabled="true"] { cursor: default; opacity: 0.3; }
+.graph-export-menu { position: relative; }
+.graph-export-options { position: absolute; z-index: 8; top: 36px; right: -5px; width: 214px; padding: 5px; border: 1px solid #3b4657; border-radius: 7px; background: #171c24f7; box-shadow: 0 12px 30px #0009; }
+.graph-export-options button { display: block; width: 100%; padding: 8px 10px; color: #bdc7d6; border: 0; border-radius: 4px; background: transparent; cursor: pointer; font-size: 10px; text-align: left; }
+.graph-export-options button:hover { color: #f0f4fa; background: #2a3341; }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -170,6 +181,11 @@ button, input { font: inherit; }
 .empty-state { position: absolute; z-index: 1; inset: 0; display: grid; place-content: center; gap: 8px; color: #6f7b8c; text-align: center; pointer-events: none; }
 .empty-state strong { color: #a8b1bf; font-size: 18px; }
 .empty-state span { font-size: 13px; }
+.empty-state button { justify-self: center; margin-top: 5px; padding: 7px 11px; color: #10141a; border: 0; border-radius: 5px; background: #7aa2f7; cursor: pointer; pointer-events: auto; }
+.file-error-banner { position: absolute; z-index: 7; right: 16px; bottom: 16px; max-width: min(520px, calc(100% - 32px)); padding: 9px 12px; color: #ffd8df; border: 1px solid #a84e61; border-radius: 6px; background: #4a2029ee; box-shadow: 0 8px 22px #0008; font-size: 11px; }
+.file-drop-overlay { position: absolute; z-index: 20; inset: 12px; display: grid; place-content: center; gap: 8px; color: #bcd0ef; border: 2px dashed #7aa2f7; border-radius: 12px; background: #101722e8; text-align: center; pointer-events: none; }
+.file-drop-overlay strong { color: #edf4ff; font-size: 18px; }
+.file-drop-overlay span { color: #8294ad; font-size: 11px; }
 
 
 .workspace {

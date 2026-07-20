@@ -159,7 +159,7 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 目標：
 
 * 透過 Graph View 匯出目前顯示的 graph JSON
-* 將 PNG 匯出改為 PNG／JSON 下拉選單
+* 將 PNG 匯出改為 PNG／JSON／Mermaid／Obsidian 匯出選單
 * 匯出包含 Mermaid graph 語法的 Markdown 檔
 * 支援拖放或選取 graph JSON 檔並以 File mode 顯示
 * ROS runtime 不可用時自動進入 File-only Mode
@@ -175,6 +175,17 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 * File mode 中不可變更 ROS domain
 * 可以產生 Markdown 文件
 * 可以在 Obsidian 中查看關聯圖
+
+驗證命令：
+
+```bash
+cd app
+npm test
+npm run build
+```
+
+完成前仍需依 `SPEC.md` 15.4 執行 Electron 手動測試，包含拖放匯入、匯出檔案、
+無效 JSON，以及無 ROS 2 runtime 的 File-only Mode。
 
 ## 2. 建議 Commit 順序
 

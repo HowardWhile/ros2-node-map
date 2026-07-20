@@ -1,7 +1,5 @@
-import {
-  GRAPH_SCHEMA_VERSION,
-  type GraphSnapshot,
-} from "./types";
+import { parseGraphSnapshot } from "./graph/snapshot.ts";
+import type { GraphSnapshot } from "./types";
 
 export const DEFAULT_BACKEND_URL = "ws://127.0.0.1:8766";
 
@@ -9,26 +7,12 @@ export type ConnectionStatus =
   | "connecting"
   | "connected"
   | "disconnected"
-  | "error";
+  | "error"
+  | "file";
 
 export interface GraphConnectionCallbacks {
   onSnapshot: (snapshot: GraphSnapshot) => void;
   onStatus: (status: ConnectionStatus, message?: string) => void;
-}
-
-function parseSnapshot(raw: string): GraphSnapshot {
-  const value: unknown = JSON.parse(raw);
-  if (!value || typeof value !== "object") {
-    throw new Error("Backend message is not a JSON object");
-  }
-  const snapshot = value as Partial<GraphSnapshot>;
-  if (snapshot.schema_version !== GRAPH_SCHEMA_VERSION) {
-    throw new Error(`Unsupported schema version: ${snapshot.schema_version ?? "missing"}`);
-  }
-  if (!Array.isArray(snapshot.nodes) || !Array.isArray(snapshot.edges)) {
-    throw new Error("Backend message is missing nodes or edges");
-  }
-  return snapshot as GraphSnapshot;
 }
 
 export function connectGraphStream(
@@ -48,7 +32,7 @@ export function connectGraphStream(
     socket.addEventListener("open", () => callbacks.onStatus("connected"));
     socket.addEventListener("message", (event) => {
       try {
-        callbacks.onSnapshot(parseSnapshot(String(event.data)));
+        callbacks.onSnapshot(parseGraphSnapshot(String(event.data)));
       } catch (error) {
         callbacks.onStatus(
           "error",

@@ -512,10 +512,14 @@ Graph View 的既有 `Save graph as PNG` 控制項應改為匯出下拉選單，
 * Download PNG：下載目前畫面的 graph 圖片
 * Download JSON：下載目前顯示的 graph snapshot JSON
 * Download Mermaid Markdown：下載包含 Mermaid graph 語法的 `.md` 檔
+* Download Obsidian vault：下載包含索引、Mermaid graph 與 entity Markdown 的 `.zip`
 
 Mermaid Markdown 必須以 `mermaid` code fence 包住可直接貼入支援 Mermaid 的
 Markdown renderer 的圖表定義，並保留目前顯示 topology 的 node、edge、label
 與關係方向。
+
+Obsidian vault ZIP 解壓縮後必須可以直接作為 vault 開啟；每個 graph entity
+使用獨立 Markdown 檔，並以 Obsidian wikilink 保留 entity 之間的 edge 關係。
 
 使用者可將符合 graph schema 的 `.json` 檔拖放至應用程式視窗，或透過檔案
 選擇器開啟。載入成功後，前端必須使用該 snapshot 渲染 graph、sidebar 與

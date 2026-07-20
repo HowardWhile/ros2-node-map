@@ -3,13 +3,28 @@ from datetime import datetime, timezone
 import pytest
 from fastapi.testclient import TestClient
 
-from ros2_node_map.graph_model import GraphSnapshot
-from ros2_node_map.graph_server import DomainController, GraphServer, create_app
+from ros2_node_map.graph_model import GraphNode, GraphSnapshot, NodeKind
+from ros2_node_map.graph_server import DomainController, GraphServer, create_app, snapshot_response
 
 
 class FakeReader:
     def snapshot(self):
         return GraphSnapshot.empty(timestamp=datetime(2026, 7, 8, tzinfo=timezone.utc))
+
+
+class PopulatedReader:
+    def snapshot(self):
+        return GraphSnapshot(
+            timestamp=datetime(2026, 7, 8, tzinfo=timezone.utc),
+            ros_domain_id="49",
+            nodes=(
+                GraphNode.ros_node("talker", "/"),
+                GraphNode.resource(
+                    NodeKind.ROS_TOPIC, "/chatter", ("std_msgs/msg/String",)
+                ),
+            ),
+            edges=(),
+        )
 
 
 def test_server_validates_configuration() -> None:
@@ -28,6 +43,24 @@ def test_http_endpoints_are_documented_and_return_a_snapshot() -> None:
         schema = client.get("/openapi.json").json()
     assert "/api/snapshot" in schema["paths"]
     assert "/docs" not in schema["paths"]
+
+
+def test_snapshot_response_preserves_the_strict_node_schema() -> None:
+    nodes = snapshot_response(PopulatedReader()).model_dump(mode="json")["nodes"]
+
+    assert nodes[0] == {
+        "id": "node:/talker",
+        "kind": "ros_node",
+        "label": "/talker",
+        "name": "talker",
+        "namespace": "/",
+    }
+    assert nodes[1] == {
+        "id": "topic:/chatter",
+        "kind": "ros_topic",
+        "label": "/chatter",
+        "types": ["std_msgs/msg/String"],
+    }
 
 
 def test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths() -> None:

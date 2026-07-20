@@ -8,6 +8,13 @@ interface Ros2NodeMapDomainConfig {
   effectiveDomainId: string;
 }
 
+interface Ros2NodeMapRuntimeStatus {
+  rosAvailable: boolean;
+  backendAvailable: boolean;
+  liveAvailable: boolean;
+  reason?: string;
+}
+
 interface Window {
   ros2NodeMap?: {
     platform: string;
@@ -16,5 +23,7 @@ interface Window {
       mode: "system" | "custom";
       customDomainId: string;
     }) => Promise<Ros2NodeMapDomainConfig>;
+    getRuntimeStatus?: () => Promise<Ros2NodeMapRuntimeStatus>;
+    onRuntimeStatus?: (callback: (status: Ros2NodeMapRuntimeStatus) => void) => () => void;
   };
 }

@@ -21,16 +21,26 @@ class SnapshotReader(Protocol):
     def snapshot(self) -> GraphSnapshot: ...
 
 
-class GraphNodeResponse(BaseModel):
-    """One ROS node, topic, service, or action in a graph snapshot."""
+class RosNodeResponse(BaseModel):
+    """One ROS node in a graph snapshot."""
 
     model_config = ConfigDict(extra="forbid")
 
     id: str
-    kind: str
+    kind: Literal["ros_node"]
     label: str
-    name: str | None = None
-    namespace: str | None = None
+    name: str
+    namespace: str
+
+
+class RosResourceResponse(BaseModel):
+    """One ROS topic, service, or action in a graph snapshot."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str
+    kind: Literal["ros_topic", "ros_service", "ros_action"]
+    label: str
     types: list[str] = Field(default_factory=list)
 
 
@@ -53,7 +63,7 @@ class GraphSnapshotResponse(BaseModel):
     schema_version: str
     timestamp: datetime
     ros_domain_id: str
-    nodes: list[GraphNodeResponse]
+    nodes: list[RosNodeResponse | RosResourceResponse]
     edges: list[GraphEdgeResponse]
 
 

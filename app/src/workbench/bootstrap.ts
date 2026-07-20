@@ -73,6 +73,41 @@ export function bootstrap(root: HTMLElement): () => void {
   const unsubscribeSizing = store.subscribe(sizeExplorerFromLabels);
   sizeExplorerFromLabels();
 
+  let fileDragDepth = 0;
+  const hasFiles = (event: DragEvent) => Array.from(event.dataTransfer?.types ?? []).includes("Files");
+  const handleFileDragEnter = (event: DragEvent) => {
+    if (!hasFiles(event)) return;
+    event.preventDefault();
+    fileDragDepth += 1;
+    store.setFileDragActive(true);
+  };
+  const handleFileDragOver = (event: DragEvent) => {
+    if (!hasFiles(event)) return;
+    event.preventDefault();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+  };
+  const handleFileDragLeave = (event: DragEvent) => {
+    if (!hasFiles(event)) return;
+    fileDragDepth = Math.max(0, fileDragDepth - 1);
+    if (fileDragDepth === 0) store.setFileDragActive(false);
+  };
+  const handleFileDrop = (event: DragEvent) => {
+    if (!hasFiles(event)) return;
+    event.preventDefault();
+    fileDragDepth = 0;
+    store.setFileDragActive(false);
+    const files = Array.from(event.dataTransfer?.files ?? []);
+    if (files.length !== 1) {
+      store.setFileError("Drop exactly one graph JSON file.");
+      return;
+    }
+    void store.importSnapshotFile(files[0]);
+  };
+  window.addEventListener("dragenter", handleFileDragEnter);
+  window.addEventListener("dragover", handleFileDragOver);
+  window.addEventListener("dragleave", handleFileDragLeave);
+  window.addEventListener("drop", handleFileDrop);
+
   let resizeFrame: number | null = null;
   let detailsBelowExplorer: boolean | null = null;
   let initialExplorerLimitApplied = false;
@@ -105,6 +140,10 @@ export function bootstrap(root: HTMLElement): () => void {
     unsubscribeSizing();
     resizeObserver.disconnect();
     window.removeEventListener("resize", updateLayout);
+    window.removeEventListener("dragenter", handleFileDragEnter);
+    window.removeEventListener("dragover", handleFileDragOver);
+    window.removeEventListener("dragleave", handleFileDragLeave);
+    window.removeEventListener("drop", handleFileDrop);
     shell.saveLayout();
     shell.dispose();
     store.dispose();

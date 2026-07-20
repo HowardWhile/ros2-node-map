@@ -50,6 +50,18 @@ To open the Electron shell during development:
 npm run electron:dev
 ```
 
+## Snapshot files and exports
+
+The graph export menu can save the currently visible topology as PNG, graph
+JSON, Mermaid Markdown, or an Obsidian vault ZIP. Extract the vault ZIP and
+open that directory in Obsidian to browse entity pages and their links.
+
+Open a graph JSON snapshot with the **Open JSON** button or drag one JSON file
+anywhere onto the application window. A file is validated against graph schema
+version `0.1.0` before it replaces the current graph. When ROS 2 Jazzy or the
+bundled backend is unavailable, the Electron app starts in File-only Mode and
+keeps these offline viewing and export features enabled.
+
 ## Build Linux AppImage
 
 Build the Linux x86-64 AppImage from an Ubuntu 24.04 / Python 3.12 environment.
@@ -76,9 +88,10 @@ application dependencies. On startup it automatically loads
 `/opt/ros/jazzy/setup.bash` and starts the graph server at
 `ws://127.0.0.1:8766`; no separate backend command is required.
 
-The target system must be Ubuntu with ROS 2 Jazzy and `rclpy` installed. ROS 2,
-DDS implementations, and their native libraries are intentionally not bundled
-in the AppImage.
+Live discovery requires Ubuntu with ROS 2 Jazzy and `rclpy` installed. Without
+that runtime the app remains usable in File-only Mode. ROS 2, DDS
+implementations, and their native libraries are intentionally not bundled in
+the AppImage.
 
 The default packaging compression balances download size with application
 startup time. Do not change it to maximum compression unless a smaller download
@@ -96,6 +109,8 @@ If the system does not provide FUSE 2, run the AppImage in extraction mode:
 - [Graph JSON schema](docs/graph-json-schema.md)
 - [Testing](docs/testing.md)
 - [Roadmap](docs/roadmap.md)
+- [Specification](SPEC.md)
+- [Development plan](PLAN.md)
 
 ## License
 

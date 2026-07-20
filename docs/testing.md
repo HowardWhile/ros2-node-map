@@ -16,5 +16,11 @@ uv run pytest
 ```
 
 For ROS-backed commands, source ROS 2 Jazzy before `uv run` so its `rclpy`
-modules are available. Validate the frontend with `npm run build` from `app/`.
+modules are available. Validate the frontend export and snapshot parser plus
+the production build with:
 
+```bash
+cd app
+npm test
+npm run build
+```

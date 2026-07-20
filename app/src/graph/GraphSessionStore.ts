@@ -1,6 +1,7 @@
-import { DEFAULT_BACKEND_URL, connectGraphStream, type ConnectionStatus } from "../api";
+import { DEFAULT_BACKEND_URL, connectGraphStream, type ConnectionStatus } from "../api.ts";
 import type { GraphSnapshot } from "../types";
 import type { GraphSelectionRequest } from "../GraphView";
+import { parseGraphSnapshot } from "./snapshot.ts";
 
 const DEBUG_RESOURCE_NAMES = new Set(["/rosout", "/parameter_events", "/statistics", "/diagnostics", "/diagnostics_agg"]);
 const INFRASTRUCTURE_RESOURCE_NAMES = new Set(["/tf", "/tf_static", "/clock", "/bond"]);
@@ -32,6 +33,13 @@ export interface GraphSessionState {
   visibleSnapshot: GraphSnapshot | null;
   selectionRequest: GraphSelectionRequest | null;
   selectedNodeIds: string[];
+  sourceMode: "live" | "file";
+  fileName: string;
+  fileError: string;
+  fileDragActive: boolean;
+  runtimeReady: boolean;
+  liveAvailable: boolean;
+  runtimeMessage: string;
   showDebugResources: boolean;
   showInfrastructureResources: boolean;
   showCommonServices: boolean;
@@ -46,18 +54,35 @@ export class GraphSessionStore {
   private state: GraphSessionState;
   private readonly listeners = new Set<() => void>();
   private cleanup: (() => void) | null = null;
+  private runtimeCleanup: (() => void) | null = null;
   private disposed = false;
 
   constructor() {
+    const bridge = window.ros2NodeMap;
+    const checksRuntime = Boolean(bridge?.getRuntimeStatus);
     this.state = this.withVisibleSnapshot({
       urlInput: DEFAULT_BACKEND_URL, backendUrl: DEFAULT_BACKEND_URL,
       connectionStatus: "connecting", statusMessage: "", snapshot: null,
       visibleSnapshot: null, selectionRequest: null, selectedNodeIds: [],
+      sourceMode: "live", fileName: "", fileError: "", fileDragActive: false,
+      runtimeReady: !checksRuntime, liveAvailable: !checksRuntime, runtimeMessage: "",
       showDebugResources: false, showInfrastructureResources: false,
       showCommonServices: false, showLifecycleServices: false, showActionInternals: false,
       showTopics: true, showServices: true, showActions: true,
     });
-    this.connectStream();
+    if (checksRuntime) {
+      this.runtimeCleanup = bridge?.onRuntimeStatus?.((status) => this.applyRuntimeStatus(status)) ?? null;
+      void bridge!.getRuntimeStatus!()
+        .then((status) => this.applyRuntimeStatus(status))
+        .catch((error: unknown) => this.applyRuntimeStatus({
+          rosAvailable: false,
+          backendAvailable: false,
+          liveAvailable: false,
+          reason: error instanceof Error ? error.message : "Unable to inspect the ROS runtime.",
+        }));
+    } else {
+      this.connectStream();
+    }
   }
 
   getSnapshot = (): GraphSessionState => this.state;
@@ -76,14 +101,81 @@ export class GraphSessionStore {
   setShowTopics(value: boolean): void { this.update({ showTopics: value }); }
   setShowServices(value: boolean): void { this.update({ showServices: value }); }
   setShowActions(value: boolean): void { this.update({ showActions: value }); }
+  setFileDragActive(value: boolean): void {
+    if (this.state.fileDragActive !== value) this.update({ fileDragActive: value });
+  }
+
+  setFileError(message: string): void { this.update({ fileError: message }); }
+
+  importSnapshotText(raw: string, fileName: string): boolean {
+    let snapshot: GraphSnapshot;
+    try {
+      snapshot = parseGraphSnapshot(raw);
+    } catch (error) {
+      this.update({ fileError: error instanceof Error ? error.message : "Unable to load graph JSON." });
+      return false;
+    }
+    this.cleanup?.();
+    this.cleanup = null;
+    this.update({
+      sourceMode: "file",
+      fileName,
+      fileError: "",
+      snapshot,
+      selectedNodeIds: [],
+      selectionRequest: null,
+      connectionStatus: "file",
+      statusMessage: `Viewing ${fileName}`,
+    });
+    return true;
+  }
+
+  async importSnapshotFile(file: File): Promise<boolean> {
+    if (!file.name.toLowerCase().endsWith(".json")) {
+      this.update({ fileError: "Choose a .json graph snapshot file." });
+      return false;
+    }
+    try {
+      return this.importSnapshotText(await file.text(), file.name);
+    } catch (error) {
+      this.update({ fileError: error instanceof Error ? error.message : "Unable to read the selected file." });
+      return false;
+    }
+  }
+
+  openSnapshotFilePicker(): void {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json,application/json";
+    input.addEventListener("change", () => {
+      const file = input.files?.[0];
+      if (file) void this.importSnapshotFile(file);
+    }, { once: true });
+    input.click();
+  }
+
+  resumeLive(): void {
+    if (!this.state.liveAvailable) return;
+    this.cleanup?.();
+    this.cleanup = null;
+    this.update({
+      sourceMode: "live", fileName: "", fileError: "", snapshot: null,
+      selectedNodeIds: [], selectionRequest: null, connectionStatus: "connecting", statusMessage: "",
+    });
+    this.connectStream();
+  }
 
   connect(force = false): void {
+    if (!this.state.liveAvailable) return;
     const backendUrl = this.state.urlInput.trim();
     if (!backendUrl) return;
     if (!force && backendUrl === this.state.backendUrl) return;
     this.cleanup?.();
     this.cleanup = null;
-    this.update({ backendUrl, snapshot: null, selectedNodeIds: [], selectionRequest: null });
+    this.update({
+      backendUrl, sourceMode: "live", fileName: "", fileError: "", snapshot: null,
+      selectedNodeIds: [], selectionRequest: null,
+    });
     this.connectStream();
   }
 
@@ -98,6 +190,8 @@ export class GraphSessionStore {
     this.disposed = true;
     this.cleanup?.();
     this.cleanup = null;
+    this.runtimeCleanup?.();
+    this.runtimeCleanup = null;
     this.listeners.clear();
   }
 
@@ -106,6 +200,28 @@ export class GraphSessionStore {
       onSnapshot: (snapshot) => this.update({ snapshot }),
       onStatus: (connectionStatus, statusMessage = "") => this.update({ connectionStatus, statusMessage }),
     });
+  }
+
+  private applyRuntimeStatus(status: Ros2NodeMapRuntimeStatus): void {
+    if (this.disposed) return;
+    const runtimeMessage = status.reason ?? "";
+    this.update({ runtimeReady: true, liveAvailable: status.liveAvailable, runtimeMessage });
+    if (!status.liveAvailable) {
+      this.cleanup?.();
+      this.cleanup = null;
+      if (this.state.sourceMode !== "file") {
+        this.update({
+          sourceMode: "file",
+          snapshot: null,
+          selectedNodeIds: [],
+          selectionRequest: null,
+          connectionStatus: "disconnected",
+          statusMessage: runtimeMessage || "ROS 2 is unavailable. Open a graph JSON file.",
+        });
+      }
+      return;
+    }
+    if (this.state.sourceMode === "live" && !this.cleanup) this.connectStream();
   }
 
   private update(patch: Partial<GraphSessionState>): void {
