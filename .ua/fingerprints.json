@@ -1,0 +1,3055 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "bf5d8968f610251e7e7897a45b98527372cbad53",
+  "generatedAt": "2026-07-20T05:54:00.041Z",
+  "files": {
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "4bf84d76aba5b65ab98dfad047e92789349275d38b0c48315c9c852113b291f1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "app/electron/main.ts": {
+      "filePath": "app/electron/main.ts",
+      "contentHash": "f5921c056d5024a56f070da702351567283a639024b23cb23111598aaf4b1095",
+      "functions": [
+        {
+          "name": "rosSetupPath",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "bundledBackendAvailable",
+          "params": [],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "inspectRuntime",
+          "params": [],
+          "returnType": "RuntimeStatus",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "publishRuntimeStatus",
+          "params": [
+            "status"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "validDomainId",
+          "params": [
+            "value"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "systemDomainId",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "domainSettingsPath",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "loadDomainSettings",
+          "params": [],
+          "returnType": "DomainSettings",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "saveDomainSettings",
+          "params": [
+            "settings"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "effectiveDomainId",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "domainConfig",
+          "params": [],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "startPackagedBackend",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 58
+        },
+        {
+          "name": "stopPackagedBackend",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "restartPackagedBackend",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "registerDomainHandlers",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "registerRuntimeHandlers",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "createWindow",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "electron",
+          "specifiers": [
+            "app",
+            "BrowserWindow",
+            "ipcMain"
+          ]
+        },
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "existsSync",
+            "mkdirSync",
+            "readFileSync",
+            "writeFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawn",
+            "ChildProcess"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 255,
+      "hasStructuralAnalysis": true
+    },
+    "app/electron/preload.ts": {
+      "filePath": "app/electron/preload.ts",
+      "contentHash": "fa7f10629e2f31961ffe6d86d417d5019a620c02e705cf7e430b181a8569ac5f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "electron",
+          "specifiers": [
+            "contextBridge",
+            "ipcRenderer"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "app/electron/tsconfig.json": {
+      "filePath": "app/electron/tsconfig.json",
+      "contentHash": "a2c2ba33153a68b4ff554ca69b4529000530c30775f970ab085e40a060f370bd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "app/index.html": {
+      "filePath": "app/index.html",
+      "contentHash": "fef463de61fdfc02288f3b3a8d54483736c4bef148166a25f43bcf8e0bbcdbe2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
+      "hasStructuralAnalysis": false
+    },
+    "app/package.json": {
+      "filePath": "app/package.json",
+      "contentHash": "7b75caef4a9319b396fe7565633a616161021b2a42a2675fc3a01767168e8be0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "app/scripts/package-backend.mjs": {
+      "filePath": "app/scripts/package-backend.mjs",
+      "contentHash": "4102dd6df0c6fb32d96b131c584d006d73ef15a7f82554d8f16cf5f4d5cbe033",
+      "functions": [
+        {
+          "name": "run",
+          "params": [
+            "command",
+            "args"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "removeNonRuntimeFiles",
+          "params": [
+            "directory"
+          ],
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "existsSync",
+            "mkdirSync",
+            "readdirSync",
+            "rmSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "node:child_process",
+          "specifiers": [
+            "spawnSync"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/api.ts": {
+      "filePath": "app/src/api.ts",
+      "contentHash": "d92e2b77d2512451ccb0db19d46deb6fc345e58995be3ca4baf3e0edc1cedbb5",
+      "functions": [
+        {
+          "name": "connectGraphStream",
+          "params": [
+            "url",
+            "callbacks",
+            "retryDelayMs"
+          ],
+          "returnType": "() => void",
+          "exported": true,
+          "lineCount": 42
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./graph/snapshot.ts",
+          "specifiers": [
+            "parseGraphSnapshot"
+          ]
+        },
+        {
+          "source": "./types",
+          "specifiers": [
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "DEFAULT_BACKEND_URL",
+        "connectGraphStream"
+      ],
+      "totalLines": 60,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/cytoscape-cola.d.ts": {
+      "filePath": "app/src/cytoscape-cola.d.ts",
+      "contentHash": "93780b99423becf33a12b2f6ba4754a87a8e6fa63a382a1ab9085d2357c8293c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/DetailPanel.tsx": {
+      "filePath": "app/src/DetailPanel.tsx",
+      "contentHash": "c7d3275b538d28053ca5ab84d85c9826260983861537e62ecbc01cf7a190be34",
+      "functions": [
+        {
+          "name": "commandFor",
+          "params": [
+            "node"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "DetailPanel",
+          "params": [
+            "{\n  snapshot,\n  selectedNodeIds,\n  onSelectNode,\n}"
+          ],
+          "exported": true,
+          "lineCount": 94
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "./types",
+          "specifiers": [
+            "GraphEdgeKind",
+            "GraphNode",
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "DetailPanel"
+      ],
+      "totalLines": 120,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/DomainControl.tsx": {
+      "filePath": "app/src/DomainControl.tsx",
+      "contentHash": "403cf3356158406a3539f8607e954cbeb430597dc5765ff2063e67eee179ddba",
+      "functions": [
+        {
+          "name": "domainApiUrl",
+          "params": [
+            "backendUrl"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "normalizeBackendConfig",
+          "params": [
+            "value"
+          ],
+          "returnType": "Ros2NodeMapDomainConfig",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "requestBackendConfig",
+          "params": [
+            "backendUrl",
+            "settings"
+          ],
+          "returnType": "Promise<Ros2NodeMapDomainConfig>",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "DomainControl",
+          "params": [
+            "{\n  displayedDomainId,\n  backendUrl,\n  sourceMode,\n  connectionStatus,\n  fileName,\n  liveAvailable,\n  onOpenFile,\n  onResumeLive,\n}"
+          ],
+          "exported": true,
+          "lineCount": 123
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useState"
+          ]
+        },
+        {
+          "source": "./api",
+          "specifiers": [
+            "ConnectionStatus"
+          ]
+        }
+      ],
+      "exports": [
+        "DomainControl"
+      ],
+      "totalLines": 181,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/DetailsView.tsx": {
+      "filePath": "app/src/graph/DetailsView.tsx",
+      "contentHash": "1522946a8d3c69a07c45061bbf1e0cf3b8eefefe798eb95826f11bdae742197d",
+      "functions": [
+        {
+          "name": "DetailsView",
+          "params": [
+            "{ store }"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../DetailPanel",
+          "specifiers": [
+            "DetailPanel"
+          ]
+        },
+        {
+          "source": "./GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        },
+        {
+          "source": "./useGraphSession",
+          "specifiers": [
+            "useGraphSession"
+          ]
+        }
+      ],
+      "exports": [
+        "DetailsView"
+      ],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/downloads.ts": {
+      "filePath": "app/src/graph/downloads.ts",
+      "contentHash": "99d0ddf5514832450ae430d8c27a5cdbcefcea28935a913f58b725a2d32b6199",
+      "functions": [
+        {
+          "name": "timestampSuffix",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "downloadBlob",
+          "params": [
+            "blob",
+            "filename"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "downloadText",
+          "params": [
+            "content",
+            "filename",
+            "type"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "downloadGraphJson",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "downloadMermaidMarkdown",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../types",
+          "specifiers": [
+            "GraphSnapshot"
+          ]
+        },
+        {
+          "source": "./exporters",
+          "specifiers": [
+            "graphToJson",
+            "graphToMermaidMarkdown"
+          ]
+        }
+      ],
+      "exports": [
+        "downloadGraphJson",
+        "downloadMermaidMarkdown"
+      ],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/ExplorerView.tsx": {
+      "filePath": "app/src/graph/ExplorerView.tsx",
+      "contentHash": "89364a4c2944bbad8c67b0de740bf208a3d83424506edb32a8c4a05acb5efe51",
+      "functions": [
+        {
+          "name": "ExplorerView",
+          "params": [
+            "{ store }"
+          ],
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../Sidebar",
+          "specifiers": [
+            "Sidebar"
+          ]
+        },
+        {
+          "source": "./GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        },
+        {
+          "source": "./useGraphSession",
+          "specifiers": [
+            "useGraphSession"
+          ]
+        }
+      ],
+      "exports": [
+        "ExplorerView"
+      ],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/exporters.ts": {
+      "filePath": "app/src/graph/exporters.ts",
+      "contentHash": "2cdae39af9e7eb46b7f409962c6a3a56dc20853f673cdd3cb36b286677c57b98",
+      "functions": [
+        {
+          "name": "mermaidLabel",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "mermaidNode",
+          "params": [
+            "id",
+            "node"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "graphToMermaid",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "graphToMermaidMarkdown",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "graphToJson",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../types",
+          "specifiers": [
+            "GraphNode",
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "graphToMermaid",
+        "graphToMermaidMarkdown",
+        "graphToJson"
+      ],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/GraphPanelView.tsx": {
+      "filePath": "app/src/graph/GraphPanelView.tsx",
+      "contentHash": "27f8f501a344fbfe96c008875d0a25142a28263afe2339cc2628615c45406973",
+      "functions": [
+        {
+          "name": "GraphPanelView",
+          "params": [
+            "{ store }"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../GraphView",
+          "specifiers": [
+            "GraphView"
+          ]
+        },
+        {
+          "source": "./GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        },
+        {
+          "source": "./useGraphSession",
+          "specifiers": [
+            "useGraphSession"
+          ]
+        }
+      ],
+      "exports": [
+        "GraphPanelView"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/GraphSessionStore.ts": {
+      "filePath": "app/src/graph/GraphSessionStore.ts",
+      "contentHash": "9635f4685cee30570fd160b6a9488f82b65d1d2edf2a7af29b32715d8afc1127",
+      "functions": [
+        {
+          "name": "isInfrastructureResource",
+          "params": [
+            "label"
+          ],
+          "exported": false,
+          "lineCount": 2
+        },
+        {
+          "name": "serviceName",
+          "params": [
+            "label"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "isCommonService",
+          "params": [
+            "label"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "isLifecycleService",
+          "params": [
+            "label"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "isActionInternalResource",
+          "params": [
+            "kind",
+            "label"
+          ],
+          "exported": false,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "GraphSessionStore",
+          "methods": [
+            "constructor",
+            "setUrlInput",
+            "setShowDebugResources",
+            "setShowInfrastructureResources",
+            "setShowCommonServices",
+            "setShowLifecycleServices",
+            "setShowActionInternals",
+            "setShowTopics",
+            "setShowServices",
+            "setShowActions",
+            "setFileDragActive",
+            "setFileError",
+            "importSnapshotText",
+            "importSnapshotFile",
+            "openSnapshotFilePicker",
+            "resumeLive",
+            "connect",
+            "requestNodeSelection",
+            "setSelectedNodeIds",
+            "dispose",
+            "connectStream",
+            "applyRuntimeStatus",
+            "update",
+            "withVisibleSnapshot"
+          ],
+          "properties": [
+            "state",
+            "listeners",
+            "cleanup",
+            "runtimeCleanup",
+            "disposed",
+            "getSnapshot",
+            "subscribe"
+          ],
+          "exported": true,
+          "lineCount": 199
+        }
+      ],
+      "imports": [
+        {
+          "source": "../api.ts",
+          "specifiers": [
+            "DEFAULT_BACKEND_URL",
+            "connectGraphStream",
+            "ConnectionStatus"
+          ]
+        },
+        {
+          "source": "../types",
+          "specifiers": [
+            "GraphSnapshot"
+          ]
+        },
+        {
+          "source": "../GraphView",
+          "specifiers": [
+            "GraphSelectionRequest"
+          ]
+        },
+        {
+          "source": "./snapshot.ts",
+          "specifiers": [
+            "parseGraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "GraphSessionStore"
+      ],
+      "totalLines": 252,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/snapshot.ts": {
+      "filePath": "app/src/graph/snapshot.ts",
+      "contentHash": "a9203500deeffa57d1ce58d26e1723578bc24a7b9e16f4a6750b26dfe8855b13",
+      "functions": [
+        {
+          "name": "isRecord",
+          "params": [
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "assertExactKeys",
+          "params": [
+            "value",
+            "allowed",
+            "context"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "requiredString",
+          "params": [
+            "value",
+            "key",
+            "context"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "parseTypes",
+          "params": [
+            "value",
+            "context"
+          ],
+          "returnType": "string[] | undefined",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "parseNode",
+          "params": [
+            "value",
+            "index"
+          ],
+          "returnType": "GraphNode",
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "parseEdge",
+          "params": [
+            "value",
+            "index",
+            "nodeIds"
+          ],
+          "returnType": "GraphEdge",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "validateGraphSnapshot",
+          "params": [
+            "value"
+          ],
+          "returnType": "GraphSnapshot",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "parseGraphSnapshot",
+          "params": [
+            "raw"
+          ],
+          "returnType": "GraphSnapshot",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../types.ts",
+          "specifiers": [
+            "GRAPH_SCHEMA_VERSION",
+            "GraphEdge",
+            "GraphEdgeKind",
+            "GraphNode",
+            "GraphNodeKind",
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "validateGraphSnapshot",
+        "parseGraphSnapshot"
+      ],
+      "totalLines": 140,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/ToolbarView.tsx": {
+      "filePath": "app/src/graph/ToolbarView.tsx",
+      "contentHash": "c7083b19e1dfea1a2c7a2cbbea0f15c498937a9b5f8c262e1aaefe51f9489302",
+      "functions": [
+        {
+          "name": "ToolbarView",
+          "params": [
+            "{ store }"
+          ],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "FormEvent"
+          ]
+        },
+        {
+          "source": "./GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        },
+        {
+          "source": "./useGraphSession",
+          "specifiers": [
+            "useGraphSession"
+          ]
+        }
+      ],
+      "exports": [
+        "ToolbarView"
+      ],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/graph/useGraphSession.ts": {
+      "filePath": "app/src/graph/useGraphSession.ts",
+      "contentHash": "ebf6fecdd805ac7fe93e2fb8ccb8b061083ecfa5e9bde6d11242ecbc5c35b1c9",
+      "functions": [
+        {
+          "name": "useGraphSession",
+          "params": [
+            "store"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useSyncExternalStore"
+          ]
+        },
+        {
+          "source": "./GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        }
+      ],
+      "exports": [
+        "useGraphSession"
+      ],
+      "totalLines": 7,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/GraphView.tsx": {
+      "filePath": "app/src/GraphView.tsx",
+      "contentHash": "1e99235c5f8839d3aa79bdcd5360bba9eadd17e20619ce630e019dae236e838d",
+      "functions": [
+        {
+          "name": "updateLabelVisibility",
+          "params": [
+            "graph",
+            "force"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "toElements",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "ElementDefinition[]",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "startAiryWebLayout",
+          "params": [
+            "graph"
+          ],
+          "returnType": "Layouts",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "startContinuousForceLayout",
+          "params": [
+            "graph"
+          ],
+          "returnType": "Layouts",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "placeNewNodes",
+          "params": [
+            "graph",
+            "nodeIds"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "syncGraphSnapshot",
+          "params": [
+            "graph",
+            "snapshot"
+          ],
+          "returnType": "{\n  addedNodeIds: string[];\n  needsForceUpdate: boolean;\n}",
+          "exported": false,
+          "lineCount": 47
+        },
+        {
+          "name": "fitVisibleNodes",
+          "params": [
+            "graph"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "GraphView",
+          "params": [
+            "{\n  snapshot,\n  exportSnapshot,\n  backendUrl,\n  sourceMode,\n  connectionStatus,\n  fileName,\n  fileError,\n  fileDragActive,\n  runtimeReady,\n  liveAvailable,\n  runtimeMessage,\n  selectionRequest,\n  onSelectionChange,\n  onOpenFile,\n  onResumeLive,\n}"
+          ],
+          "exported": true,
+          "lineCount": 267
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "cytoscape",
+          "specifiers": [
+            "cytoscape",
+            "Core",
+            "ElementDefinition",
+            "Layouts"
+          ]
+        },
+        {
+          "source": "cytoscape-cola",
+          "specifiers": [
+            "cola"
+          ]
+        },
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useRef"
+          ]
+        },
+        {
+          "source": "./DomainControl",
+          "specifiers": [
+            "DomainControl"
+          ]
+        },
+        {
+          "source": "./api",
+          "specifiers": [
+            "ConnectionStatus"
+          ]
+        },
+        {
+          "source": "./graph/downloads",
+          "specifiers": [
+            "downloadGraphJson",
+            "downloadMermaidMarkdown"
+          ]
+        },
+        {
+          "source": "./types",
+          "specifiers": [
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "GraphView"
+      ],
+      "totalLines": 593,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/main.tsx": {
+      "filePath": "app/src/main.tsx",
+      "contentHash": "a6f1743b311296869c90ad6520e07978de124bc357c6f60c96c9fa7440f64388",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@lumino/default-theme/style/index.css",
+          "specifiers": []
+        },
+        {
+          "source": "./styles.css",
+          "specifiers": []
+        },
+        {
+          "source": "./workbench/workbench.css",
+          "specifiers": []
+        },
+        {
+          "source": "./workbench/bootstrap",
+          "specifiers": [
+            "bootstrap"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/Sidebar.tsx": {
+      "filePath": "app/src/Sidebar.tsx",
+      "contentHash": "c4f13f462c4f3a3637f97b7407d11be88121c41d6799ead5849dc93a5273bc2b",
+      "functions": [
+        {
+          "name": "nodesOfKind",
+          "params": [
+            "snapshot",
+            "kind",
+            "query"
+          ],
+          "returnType": "GraphNode[]",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "Sidebar",
+          "params": [
+            "{\n  snapshot, selectedNodeIds, onSelectNode,\n  showDebugResources, onShowDebugResourcesChange,\n  showInfrastructureResources, onShowInfrastructureResourcesChange,\n  showCommonServices, onShowCommonServicesChange,\n  showLifecycleServices, onShowLifecycleServicesChange,\n  showActionInternals, onShowActionInternalsChange,\n  showTopics, onShowTopicsChange,\n  showServices, onShowServicesChange,\n  showActions, onShowActionsChange,\n}"
+          ],
+          "exported": true,
+          "lineCount": 108
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useState"
+          ]
+        },
+        {
+          "source": "./types",
+          "specifiers": [
+            "GraphNode",
+            "GraphNodeKind",
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "Sidebar"
+      ],
+      "totalLines": 150,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/styles.css": {
+      "filePath": "app/src/styles.css",
+      "contentHash": "870f3963c59d3aaa1aec3dc7da0c03be8f63ba8d9883fcb35a1028fb6dac708b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 413,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/types.ts": {
+      "filePath": "app/src/types.ts",
+      "contentHash": "61977811991645075d779b62256416c8e18cedda257bd1291be7926d94336ca5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "GRAPH_SCHEMA_VERSION"
+      ],
+      "totalLines": 51,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/vite-env.d.ts": {
+      "filePath": "app/src/vite-env.d.ts",
+      "contentHash": "949eb79e8f550fd144dae67663418a57e07dfe6f8b4f313a5f63a4a04e37b6cc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/bootstrap.ts": {
+      "filePath": "app/src/workbench/bootstrap.ts",
+      "contentHash": "2b13fb7fca80d17eafce2bd10772182d3fb87e655ce025c6fc40f1fd0771cca8",
+      "functions": [
+        {
+          "name": "initialExplorerWidth",
+          "params": [
+            "root",
+            "longestLabel"
+          ],
+          "returnType": "number",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "bootstrap",
+          "params": [
+            "root"
+          ],
+          "returnType": "() => void",
+          "exported": true,
+          "lineCount": 132
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@lumino/commands",
+          "specifiers": [
+            "CommandRegistry"
+          ]
+        },
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "Widget"
+          ]
+        },
+        {
+          "source": "react",
+          "specifiers": [
+            "createElement",
+            "ReactNode"
+          ]
+        },
+        {
+          "source": "../graph/DetailsView",
+          "specifiers": [
+            "DetailsView"
+          ]
+        },
+        {
+          "source": "../graph/ExplorerView",
+          "specifiers": [
+            "ExplorerView"
+          ]
+        },
+        {
+          "source": "../graph/GraphPanelView",
+          "specifiers": [
+            "GraphPanelView"
+          ]
+        },
+        {
+          "source": "../graph/GraphSessionStore",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        },
+        {
+          "source": "../graph/ToolbarView",
+          "specifiers": [
+            "ToolbarView"
+          ]
+        },
+        {
+          "source": "./PanelRegistry",
+          "specifiers": [
+            "PanelRegistry",
+            "PanelId"
+          ]
+        },
+        {
+          "source": "./ReactPanelWidget",
+          "specifiers": [
+            "ReactPanelWidget"
+          ]
+        },
+        {
+          "source": "./commands",
+          "specifiers": [
+            "registerCommands"
+          ]
+        },
+        {
+          "source": "./WorkbenchShell",
+          "specifiers": [
+            "WorkbenchShell"
+          ]
+        }
+      ],
+      "exports": [
+        "bootstrap"
+      ],
+      "totalLines": 158,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/commands.ts": {
+      "filePath": "app/src/workbench/commands.ts",
+      "contentHash": "3e7874ef19397dc76ac3935968a95748cbbc8e9550b34831b9cfc91ceabc475d",
+      "functions": [
+        {
+          "name": "registerCommands",
+          "params": [
+            "commands",
+            "shell"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@lumino/commands",
+          "specifiers": [
+            "CommandRegistry"
+          ]
+        },
+        {
+          "source": "./PanelRegistry",
+          "specifiers": [
+            "PanelId"
+          ]
+        },
+        {
+          "source": "./WorkbenchShell",
+          "specifiers": [
+            "WorkbenchShell"
+          ]
+        }
+      ],
+      "exports": [
+        "COMMANDS",
+        "registerCommands"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/layoutPersistence.ts": {
+      "filePath": "app/src/workbench/layoutPersistence.ts",
+      "contentHash": "3e59cbfedbea12f8d498210ab336ed9e6e4413155a7fb7b638c37cf461fc9c7a",
+      "functions": [
+        {
+          "name": "isRecord",
+          "params": [
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "serialize",
+          "params": [
+            "value"
+          ],
+          "returnType": "Json | undefined",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "deserializeLayout",
+          "params": [
+            "value",
+            "panels"
+          ],
+          "returnType": "unknown | null",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "saveDockLayout",
+          "params": [
+            "dock"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "restoreDockLayout",
+          "params": [
+            "dock",
+            "panels"
+          ],
+          "returnType": "boolean",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "clearDockLayout",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "Widget",
+            "DockPanel"
+          ]
+        },
+        {
+          "source": "./PanelRegistry",
+          "specifiers": [
+            "PanelId",
+            "PanelRegistry"
+          ]
+        }
+      ],
+      "exports": [
+        "saveDockLayout",
+        "restoreDockLayout",
+        "clearDockLayout"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/PanelErrorBoundary.tsx": {
+      "filePath": "app/src/workbench/PanelErrorBoundary.tsx",
+      "contentHash": "f6da7be2e921a6f4a43234e5465c3ae3aafe417243647f980738a83dbd810ea6",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PanelErrorBoundary",
+          "methods": [
+            "getDerivedStateFromError",
+            "componentDidCatch",
+            "render"
+          ],
+          "properties": [
+            "state",
+            "retry"
+          ],
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "Component",
+            "ErrorInfo",
+            "ReactNode"
+          ]
+        }
+      ],
+      "exports": [
+        "PanelErrorBoundary"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/PanelRegistry.ts": {
+      "filePath": "app/src/workbench/PanelRegistry.ts",
+      "contentHash": "1aec985907b0f9a37564e82eb641895efe9230f918cd967c1f01021f98fd7d26",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PanelRegistry",
+          "methods": [
+            "register",
+            "has",
+            "findOpen",
+            "getOrCreate",
+            "disposePanels"
+          ],
+          "properties": [
+            "definitions",
+            "instances"
+          ],
+          "exported": true,
+          "lineCount": 24
+        }
+      ],
+      "imports": [
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "Widget"
+          ]
+        }
+      ],
+      "exports": [
+        "PanelRegistry"
+      ],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/ReactPanelWidget.tsx": {
+      "filePath": "app/src/workbench/ReactPanelWidget.tsx",
+      "contentHash": "8f06f45249b4fd89d3297774a15a14a12f0ce7b4b30f3686c98db6a6461fc234",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ReactPanelWidget",
+          "methods": [
+            "constructor",
+            "onAfterAttach",
+            "dispose",
+            "mount"
+          ],
+          "properties": [
+            "root",
+            "renderPanel"
+          ],
+          "exported": true,
+          "lineCount": 29
+        }
+      ],
+      "imports": [
+        {
+          "source": "react-dom/client",
+          "specifiers": [
+            "createRoot",
+            "Root"
+          ]
+        },
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "Widget"
+          ]
+        },
+        {
+          "source": "./PanelErrorBoundary",
+          "specifiers": [
+            "PanelErrorBoundary"
+          ]
+        }
+      ],
+      "exports": [
+        "ReactPanelWidget"
+      ],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
+    "app/src/workbench/workbench.css": {
+      "filePath": "app/src/workbench/workbench.css",
+      "contentHash": "e9756c4a2a67271571e20ef15c71ae26c71369c8d16f486c601786690bc16739",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": false
+    },
+    "app/src/workbench/WorkbenchShell.ts": {
+      "filePath": "app/src/workbench/WorkbenchShell.ts",
+      "contentHash": "0ed33776acdbcbd20eb405ad177bd896dddfb5c9cc5bd3c241dee353cb7fce7b",
+      "functions": [
+        {
+          "name": "containsWidget",
+          "params": [
+            "area",
+            "widget"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "setPanelSplitSize",
+          "params": [
+            "area",
+            "panel",
+            "ratio"
+          ],
+          "returnType": "boolean",
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [
+        {
+          "name": "WorkbenchShell",
+          "methods": [
+            "constructor",
+            "openPanel",
+            "restoreOrDefault",
+            "setInitialExplorerWidth",
+            "constrainExplorerWidth",
+            "constrainDetailsWidth",
+            "setDetailsBelowExplorer",
+            "applyDefaultLayout",
+            "resetLayout",
+            "saveLayout",
+            "dispose",
+            "debouncedSave",
+            "createMenu"
+          ],
+          "properties": [
+            "dock",
+            "menu",
+            "saveTimer",
+            "panelHandleDrag",
+            "capturePanelHandle",
+            "limitPanelHandle",
+            "releasePanelHandle"
+          ],
+          "exported": true,
+          "lineCount": 171
+        }
+      ],
+      "imports": [
+        {
+          "source": "@lumino/commands",
+          "specifiers": [
+            "CommandRegistry"
+          ]
+        },
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "BoxPanel",
+            "DockPanel",
+            "Widget"
+          ]
+        },
+        {
+          "source": "@lumino/widgets",
+          "specifiers": [
+            "DockLayout"
+          ]
+        },
+        {
+          "source": "./PanelRegistry",
+          "specifiers": [
+            "PanelId",
+            "PanelRegistry"
+          ]
+        },
+        {
+          "source": "./layoutPersistence",
+          "specifiers": [
+            "clearDockLayout",
+            "restoreDockLayout",
+            "saveDockLayout"
+          ]
+        }
+      ],
+      "exports": [
+        "WorkbenchShell"
+      ],
+      "totalLines": 201,
+      "hasStructuralAnalysis": true
+    },
+    "app/tests/export.test.mjs": {
+      "filePath": "app/tests/export.test.mjs",
+      "contentHash": "ea8a74ab49398fbea4540fe62c612b1e451d0369a5daa258451cf642d0677220",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "../src/graph/exporters.ts",
+          "specifiers": [
+            "graphToJson",
+            "graphToMermaidMarkdown"
+          ]
+        },
+        {
+          "source": "../src/graph/snapshot.ts",
+          "specifiers": [
+            "parseGraphSnapshot"
+          ]
+        },
+        {
+          "source": "../src/graph/GraphSessionStore.ts",
+          "specifiers": [
+            "GraphSessionStore"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "app/tsconfig.app.json": {
+      "filePath": "app/tsconfig.app.json",
+      "contentHash": "770c8579d0b4b80bb2f982ea2a8da275e2c57eeb70ecdbec2f01bd622f6f9127",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "app/tsconfig.json": {
+      "filePath": "app/tsconfig.json",
+      "contentHash": "c3c1a5af0c9ed5727b295bd39076550c6a48a7a7d8a79eb29adc4e6c370830f0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "app/tsconfig.node.json": {
+      "filePath": "app/tsconfig.node.json",
+      "contentHash": "918299710ffe67780644dc853e088412c99ad5da5c5e91798b40421bbe826a14",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "app/vite.config.ts": {
+      "filePath": "app/vite.config.ts",
+      "contentHash": "a75d57c67cfe9a3374f2af38e148f29698ed6dfd2e81815e9ba5651771738817",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vite",
+          "specifiers": [
+            "defineConfig"
+          ]
+        },
+        {
+          "source": "@vitejs/plugin-react",
+          "specifiers": [
+            "react"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "backend/.python-version": {
+      "filePath": "backend/.python-version",
+      "contentHash": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "backend/pyproject.toml": {
+      "filePath": "backend/pyproject.toml",
+      "contentHash": "43bc256b0d5ef02827f36f4a1a744563d7f2625fe0a18bf21ed8b8d1f9e73aab",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/__init__.py": {
+      "filePath": "backend/ros2_node_map/__init__.py",
+      "contentHash": "a95a5cf5c1b28b962956dcffa736588b0df57d8f83fdad3853305d663b721dd9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/action_reader.py": {
+      "filePath": "backend/ros2_node_map/action_reader.py",
+      "contentHash": "89a9884b0b02b0fcb2b30b995da56fbbe1e0abd3b29ff6ca448cbbec089d6b82",
+      "functions": [
+        {
+          "name": "action_name_from_resource",
+          "params": [
+            "name"
+          ],
+          "returnType": "str | None",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "action_type_from_resource",
+          "params": [
+            "types"
+          ],
+          "returnType": "tuple[str, ...]",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [
+        {
+          "name": "ActionGraphReader",
+          "methods": [
+            "read"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 46
+        }
+      ],
+      "imports": [
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Iterable"
+          ]
+        },
+        {
+          "source": ".graph_model",
+          "specifiers": [
+            "EdgeKind",
+            "GraphEdge",
+            "GraphNode",
+            "NodeKind",
+            "normalize_ros_name"
+          ]
+        }
+      ],
+      "exports": [
+        "action_name_from_resource",
+        "action_type_from_resource",
+        "ActionGraphReader"
+      ],
+      "totalLines": 92,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/filters.py": {
+      "filePath": "backend/ros2_node_map/filters.py",
+      "contentHash": "af1f8440ba0107399e4109e0c87a5c03cc4c614eca13f341b2423b3124614af4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/graph_model.py": {
+      "filePath": "backend/ros2_node_map/graph_model.py",
+      "contentHash": "9f78d55309b3461897cd57f0373b56dd9c0d75c8101db9aa8f03453c91cf7fbb",
+      "functions": [
+        {
+          "name": "normalize_ros_name",
+          "params": [
+            "value"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "full_node_name",
+          "params": [
+            "name",
+            "namespace"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "make_node_id",
+          "params": [
+            "kind",
+            "ros_name"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "make_edge_id",
+          "params": [
+            "kind",
+            "source",
+            "target"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_format_timestamp",
+          "params": [
+            "value"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "NodeKind",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "EdgeKind",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "GraphNode",
+          "methods": [
+            "__post_init__",
+            "ros_node",
+            "resource",
+            "to_dict",
+            "from_dict"
+          ],
+          "properties": [
+            "id",
+            "kind",
+            "label",
+            "name",
+            "namespace",
+            "types"
+          ],
+          "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "GraphEdge",
+          "methods": [
+            "__post_init__",
+            "create",
+            "to_dict",
+            "from_dict"
+          ],
+          "properties": [
+            "id",
+            "kind",
+            "source",
+            "target"
+          ],
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "GraphSnapshot",
+          "methods": [
+            "__post_init__",
+            "empty",
+            "to_dict",
+            "to_json",
+            "from_dict",
+            "from_json"
+          ],
+          "properties": [
+            "timestamp",
+            "ros_domain_id",
+            "nodes",
+            "edges",
+            "schema_version"
+          ],
+          "exported": true,
+          "lineCount": 63
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass",
+            "field"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "enum",
+          "specifiers": [
+            "Enum"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Mapping"
+          ]
+        }
+      ],
+      "exports": [
+        "NodeKind",
+        "EdgeKind",
+        "normalize_ros_name",
+        "full_node_name",
+        "make_node_id",
+        "make_edge_id",
+        "GraphNode",
+        "GraphEdge",
+        "_format_timestamp",
+        "GraphSnapshot"
+      ],
+      "totalLines": 260,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/graph_reader.py": {
+      "filePath": "backend/ros2_node_map/graph_reader.py",
+      "contentHash": "f0c48c24cb48959df1a94e3f4e71cd294f7aa9df86eb42e474e441c613b81bc8",
+      "functions": [],
+      "classes": [
+        {
+          "name": "GraphReader",
+          "methods": [
+            "__init__",
+            "snapshot",
+            "_endpoint_node"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 63
+        }
+      ],
+      "imports": [
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Callable"
+          ]
+        },
+        {
+          "source": ".action_reader",
+          "specifiers": [
+            "ActionGraphReader"
+          ]
+        },
+        {
+          "source": ".graph_model",
+          "specifiers": [
+            "EdgeKind",
+            "GraphEdge",
+            "GraphNode",
+            "GraphSnapshot",
+            "NodeKind"
+          ]
+        },
+        {
+          "source": ".service_reader",
+          "specifiers": [
+            "ServiceGraphReader"
+          ]
+        }
+      ],
+      "exports": [
+        "GraphReader"
+      ],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/graph_server.py": {
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "contentHash": "10dcd33ab4c5a2542385723725418465ab36058c583bd52a2a2db23457f7bb4f",
+      "functions": [
+        {
+          "name": "snapshot_response",
+          "params": [
+            "reader"
+          ],
+          "returnType": "GraphSnapshotResponse",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "create_app",
+          "params": [
+            "reader",
+            "interval",
+            "domain_controller"
+          ],
+          "returnType": "FastAPI",
+          "exported": true,
+          "lineCount": 59
+        },
+        {
+          "name": "run_server",
+          "params": [
+            "ros_node",
+            "host",
+            "port",
+            "interval",
+            "domain_controller"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [
+        {
+          "name": "SnapshotReader",
+          "methods": [
+            "snapshot"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "RosNodeResponse",
+          "methods": [],
+          "properties": [
+            "id",
+            "kind",
+            "label",
+            "name",
+            "namespace"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "RosResourceResponse",
+          "methods": [],
+          "properties": [
+            "id",
+            "kind",
+            "label",
+            "types"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "GraphEdgeResponse",
+          "methods": [],
+          "properties": [
+            "id",
+            "kind",
+            "source",
+            "target"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "GraphSnapshotResponse",
+          "methods": [],
+          "properties": [
+            "schema_version",
+            "timestamp",
+            "ros_domain_id",
+            "nodes",
+            "edges"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "HealthResponse",
+          "methods": [],
+          "properties": [
+            "status"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "DomainConfigRequest",
+          "methods": [
+            "require_custom_domain_id"
+          ],
+          "properties": [
+            "mode",
+            "custom_domain_id"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "DomainConfigResponse",
+          "methods": [],
+          "properties": [
+            "configurable",
+            "mode",
+            "system_domain_id",
+            "custom_domain_id",
+            "effective_domain_id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "DomainController",
+          "methods": [
+            "__init__",
+            "config",
+            "request_switch",
+            "attach_server",
+            "consume_restart"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 46
+        },
+        {
+          "name": "GraphServer",
+          "methods": [
+            "__init__",
+            "serve_forever"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 40
+        }
+      ],
+      "imports": [
+        {
+          "source": "asyncio",
+          "specifiers": [
+            "asyncio"
+          ]
+        },
+        {
+          "source": "contextlib",
+          "specifiers": [
+            "suppress"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "threading",
+          "specifiers": [
+            "Lock"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Callable",
+            "Literal",
+            "Protocol"
+          ]
+        },
+        {
+          "source": "uvicorn",
+          "specifiers": [
+            "uvicorn"
+          ]
+        },
+        {
+          "source": "fastapi",
+          "specifiers": [
+            "FastAPI",
+            "WebSocket",
+            "WebSocketDisconnect"
+          ]
+        },
+        {
+          "source": "fastapi.middleware.cors",
+          "specifiers": [
+            "CORSMiddleware"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "BaseModel",
+            "ConfigDict",
+            "Field",
+            "model_validator"
+          ]
+        },
+        {
+          "source": ".graph_reader",
+          "specifiers": [
+            "GraphReader"
+          ]
+        },
+        {
+          "source": ".graph_model",
+          "specifiers": [
+            "GraphSnapshot"
+          ]
+        }
+      ],
+      "exports": [
+        "SnapshotReader",
+        "RosNodeResponse",
+        "RosResourceResponse",
+        "GraphEdgeResponse",
+        "GraphSnapshotResponse",
+        "HealthResponse",
+        "DomainConfigRequest",
+        "DomainConfigResponse",
+        "DomainController",
+        "snapshot_response",
+        "create_app",
+        "GraphServer",
+        "run_server"
+      ],
+      "totalLines": 266,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/main.py": {
+      "filePath": "backend/ros2_node_map/main.py",
+      "contentHash": "387214979caccecd3deac2c1529c48ef0c426ea54250f20d2fe066990a697546",
+      "functions": [
+        {
+          "name": "build_parser",
+          "params": [],
+          "returnType": "argparse.ArgumentParser",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "_ros_node",
+          "params": [
+            "wait",
+            "domain_id"
+          ],
+          "returnType": "Iterator[Any]",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "_snapshot",
+          "params": [
+            "wait",
+            "pretty"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_serve",
+          "params": [
+            "host",
+            "port",
+            "interval",
+            "wait"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "main",
+          "params": [
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Sequence"
+          ]
+        },
+        {
+          "source": "contextlib",
+          "specifiers": [
+            "contextmanager"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Iterator"
+          ]
+        }
+      ],
+      "exports": [
+        "build_parser",
+        "_ros_node",
+        "_snapshot",
+        "_serve",
+        "main"
+      ],
+      "totalLines": 108,
+      "hasStructuralAnalysis": true
+    },
+    "backend/ros2_node_map/service_reader.py": {
+      "filePath": "backend/ros2_node_map/service_reader.py",
+      "contentHash": "240fc17b40994cdf1d9a8bccb4aa057c6aaa70f6509348478484aa11d94ad25c",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ServiceGraphReader",
+          "methods": [
+            "__init__",
+            "read",
+            "_service_names_and_types",
+            "_services_for_node"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 54
+        }
+      ],
+      "imports": [
+        {
+          "source": "collections.abc",
+          "specifiers": [
+            "Iterable"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": ".graph_model",
+          "specifiers": [
+            "EdgeKind",
+            "GraphEdge",
+            "GraphNode",
+            "NodeKind",
+            "normalize_ros_name"
+          ]
+        }
+      ],
+      "exports": [
+        "ServiceGraphReader"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "backend/tests/.gitkeep": {
+      "filePath": "backend/tests/.gitkeep",
+      "contentHash": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "backend/tests/test_graph_model.py": {
+      "filePath": "backend/tests/test_graph_model.py",
+      "contentHash": "f7283e8943f536c99f42cb08de2de3822bbdac75576181ca8656522777eef4d3",
+      "functions": [
+        {
+          "name": "test_ros_names_are_normalized_and_combined",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_invalid_base_node_name_is_rejected",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_node_ids_are_stable_for_each_kind",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_edge_id_is_stable",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_graph_node_factories_match_transport_shape",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "test_node_rejects_an_id_that_does_not_match_its_kind_and_label",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_snapshot_serializes_and_round_trips",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "test_snapshot_rejects_naive_timestamp",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_snapshot_rejects_duplicate_ids",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "test_snapshot_rejects_edges_with_unknown_endpoints",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "test_snapshot_rejects_unknown_schema_version",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "ros2_node_map.graph_model",
+          "specifiers": [
+            "SCHEMA_VERSION",
+            "EdgeKind",
+            "GraphEdge",
+            "GraphNode",
+            "GraphSnapshot",
+            "NodeKind",
+            "full_node_name",
+            "make_edge_id",
+            "make_node_id",
+            "normalize_ros_name"
+          ]
+        }
+      ],
+      "exports": [
+        "test_ros_names_are_normalized_and_combined",
+        "test_invalid_base_node_name_is_rejected",
+        "test_node_ids_are_stable_for_each_kind",
+        "test_edge_id_is_stable",
+        "test_graph_node_factories_match_transport_shape",
+        "test_node_rejects_an_id_that_does_not_match_its_kind_and_label",
+        "test_snapshot_serializes_and_round_trips",
+        "test_snapshot_rejects_naive_timestamp",
+        "test_snapshot_rejects_duplicate_ids",
+        "test_snapshot_rejects_edges_with_unknown_endpoints",
+        "test_snapshot_rejects_unknown_schema_version"
+      ],
+      "totalLines": 121,
+      "hasStructuralAnalysis": true
+    },
+    "backend/tests/test_graph_reader.py": {
+      "filePath": "backend/tests/test_graph_reader.py",
+      "contentHash": "9f11c9c3f8efed2ebc70144d6b5a28aba704bffab40d09591ec61164792327e8",
+      "functions": [
+        {
+          "name": "test_reader_builds_topic_graph_snapshot",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "test_reader_deduplicates_repeated_endpoint_edges",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_reader_builds_service_client_and_server_edges",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "test_reader_infers_action_from_internal_topics_and_services",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 34
+        }
+      ],
+      "classes": [
+        {
+          "name": "Endpoint",
+          "methods": [],
+          "properties": [
+            "node_name",
+            "node_namespace"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "FakeRosNode",
+          "methods": [
+            "get_node_names_and_namespaces",
+            "get_topic_names_and_types",
+            "get_publishers_info_by_topic",
+            "get_subscriptions_info_by_topic",
+            "get_service_names_and_types",
+            "get_client_names_and_types_by_node",
+            "get_service_names_and_types_by_node"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 28
+        }
+      ],
+      "imports": [
+        {
+          "source": "dataclasses",
+          "specifiers": [
+            "dataclass"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "ros2_node_map.graph_reader",
+          "specifiers": [
+            "GraphReader"
+          ]
+        }
+      ],
+      "exports": [
+        "Endpoint",
+        "FakeRosNode",
+        "test_reader_builds_topic_graph_snapshot",
+        "test_reader_deduplicates_repeated_endpoint_edges",
+        "test_reader_builds_service_client_and_server_edges",
+        "test_reader_infers_action_from_internal_topics_and_services"
+      ],
+      "totalLines": 133,
+      "hasStructuralAnalysis": true
+    },
+    "backend/tests/test_graph_server.py": {
+      "filePath": "backend/tests/test_graph_server.py",
+      "contentHash": "ee5ddf0bcbc0204be23a083642f66d455c298755b09d14711347ebfb899920e5",
+      "functions": [
+        {
+          "name": "test_server_validates_configuration",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_http_endpoints_are_documented_and_return_a_snapshot",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_snapshot_response_preserves_the_strict_node_schema",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_domain_api_requests_a_ros_context_restart",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "test_domain_api_validates_custom_domain_id",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_domain_api_allows_local_vite_origins",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [
+        {
+          "name": "FakeReader",
+          "methods": [
+            "snapshot"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PopulatedReader",
+          "methods": [
+            "snapshot"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "fastapi.testclient",
+          "specifiers": [
+            "TestClient"
+          ]
+        },
+        {
+          "source": "ros2_node_map.graph_model",
+          "specifiers": [
+            "GraphNode",
+            "GraphSnapshot",
+            "NodeKind"
+          ]
+        },
+        {
+          "source": "ros2_node_map.graph_server",
+          "specifiers": [
+            "DomainController",
+            "GraphServer",
+            "create_app",
+            "snapshot_response"
+          ]
+        }
+      ],
+      "exports": [
+        "FakeReader",
+        "PopulatedReader",
+        "test_server_validates_configuration",
+        "test_http_endpoints_are_documented_and_return_a_snapshot",
+        "test_snapshot_response_preserves_the_strict_node_schema",
+        "test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+        "test_domain_api_requests_a_ros_context_restart",
+        "test_domain_api_validates_custom_domain_id",
+        "test_domain_api_allows_local_vite_origins"
+      ],
+      "totalLines": 114,
+      "hasStructuralAnalysis": true
+    },
+    "backend/tests/test_main.py": {
+      "filePath": "backend/tests/test_main.py",
+      "contentHash": "1fde707a8e010bf69bed2188a60d2c0831589f73057432c7335dfbaf009b7478",
+      "functions": [
+        {
+          "name": "test_snapshot_cli_defaults",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_cli_requires_a_command",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_serve_cli_defaults",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "ros2_node_map.main",
+          "specifiers": [
+            "build_parser"
+          ]
+        }
+      ],
+      "exports": [
+        "test_snapshot_cli_defaults",
+        "test_cli_requires_a_command",
+        "test_serve_cli_defaults"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "docs/architecture.md": {
+      "filePath": "docs/architecture.md",
+      "contentHash": "16b09dcdffcf32318bad9a3dbcd8fbae8c424ab1d80d0d4852399f235f2c5959",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "docs/graph-json-schema.md": {
+      "filePath": "docs/graph-json-schema.md",
+      "contentHash": "e0ef2293439a35f8a3cd1abd424ef6dfde4e53665f63d59525b778076eff5030",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "docs/graph.schema.json": {
+      "filePath": "docs/graph.schema.json",
+      "contentHash": "4a89c2f329f2dc1dc7e918e8cba98073d325798b672eb72ce024e069935ea8be",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 92,
+      "hasStructuralAnalysis": true
+    },
+    "docs/roadmap.md": {
+      "filePath": "docs/roadmap.md",
+      "contentHash": "eaeea25d8f9461ca37832eb97d97200f44062274ff110ab2f84bf4975ac02d2a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "docs/testing.md": {
+      "filePath": "docs/testing.md",
+      "contentHash": "40e990644a14f80906c82ba550d7c183051d416b9d794d80927ad6962dbedf2f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "PLAN.md": {
+      "filePath": "PLAN.md",
+      "contentHash": "b9f6ec2e29188b1d310d64532eb78bdf0c3859a0de15398eef156e3e64fec4c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 319,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "8d523629c2d5c6f27a1ef719c2043e57ce37f0c7155725a240dab6de367ec73e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 119,
+      "hasStructuralAnalysis": true
+    },
+    "SPEC.md": {
+      "filePath": "SPEC.md",
+      "contentHash": "52b5f917e1f196c19eb9839aa8de8662cdcab377eb115ad6c2b4b1887cfa4b2c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 825,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

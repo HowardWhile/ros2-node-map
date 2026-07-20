@@ -1,0 +1,555 @@
+{
+  "scriptCompleted": true,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 38,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "app/electron/main.ts",
+      "language": "typescript",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/electron/preload.ts",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/electron/tsconfig.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/index.html",
+      "language": "html",
+      "sizeLines": 13,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/package.json",
+      "language": "json",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/scripts/package-backend.mjs",
+      "language": "javascript",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/api.ts",
+      "language": "typescript",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/cytoscape-cola.d.ts",
+      "language": "typescript",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/DetailPanel.tsx",
+      "language": "typescript",
+      "sizeLines": 119,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/DomainControl.tsx",
+      "language": "typescript",
+      "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/DetailsView.tsx",
+      "language": "typescript",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/downloads.ts",
+      "language": "typescript",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/ExplorerView.tsx",
+      "language": "typescript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/exporters.ts",
+      "language": "typescript",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/GraphPanelView.tsx",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/GraphSessionStore.ts",
+      "language": "typescript",
+      "sizeLines": 251,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/snapshot.ts",
+      "language": "typescript",
+      "sizeLines": 139,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/ToolbarView.tsx",
+      "language": "typescript",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/graph/useGraphSession.ts",
+      "language": "typescript",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/GraphView.tsx",
+      "language": "typescript",
+      "sizeLines": 592,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/main.tsx",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/Sidebar.tsx",
+      "language": "typescript",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/styles.css",
+      "language": "css",
+      "sizeLines": 412,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/src/types.ts",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/vite-env.d.ts",
+      "language": "typescript",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/bootstrap.ts",
+      "language": "typescript",
+      "sizeLines": 157,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/commands.ts",
+      "language": "typescript",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/layoutPersistence.ts",
+      "language": "typescript",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/PanelErrorBoundary.tsx",
+      "language": "typescript",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/PanelRegistry.ts",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/ReactPanelWidget.tsx",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/src/workbench/workbench.css",
+      "language": "css",
+      "sizeLines": 22,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/src/workbench/WorkbenchShell.ts",
+      "language": "typescript",
+      "sizeLines": 200,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/tests/export.test.mjs",
+      "language": "javascript",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/tsconfig.app.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/tsconfig.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/tsconfig.node.json",
+      "language": "json",
+      "sizeLines": 12,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/vite.config.ts",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/.python-version",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/pyproject.toml",
+      "language": "toml",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/ros2_node_map/__init__.py",
+      "language": "python",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/action_reader.py",
+      "language": "python",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/filters.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/graph_model.py",
+      "language": "python",
+      "sizeLines": 259,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/graph_reader.py",
+      "language": "python",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/graph_server.py",
+      "language": "python",
+      "sizeLines": 265,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/main.py",
+      "language": "python",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/ros2_node_map/service_reader.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/.gitkeep",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_graph_model.py",
+      "language": "python",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_graph_reader.py",
+      "language": "python",
+      "sizeLines": 132,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_graph_server.py",
+      "language": "python",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_main.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "docs/architecture.md",
+      "language": "markdown",
+      "sizeLines": 53,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/graph-json-schema.md",
+      "language": "markdown",
+      "sizeLines": 89,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/graph.schema.json",
+      "language": "json",
+      "sizeLines": 91,
+      "fileCategory": "config"
+    },
+    {
+      "path": "docs/roadmap.md",
+      "language": "markdown",
+      "sizeLines": 14,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/testing.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "PLAN.md",
+      "language": "markdown",
+      "sizeLines": 318,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "SPEC.md",
+      "language": "markdown",
+      "sizeLines": 824,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 62,
+  "filteredByIgnore": 3,
+  "estimatedComplexity": "moderate",
+  "stats": {
+    "filesScanned": 62,
+    "byCategory": {
+      "docs": 8,
+      "code": 44,
+      "config": 7,
+      "markup": 3
+    },
+    "byLanguage": {
+      "markdown": 8,
+      "typescript": 28,
+      "json": 6,
+      "html": 1,
+      "javascript": 2,
+      "css": 2,
+      "unknown": 2,
+      "toml": 1,
+      "python": 12
+    }
+  },
+  "importMap": {
+    "AGENTS.md": [],
+    "app/electron/main.ts": [],
+    "app/electron/preload.ts": [],
+    "app/electron/tsconfig.json": [],
+    "app/index.html": [],
+    "app/package.json": [],
+    "app/scripts/package-backend.mjs": [],
+    "app/src/api.ts": [
+      "app/src/graph/snapshot.ts",
+      "app/src/types.ts"
+    ],
+    "app/src/cytoscape-cola.d.ts": [],
+    "app/src/DetailPanel.tsx": [
+      "app/src/types.ts"
+    ],
+    "app/src/DomainControl.tsx": [
+      "app/src/api.ts"
+    ],
+    "app/src/graph/DetailsView.tsx": [
+      "app/src/DetailPanel.tsx",
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/useGraphSession.ts"
+    ],
+    "app/src/graph/downloads.ts": [
+      "app/src/graph/exporters.ts",
+      "app/src/types.ts"
+    ],
+    "app/src/graph/ExplorerView.tsx": [
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/useGraphSession.ts",
+      "app/src/Sidebar.tsx"
+    ],
+    "app/src/graph/exporters.ts": [
+      "app/src/types.ts"
+    ],
+    "app/src/graph/GraphPanelView.tsx": [
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/useGraphSession.ts",
+      "app/src/GraphView.tsx"
+    ],
+    "app/src/graph/GraphSessionStore.ts": [
+      "app/src/api.ts",
+      "app/src/graph/snapshot.ts",
+      "app/src/GraphView.tsx",
+      "app/src/types.ts"
+    ],
+    "app/src/graph/snapshot.ts": [
+      "app/src/types.ts"
+    ],
+    "app/src/graph/ToolbarView.tsx": [
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/useGraphSession.ts"
+    ],
+    "app/src/graph/useGraphSession.ts": [
+      "app/src/graph/GraphSessionStore.ts"
+    ],
+    "app/src/GraphView.tsx": [
+      "app/src/api.ts",
+      "app/src/DomainControl.tsx",
+      "app/src/graph/downloads.ts",
+      "app/src/types.ts"
+    ],
+    "app/src/main.tsx": [
+      "app/src/styles.css",
+      "app/src/workbench/bootstrap.ts",
+      "app/src/workbench/workbench.css"
+    ],
+    "app/src/Sidebar.tsx": [
+      "app/src/types.ts"
+    ],
+    "app/src/styles.css": [],
+    "app/src/types.ts": [],
+    "app/src/vite-env.d.ts": [],
+    "app/src/workbench/bootstrap.ts": [
+      "app/src/graph/DetailsView.tsx",
+      "app/src/graph/ExplorerView.tsx",
+      "app/src/graph/GraphPanelView.tsx",
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/ToolbarView.tsx",
+      "app/src/workbench/commands.ts",
+      "app/src/workbench/PanelRegistry.ts",
+      "app/src/workbench/ReactPanelWidget.tsx",
+      "app/src/workbench/WorkbenchShell.ts"
+    ],
+    "app/src/workbench/commands.ts": [
+      "app/src/workbench/PanelRegistry.ts",
+      "app/src/workbench/WorkbenchShell.ts"
+    ],
+    "app/src/workbench/layoutPersistence.ts": [
+      "app/src/workbench/PanelRegistry.ts"
+    ],
+    "app/src/workbench/PanelErrorBoundary.tsx": [],
+    "app/src/workbench/PanelRegistry.ts": [],
+    "app/src/workbench/ReactPanelWidget.tsx": [
+      "app/src/workbench/PanelErrorBoundary.tsx"
+    ],
+    "app/src/workbench/workbench.css": [],
+    "app/src/workbench/WorkbenchShell.ts": [
+      "app/src/workbench/layoutPersistence.ts",
+      "app/src/workbench/PanelRegistry.ts"
+    ],
+    "app/tests/export.test.mjs": [
+      "app/src/graph/exporters.ts",
+      "app/src/graph/GraphSessionStore.ts",
+      "app/src/graph/snapshot.ts"
+    ],
+    "app/tsconfig.app.json": [],
+    "app/tsconfig.json": [],
+    "app/tsconfig.node.json": [],
+    "app/vite.config.ts": [],
+    "backend/.python-version": [],
+    "backend/pyproject.toml": [],
+    "backend/ros2_node_map/__init__.py": [],
+    "backend/ros2_node_map/action_reader.py": [
+      "backend/ros2_node_map/graph_model.py"
+    ],
+    "backend/ros2_node_map/filters.py": [],
+    "backend/ros2_node_map/graph_model.py": [],
+    "backend/ros2_node_map/graph_reader.py": [
+      "backend/ros2_node_map/action_reader.py",
+      "backend/ros2_node_map/graph_model.py",
+      "backend/ros2_node_map/service_reader.py"
+    ],
+    "backend/ros2_node_map/graph_server.py": [
+      "backend/ros2_node_map/graph_model.py",
+      "backend/ros2_node_map/graph_reader.py"
+    ],
+    "backend/ros2_node_map/main.py": [],
+    "backend/ros2_node_map/service_reader.py": [
+      "backend/ros2_node_map/graph_model.py"
+    ],
+    "backend/tests/.gitkeep": [],
+    "backend/tests/test_graph_model.py": [
+      "backend/ros2_node_map/graph_model.py"
+    ],
+    "backend/tests/test_graph_reader.py": [
+      "backend/ros2_node_map/graph_reader.py"
+    ],
+    "backend/tests/test_graph_server.py": [
+      "backend/ros2_node_map/graph_model.py",
+      "backend/ros2_node_map/graph_server.py"
+    ],
+    "backend/tests/test_main.py": [
+      "backend/ros2_node_map/main.py"
+    ],
+    "docs/architecture.md": [],
+    "docs/graph-json-schema.md": [],
+    "docs/graph.schema.json": [],
+    "docs/roadmap.md": [],
+    "docs/testing.md": [],
+    "PLAN.md": [],
+    "README.md": [],
+    "SPEC.md": []
+  }
+}
