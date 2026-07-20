@@ -110,6 +110,7 @@ discovery，也不會連線到 backend。
 ```text
 ros2-node-map/
 ├── README.md
+├── README_zh.md
 ├── LICENSE
 ├── .gitignore
 ├── SPEC.md

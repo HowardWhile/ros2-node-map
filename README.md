@@ -1,5 +1,7 @@
 # ros2-node-map
 
+> [繁體中文](README_zh.md)
+
 `ros2-node-map` is an advanced `rqt_graph`-style viewer for quickly
 understanding the overall topology of a ROS 2 system.
 
@@ -58,12 +60,10 @@ are unaffected by active display filters; filters are applied again by the app
 when that file is reopened.
 
 Open a graph JSON snapshot with the **Open JSON** button or drag one JSON file
-anywhere onto the application window. A file is validated against graph schema
-version `0.1.0` before it replaces the current graph. When ROS 2 Jazzy or the
-bundled backend is unavailable, the Electron app starts in File-only Mode and
-keeps these offline viewing and export features enabled.
+anywhere onto the application window. If the system does not have a ROS 2
+environment, offline viewing and export features remain available.
 
-## Build Linux AppImage
+## Build standalone executable
 
 Build the Linux x86-64 AppImage from an Ubuntu 24.04 / Python 3.12 environment.
 The build machine needs Node.js LTS, npm, Python 3, and [uv](https://docs.astral.sh/uv/):
@@ -74,12 +74,6 @@ npm install
 npm run dist
 ```
 
-`npm run dist` builds the Electron renderer, creates a minimal Python runtime
-from `backend/uv.lock`, and packages both into one AppImage. Generated runtime
-files and release artifacts are not committed to Git.
-
-The packaged executable is written to:
-
 ```text
 app/release/ros2-node-map-<version>-linux-<architecture>.AppImage
 ```
@@ -87,40 +81,6 @@ app/release/ros2-node-map-<version>-linux-<architecture>.AppImage
 For example, an x86-64 build of version `0.2.0` is named
 `ros2-node-map-0.2.0-linux-x86_64.AppImage`. The architecture suffix is derived
 from the target selected by electron-builder.
-
-The AppImage includes the Electron UI, the Python backend, and the backend's
-application dependencies. On startup it automatically loads
-`/opt/ros/jazzy/setup.bash` and starts the graph server at
-`ws://127.0.0.1:8766`; no separate backend command is required.
-
-Live discovery requires Ubuntu with ROS 2 Jazzy and `rclpy` installed. Without
-that runtime the app remains usable in File-only Mode. ROS 2, DDS
-implementations, and their native libraries are intentionally not bundled in
-the AppImage.
-
-The default packaging compression balances download size with application
-startup time. Do not change it to maximum compression unless a smaller download
-is more important than launch responsiveness.
-
-If the system does not provide FUSE 2, run the AppImage in extraction mode:
-
-```bash
-./app/release/ros2-node-map-*-linux-*.AppImage --appimage-extract-and-run
-```
-
-## Versioning
-
-Product versions contain exactly three numeric components, such as `0.2.0`.
-Update the frontend, backend, and generated lockfile entries together from the
-repository root:
-
-```bash
-node scripts/version.mjs set 0.2.0
-```
-
-Run `node scripts/version.mjs check` to verify that they remain synchronized.
-The graph JSON `schema_version` is an independent compatibility version and is
-not changed during a normal product release.
 
 ## Documentation
 
@@ -131,10 +91,6 @@ not changed during a normal product release.
 - [Roadmap](docs/roadmap.md)
 - [Specification](SPEC.md)
 - [Development plan](PLAN.md)
-
-## License
-
-[MIT](LICENSE)
 
 ## Knowledge graph
 
@@ -181,3 +137,7 @@ From the project root, run:
 ```bash
 understand-anything-viewer .
 ```
+
+## License
+
+[MIT](LICENSE)
