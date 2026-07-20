@@ -87,12 +87,6 @@ export class WorkbenchShell extends BoxPanel {
     if (setPanelSplitSize(layout.main, details, ratio)) this.dock.restoreLayout(layout);
   }
 
-  setExplorerMaxWidth(maxWidth: number): void {
-    const explorer = this.panels.findOpen("ros2-node-map.explorer");
-    if (!explorer || maxWidth <= 0) return;
-    explorer.node.style.maxWidth = `${maxWidth}px`;
-  }
-
   setDetailsBelowExplorer(belowExplorer: boolean): void {
     const graph = this.panels.findOpen("ros2-node-map.graph");
     const explorer = this.panels.findOpen("ros2-node-map.explorer");

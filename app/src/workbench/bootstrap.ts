@@ -121,7 +121,6 @@ export function bootstrap(root: HTMLElement): () => void {
         shell.setDetailsBelowExplorer(stackDetails);
       }
       const maxSidePanelWidth = Math.floor(root.clientWidth / 2);
-      shell.setExplorerMaxWidth(maxSidePanelWidth);
       shell.constrainExplorerWidth(maxSidePanelWidth);
       shell.constrainDetailsWidth(maxSidePanelWidth);
       if (!initialExplorerLimitApplied && root.clientWidth > 0) {
