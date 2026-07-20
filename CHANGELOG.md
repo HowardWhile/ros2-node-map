@@ -5,6 +5,12 @@
 本文件格式依循 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本編號遵循[語意化版本](https://semver.org/lang/zh-TW/)。
 
+## [v0.2.1] - 2026-07-20
+
+### 新增
+
+- 在 Graph View 右下角顯示產品版本。
+
 ## [v0.2.0] - 2026-07-20
 
 ### 新增
@@ -36,4 +42,5 @@
 - 修正 Details 與 Explorer 側邊欄可拖曳超出合理寬度的問題。
 - 改善工作台在不同視窗尺寸下的版面與面板限制。
 
+[v0.2.1]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.1
 [v0.2.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.0
