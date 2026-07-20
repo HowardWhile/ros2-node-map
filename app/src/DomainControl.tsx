@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import type { ConnectionStatus } from "./api";
 
 interface DomainControlProps {
   displayedDomainId: string;
   backendUrl: string;
   sourceMode: "live" | "file";
+  connectionStatus: ConnectionStatus;
   fileName: string;
   liveAvailable: boolean;
   onOpenFile: () => void;
@@ -57,6 +59,7 @@ export function DomainControl({
   displayedDomainId,
   backendUrl,
   sourceMode,
+  connectionStatus,
   fileName,
   liveAvailable,
   onOpenFile,
@@ -127,7 +130,9 @@ export function DomainControl({
         aria-expanded={open} onClick={() => setOpen((value) => !value)}>
         <span>ROS_DOMAIN_ID</span>
         <strong>{displayedDomainId}</strong>
-        <em>{sourceMode === "file" ? "FILE" : "LIVE"}</em>
+        <em className={`domain-source domain-source-${sourceMode === "file" ? "file" : connectionStatus}`}>
+          {sourceMode === "file" ? "FILE" : "LIVE"}
+        </em>
         <i aria-hidden="true">⌄</i>
       </button>
       {open && (

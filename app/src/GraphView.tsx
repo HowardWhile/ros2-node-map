@@ -7,6 +7,7 @@ import cola from "cytoscape-cola";
 import { useEffect, useRef } from "react";
 
 import { DomainControl } from "./DomainControl";
+import type { ConnectionStatus } from "./api";
 import {
   downloadGraphJson,
   downloadMermaidMarkdown,
@@ -24,6 +25,7 @@ interface GraphViewProps {
   exportSnapshot: GraphSnapshot | null;
   backendUrl: string;
   sourceMode: "live" | "file";
+  connectionStatus: ConnectionStatus;
   fileName: string;
   fileError: string;
   fileDragActive: boolean;
@@ -326,6 +328,7 @@ export function GraphView({
   exportSnapshot,
   backendUrl,
   sourceMode,
+  connectionStatus,
   fileName,
   fileError,
   fileDragActive,
@@ -533,7 +536,7 @@ export function GraphView({
   return (
     <section className="graph-panel" aria-label="ROS 2 graph">
       <DomainControl displayedDomainId={snapshot?.ros_domain_id ?? "—"} backendUrl={backendUrl}
-        sourceMode={sourceMode} fileName={fileName} liveAvailable={liveAvailable}
+        sourceMode={sourceMode} connectionStatus={connectionStatus} fileName={fileName} liveAvailable={liveAvailable}
         onOpenFile={onOpenFile} onResumeLive={onResumeLive} />
       {!snapshot && (
         <div className="empty-state">

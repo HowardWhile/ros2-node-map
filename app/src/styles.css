@@ -109,7 +109,12 @@ button, input { font: inherit; }
 .graph-domain-id:hover, .graph-domain-id[aria-expanded="true"] { border-color: #7aa2f7; background: #1d2a40f2; }
 .graph-domain-id span { color: #8da8d9; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
 .graph-domain-id strong { color: #e8f0ff; font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1; }
-.graph-domain-id em { padding: 2px 5px; color: #aebbd0; border: 1px solid #405271; border-radius: 4px; font-size: 8px; font-style: normal; letter-spacing: 0.08em; }
+.graph-domain-id em { display: inline-flex; align-items: center; gap: 4px; padding: 2px 5px; color: #aebbd0; border: 1px solid #405271; border-radius: 4px; font-size: 8px; font-style: normal; letter-spacing: 0.08em; }
+.graph-domain-id em::before { width: 5px; height: 5px; border-radius: 50%; background: #667085; content: ""; }
+.graph-domain-id .domain-source-connected::before { background: #9ece6a; box-shadow: 0 0 6px #9ece6a99; }
+.graph-domain-id .domain-source-connecting::before { background: #e0af68; box-shadow: 0 0 6px #e0af6899; }
+.graph-domain-id .domain-source-error::before { background: #f7768e; box-shadow: 0 0 6px #f7768e99; }
+.graph-domain-id .domain-source-file::before { background: #bb9af7; box-shadow: 0 0 6px #bb9af799; }
 .graph-domain-id i { color: #8da8d9; font-size: 13px; font-style: normal; }
 .domain-popover { width: 286px; margin-top: 8px; padding: 12px; color: #c7cfdb; border: 1px solid #3b4657; border-radius: 9px; background: #171c24f7; box-shadow: 0 12px 34px #0009; backdrop-filter: blur(12px); }
 .domain-popover-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 12px; }
