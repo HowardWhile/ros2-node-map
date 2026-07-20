@@ -92,6 +92,15 @@ Frontend 負責：
 
 Frontend 不直接使用 ROS 2 DDS。
 
+### 3.3 Snapshot File Mode
+
+Frontend 必須能在沒有 ROS 2 backend 的情況下，直接載入並檢視既有的
+graph JSON snapshot。此模式使用與 WebSocket 相同、版本穩定的 graph JSON
+schema，因此匯出的檔案可直接重新開啟。
+
+File mode 的資料來源是使用者選取或拖放的 JSON 檔案；不會啟動 ROS 2
+discovery，也不會連線到 backend。
+
 ---
 
 ## 4. 專案目錄結構
@@ -496,6 +505,41 @@ Graph View 功能：
 * internal channels
 * copy command: `ros2 action info <action>`
 
+### 11.4 Snapshot 匯出與檔案模式
+
+Graph View 的既有 `Save graph as PNG` 控制項應改為匯出下拉選單，至少提供：
+
+* Download PNG：下載目前畫面的 graph 圖片
+* Download JSON：下載目前顯示的 graph snapshot JSON
+* Download Mermaid Markdown：下載包含 Mermaid graph 語法的 `.md` 檔
+
+Mermaid Markdown 必須以 `mermaid` code fence 包住可直接貼入支援 Mermaid 的
+Markdown renderer 的圖表定義，並保留目前顯示 topology 的 node、edge、label
+與關係方向。
+
+使用者可將符合 graph schema 的 `.json` 檔拖放至應用程式視窗，或透過檔案
+選擇器開啟。載入成功後，前端必須使用該 snapshot 渲染 graph、sidebar 與
+detail panel；載入失敗時必須顯示可理解的 schema／JSON 錯誤訊息，且不可
+覆蓋目前已成功顯示的 graph。
+
+ROS domain 控制項必須顯示目前資料來源，並支援以下三種模式：
+
+* System：使用系統 `ROS_DOMAIN_ID` 的即時 ROS backend
+* Custom：使用使用者設定的 `ROS_DOMAIN_ID` 的即時 ROS backend
+* File：顯示已載入 JSON 的 `ros_domain_id`；此模式為唯讀，不可切換 domain
+
+### 11.5 ROS 不可用時的 File-only Mode
+
+Electron app 啟動時必須偵測 ROS 2 Jazzy runtime 與 bundled backend 是否可用。
+若無法使用 ROS 2（例如缺少 `/opt/ros/<distro>/setup.bash`、backend 無法啟動，
+或 app 被部署在非 ROS 主機），app 必須進入 File-only Mode：
+
+* 不啟動 ROS backend，也不嘗試 ROS discovery
+* 主畫面保留開啟／拖放 graph JSON 的功能與既有 graph 互動功能
+* ROS domain 控制項的 System 與 Custom 選項、輸入框與套用按鈕全部停用
+* 明確顯示目前為 File-only Mode，並提示使用者載入 graph JSON
+* 已載入檔案時，domain 區塊顯示該 snapshot 的 `ros_domain_id`
+
 ---
 
 ## 12. 前端視覺樣式
@@ -752,13 +796,21 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 
 目標：
 
-* 匯出 graph JSON
-* 匯出 Mermaid
+* 透過 Graph View 匯出目前顯示的 graph JSON
+* 將 PNG 匯出改為 PNG／JSON 下拉選單
+* 匯出包含 Mermaid graph 語法的 Markdown 檔
+* 支援拖放或選取 graph JSON 檔並以 File mode 顯示
+* ROS runtime 不可用時自動進入 File-only Mode
 * 匯出 Obsidian Markdown vault
 
 完成條件：
 
-* 可以保存目前 graph snapshot
+* 可以下載目前顯示 topology 的 PNG 與 JSON
+* 可以下載並在支援 Mermaid 的 Markdown renderer 中顯示的 Mermaid Markdown
+* 匯出的 JSON 可拖放回 app 並呈現相同的 graph 資料
+* JSON schema 不相容或檔案格式錯誤時可顯示錯誤且保留既有畫面
+* 沒有 ROS 2 Jazzy 的主機仍可開啟 app、載入 JSON 並探索 graph
+* File mode 中不可變更 ROS domain
 * 可以產生 Markdown 文件
 * 可以在 Obsidian 中查看關聯圖
 
@@ -841,6 +893,11 @@ expected action name: /navigate_to_pose
 * 測試 highlight neighbor
 * 測試 layout reset
 * 測試遠端 robot IP 連線
+* 從匯出選單下載 PNG 與 JSON
+* 從匯出選單下載 Mermaid Markdown，確認 node、edge 與方向正確
+* 將匯出的 JSON 拖放回 app，確認 graph 與 domain ID 正確顯示
+* 在沒有 ROS Jazzy runtime 的環境啟動 app，確認進入 File-only Mode
+  且 System／Custom domain 控制項已停用
 
 ---
 
@@ -892,6 +949,8 @@ examples/ros2_demo_graph/
 * 可以隱藏系統 topic
 * 可以點選 item 查看詳細資訊
 * 可以匯出 graph JSON
+* 可以拖放 graph JSON 並離線檢視 topology
+* ROS 2 Jazzy 不可用時，app 可進入 File-only Mode
 
 ---
 
@@ -1037,8 +1096,11 @@ Add graph export features
 
 內容：
 
-* export JSON
-* export Mermaid
+* export JSON from the Graph View
+* PNG / JSON export menu
+* export Mermaid Markdown
+* import graph JSON by drag and drop
+* File-only Mode when ROS 2 is unavailable
 * export Obsidian Markdown
 
 ---

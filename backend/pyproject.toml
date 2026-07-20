@@ -28,4 +28,4 @@ include = ["ros2_node_map*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-p no:launch_testing -p no:launch_ros -p no:ament_pep257 -p no:ament_copyright -p no:ament_xmllint -p no:ament_lint -p no:ament_flake8 -p no:colcon_core_warnings_stderr"
+addopts = "-p no:launch_pytest -p no:launch_testing -p no:launch_ros -p no:ament_pep257 -p no:ament_copyright -p no:ament_xmllint -p no:ament_lint -p no:ament_flake8 -p no:colcon_core_warnings_stderr"
