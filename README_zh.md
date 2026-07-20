@@ -73,11 +73,11 @@ npm run dist
 ```
 
 ```text
-app/release/ros2-node-map-<version>-linux-<architecture>.AppImage
+app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 ```
 
 例如，版本 `0.2.0` 的 x86-64 建置產物名稱為
-`ros2-node-map-0.2.0-linux-x86_64.AppImage`。架構後綴由 electron-builder
+`ros2-node-map-v0.2.0-linux-x86_64.AppImage`。架構後綴由 electron-builder
 依據選用的建置目標自動產生。
 
 

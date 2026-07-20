@@ -9,6 +9,6 @@ const packageJson = JSON.parse(
 test("Linux release names include version, OS, and CPU architecture", () => {
   assert.equal(
     packageJson.build.linux.artifactName,
-    "${productName}-${version}-${os}-${arch}.${ext}",
+    "${productName}-v${version}-${os}-${arch}.${ext}",
   );
 });
