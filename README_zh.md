@@ -80,6 +80,18 @@ app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 `ros2-node-map-v0.2.1-linux-x86_64.AppImage`。架構後綴由 electron-builder
 依據選用的建置目標自動產生。
 
+## 安裝 `node-map` 指令
+
+在 repo 根目錄執行以下指令，將 `node-map` 指向 `app/release` 中最新的
+Linux x86-64 AppImage：
+
+```bash
+./scripts/install-node-map.sh
+node-map
+```
+
+指令會安裝到 `~/.local/bin`。如果該目錄尚未加入 `PATH`，請加入後重新開啟
+shell。
 
 
 ## 文件

@@ -82,6 +82,19 @@ For example, an x86-64 build of version `0.2.1` is named
 `ros2-node-map-v0.2.1-linux-x86_64.AppImage`. The architecture suffix is derived
 from the target selected by electron-builder.
 
+## Install the `node-map` command
+
+From the repository root, install a `node-map` command that points to the latest
+Linux x86-64 AppImage in `app/release`:
+
+```bash
+./scripts/install-node-map.sh
+node-map
+```
+
+The command is installed in `~/.local/bin`. If that directory is not already in
+your `PATH`, add it and reopen your shell.
+
 ## Documentation
 
 - [Changelog](CHANGELOG.md)

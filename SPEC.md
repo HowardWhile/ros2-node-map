@@ -114,6 +114,9 @@ ros2-node-map/
 ├── LICENSE
 ├── .gitignore
 ├── SPEC.md
+├── scripts/
+│   ├── install-node-map.sh
+│   └── version.mjs
 ├── backend/
 │   ├── pyproject.toml
 │   ├── ros2_node_map/
@@ -646,6 +649,10 @@ npm run electron:dev
 npm run build
 npm run dist
 ```
+
+Release AppImage 產生後，必須提供安裝腳本，讓使用者可以從 repo 根目錄執行
+`scripts/install-node-map.sh`，將 `node-map` 指令連結至最新的 Linux x86-64
+AppImage。
 
 ---
 
