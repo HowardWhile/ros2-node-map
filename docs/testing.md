@@ -11,6 +11,7 @@ Run backend unit tests in the locked uv environment:
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```

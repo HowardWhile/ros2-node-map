@@ -15,14 +15,17 @@ ROS 2 Jazzy and Python 3.12 are the initial target.
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```
 
-`uv sync` creates `backend/.venv` and installs the locked application and
-development dependencies. No manual virtual-environment activation is needed.
-The ROS discovery dependency (`rclpy`) is supplied by the sourced ROS 2
-environment rather than PyPI. Start the live graph backend with:
+`uv venv --system-site-packages` creates `backend/.venv` with access to Ubuntu's
+system Python packages, including the `yaml` module required by ROS 2. `uv sync`
+then installs the locked application and development dependencies. No manual
+virtual-environment activation is needed. The ROS discovery dependency (`rclpy`)
+is supplied by the sourced ROS 2 environment rather than PyPI. Start the live
+graph backend with:
 
 ```bash
 source /opt/ros/jazzy/setup.bash

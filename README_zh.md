@@ -15,13 +15,15 @@
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```
 
-`uv sync` 會建立 `backend/.venv`，並安裝鎖定的應用程式與開發依賴套件，
-不需要手動啟用虛擬環境。ROS discovery 所需的 `rclpy` 由已載入的 ROS 2
-環境提供，不會從 PyPI 安裝。啟動即時拓樸後端：
+`uv venv --system-site-packages` 會建立可讀取 Ubuntu 系統 Python 套件的
+`backend/.venv`，包括 ROS 2 所需的 `yaml` 模組；接著由 `uv sync` 安裝鎖定的
+應用程式與開發依賴套件。不需要手動啟用虛擬環境。ROS discovery 所需的
+`rclpy` 由已載入的 ROS 2 環境提供，不會從 PyPI 安裝。啟動即時拓樸後端：
 
 ```bash
 source /opt/ros/jazzy/setup.bash
