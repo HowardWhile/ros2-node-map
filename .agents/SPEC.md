@@ -113,7 +113,9 @@ ros2-node-map/
 ├── README_zh.md
 ├── LICENSE
 ├── .gitignore
-├── SPEC.md
+├── .agents/
+│   ├── SPEC.md
+│   └── PLAN.md
 ├── scripts/
 │   ├── install-node-map.sh
 │   └── version.mjs
@@ -650,9 +652,18 @@ npm run build
 npm run dist
 ```
 
-Release AppImage 產生後，必須提供安裝腳本，讓使用者可以從 repo 根目錄執行
-`scripts/install-node-map.sh`，將 `node-map` 指令連結至最新的 Linux x86-64
-AppImage。
+Release AppImage 產生後，必須提供安裝腳本
+`scripts/install-node-map.sh`，支援以下安裝方式：
+
+* 預設模式偵測目前系統，從 `HowardWhile/ros2-node-map` 的 GitHub latest
+  release 下載對應的 Linux x86-64 或 ARM64 AppImage。
+* 使用者可以透過 raw GitHub URL 執行線上安裝：
+  `wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash`
+* `scripts/install-node-map.sh --offline` 必須完全不連線，從
+  `app/release` 選擇目前架構版本最高的 AppImage。
+
+兩種模式都必須將 `node-map` 指令連結至選定的 AppImage；目前支援 Linux
+x86-64 與 ARM64。
 
 ---
 

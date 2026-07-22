@@ -11,4 +11,4 @@
 9. Add item details and copyable ROS CLI commands.
 10. Export JSON and Mermaid Markdown.
 
-Detailed goals and acceptance criteria live in [SPEC.md](../SPEC.md).
+Detailed goals and acceptance criteria live in [SPEC.md](../.agents/SPEC.md).

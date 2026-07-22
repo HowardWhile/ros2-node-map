@@ -9,7 +9,7 @@
 
 ### 新增
 
-- 提供安裝腳本，可使用 `node-map` 指令啟動最新的 Linux x86-64 AppImage。
+- 提供安裝腳本，可從 GitHub latest release 安裝目前架構的 Linux AppImage，並支援 `--offline` 使用本地 release。
 
 ## [v0.2.1] - 2026-07-20
 
@@ -36,7 +36,7 @@
 - JSON 匯出改為保留未經前端篩選的完整拓樸資料，載入後才套用顯示篩選。
 - 篩選器顏色與圖形節點顏色保持一致。
 - 下載選單改用 PNG、MD、JSON 圖示與提示文字。
-- 將功能規格與開發里程碑分別維護於 `SPEC.md` 和 `PLAN.md`。
+- 將功能規格與開發里程碑分別維護於 `.agents/SPEC.md` 和 `.agents/PLAN.md`。
 - 產品版本統一使用三段數字，並提供單一指令同步 Frontend、Backend 與鎖檔版本。
 - Release 檔名加入作業系統與 CPU 架構資訊。
 - Release 檔名的產品版本改用 `v0.2.0` 格式。

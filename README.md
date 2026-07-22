@@ -87,16 +87,33 @@ from the target selected by electron-builder.
 
 ## Install the `node-map` command
 
-From the repository root, install a `node-map` command that points to the latest
-Linux x86-64 AppImage in `app/release`:
+The default mode detects the current system and downloads the matching latest Linux
+x86-64 or ARM64 AppImage from the GitHub Releases page:
 
 ```bash
 ./scripts/install-node-map.sh
 node-map
 ```
 
-The command is installed in `~/.local/bin`. If that directory is not already in
-your `PATH`, add it and reopen your shell.
+The same installer can be run directly from the online script with `wget`:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash
+```
+
+The downloaded AppImage is stored in
+`${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`, and the `node-map` command is
+installed in `~/.local/bin`. If that directory is not already in your `PATH`, add
+it and reopen your shell.
+
+For an offline install, use the AppImage already present in `app/release`:
+
+```bash
+./scripts/install-node-map.sh --offline
+```
+
+Offline mode selects the highest versioned AppImage for the current Linux
+architecture without using the network.
 
 ## Documentation
 
@@ -105,8 +122,8 @@ your `PATH`, add it and reopen your shell.
 - [Graph JSON schema](docs/graph-json-schema.md)
 - [Testing](docs/testing.md)
 - [Roadmap](docs/roadmap.md)
-- [Specification](SPEC.md)
-- [Development plan](PLAN.md)
+- [Specification](.agents/SPEC.md)
+- [Development plan](.agents/PLAN.md)
 
 ## Knowledge graph
 
