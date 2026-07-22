@@ -12,9 +12,12 @@ import { dirname, join, resolve } from "node:path";
 import { spawn, type ChildProcess } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import {
+  CAPTURE_DISCOVERY_WAIT_SECONDS,
   cliModeFromArguments,
   cliModeFromEnvironment,
   cliUsage,
+  headlessPortFromArguments,
+  headlessPortFromEnvironment,
   installCurrentAppImage,
   installMessage,
   uninstallCurrentAppImage,
@@ -301,25 +304,25 @@ function createWindow(): void {
   }
 }
 
-function headlessUrls(): string[] {
-  const urls = ["http://localhost:8766"];
+function headlessUrls(port: number): string[] {
+  const urls = [`http://localhost:${port}`];
   const addresses = Object.values(networkInterfaces())
     .flat()
     .filter((address) => address?.family === "IPv4" && !address.internal)
     .map((address) => address!.address)
     .filter((address, index, all) => all.indexOf(address) === index);
-  urls.push(...addresses.map((address) => `http://${address}:8766`));
+  urls.push(...addresses.map((address) => `http://${address}:${port}`));
   return urls;
 }
 
-async function waitForHeadlessServer(): Promise<void> {
+async function waitForHeadlessServer(port: number): Promise<void> {
   const deadline = Date.now() + 15_000;
   while (Date.now() < deadline) {
     if (!backendProcess || backendProcess.exitCode !== null) {
       throw new Error("Headless node-map server did not start.");
     }
     try {
-      const response = await fetch("http://127.0.0.1:8766/api/health");
+      const response = await fetch(`http://127.0.0.1:${port}/api/health`);
       if (response.ok) return;
     } catch {
       // The backend needs a short time to initialize ROS and Uvicorn.
@@ -354,7 +357,7 @@ function writeCapture(content: string): string {
   }
 }
 
-async function runHeadlessMode(): Promise<void> {
+async function runHeadlessMode(port: number): Promise<void> {
   runtimeStatus = inspectRuntime();
   if (!runtimeStatus.liveAvailable) throw new Error(runtimeStatus.reason ?? "ROS 2 live mode is unavailable.");
   const frontendDirectory = bundledFrontendDirectory();
@@ -364,13 +367,13 @@ async function runHeadlessMode(): Promise<void> {
   headlessModeActive = true;
   startPackagedBackend({
     host: "0.0.0.0",
-    port: 8766,
+    port,
     frontendDirectory,
     stdio: "inherit",
   });
-  await waitForHeadlessServer();
+  await waitForHeadlessServer(port);
   console.log("node-map headless server is ready. Open one of these URLs:");
-  for (const url of headlessUrls()) console.log(`  ${url}`);
+  for (const url of headlessUrls(port)) console.log(`  ${url}`);
   process.once("SIGINT", () => app.quit());
   process.once("SIGTERM", () => app.quit());
 }
@@ -378,30 +381,48 @@ async function runHeadlessMode(): Promise<void> {
 async function runCaptureMode(): Promise<void> {
   runtimeStatus = inspectRuntime();
   if (!runtimeStatus.liveAvailable) throw new Error(runtimeStatus.reason ?? "ROS 2 live mode is unavailable.");
-  const outputPath = writeCapture(await runBundledBackend(["snapshot", "--pretty"]));
+  const outputPath = writeCapture(await runBundledBackend([
+    "snapshot",
+    "--pretty",
+    "--wait",
+    String(CAPTURE_DISCOVERY_WAIT_SECONDS),
+  ]));
   console.log(`Graph snapshot saved: ${outputPath}`);
   console.log("Copy this file to another computer and open it in node-map File mode.");
 }
 
-async function runCliMode(mode: ReturnType<typeof cliModeFromArguments>): Promise<void> {
-  if (mode === "invalid") {
+async function runCliMode(
+  mode: ReturnType<typeof cliModeFromArguments>,
+  headlessPort: number | "invalid" | null,
+): Promise<void> {
+  if (mode === "help") {
+    console.log(cliUsage());
+    app.exit(0);
+    return;
+  }
+  if (mode === "version") {
+    console.log(app.getVersion());
+    app.exit(0);
+    return;
+  }
+  if (mode === "invalid" || headlessPort === "invalid" || (headlessPort !== null && mode !== "headless")) {
     console.error(cliUsage());
     app.exit(2);
     return;
   }
-  if (mode === "install") {
-    console.log(installMessage(installCurrentAppImage(process.env.APPIMAGE, process.env), process.env));
-    app.exit(0);
-    return;
-  }
-  if (mode === "uninstall") {
-    const result = uninstallCurrentAppImage(process.env.APPIMAGE, process.env);
-    console.log(`node-map command removed: ${result.commandPath}`);
-    app.exit(0);
-    return;
-  }
   try {
-    if (mode === "headless") await runHeadlessMode();
+    if (mode === "install") {
+      console.log(installMessage(installCurrentAppImage(process.env.APPIMAGE, process.env), process.env));
+      app.exit(0);
+      return;
+    }
+    if (mode === "uninstall") {
+      const result = uninstallCurrentAppImage(process.env.APPIMAGE, process.env);
+      console.log(`node-map command removed: ${result.commandPath}`);
+      app.exit(0);
+      return;
+    }
+    if (mode === "headless") await runHeadlessMode(headlessPort ?? 8766);
     if (mode === "capture") await runCaptureMode();
     if (mode === "capture") app.exit(0);
   } catch (error) {
@@ -414,29 +435,36 @@ async function runCliMode(mode: ReturnType<typeof cliModeFromArguments>): Promis
 const requestedCliMode =
   cliModeFromEnvironment(process.env.NODE_MAP_CLI_MODE) ??
   cliModeFromArguments(process.argv);
+const requestedHeadlessPort =
+  headlessPortFromEnvironment(process.env.NODE_MAP_HEADLESS_PORT) ??
+  headlessPortFromArguments(process.argv);
 
 if (
   requestedCliMode === "invalid" ||
+  requestedCliMode === "help" ||
+  requestedCliMode === "version" ||
   requestedCliMode === "install" ||
-  requestedCliMode === "uninstall"
+  requestedCliMode === "uninstall" ||
+  requestedHeadlessPort === "invalid" ||
+  (requestedHeadlessPort !== null && requestedCliMode !== "headless")
 ) {
-  void runCliMode(requestedCliMode);
+  void runCliMode(requestedCliMode ?? "invalid", requestedHeadlessPort);
 } else {
   app.whenReady().then(() => {
     const mode = requestedCliMode;
-  if (mode) {
-    void runCliMode(mode);
-    return;
-  }
-  domainSettings = loadDomainSettings();
-  runtimeStatus = inspectRuntime();
-  registerDomainHandlers();
-  registerRuntimeHandlers();
-  startPackagedBackend();
-  createWindow();
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
+    if (mode) {
+      void runCliMode(mode, requestedHeadlessPort);
+      return;
+    }
+    domainSettings = loadDomainSettings();
+    runtimeStatus = inspectRuntime();
+    registerDomainHandlers();
+    registerRuntimeHandlers();
+    startPackagedBackend();
+    createWindow();
+    app.on("activate", () => {
+      if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
   });
 }
 

@@ -37,6 +37,8 @@ app_directory="$(cd -- "$(dirname -- "$0")" && pwd)"
 electron_binary="$app_directory/ros2-node-map"
 electron_arguments=()
 app_arguments=()
+headless_port=""
+expect_port_value=false
 
 export PATH="$app_directory:$app_directory/usr/sbin\${PATH:+:$PATH}"
 export XDG_DATA_DIRS="$app_directory/usr/share/\${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}:/usr/share/gnome:/usr/local/share/:/usr/share/"
@@ -44,9 +46,35 @@ export LD_LIBRARY_PATH="$app_directory/usr/lib\${LD_LIBRARY_PATH:+:$LD_LIBRARY_P
 export GSETTINGS_SCHEMA_DIR="$app_directory/usr/share/glib-2.0/schemas\${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
 
 for argument in "$@"; do
+  if [[ "$expect_port_value" == true ]]; then
+    headless_port="$argument"
+    expect_port_value=false
+    continue
+  fi
   case "$argument" in
-    --headless|--capture|--install|--uninstall)
-      app_arguments+=("$argument")
+    --headless)
+      app_arguments+=(headless)
+      ;;
+    -p|--port)
+      expect_port_value=true
+      ;;
+    --port=*)
+      headless_port="\${argument#--port=}"
+      ;;
+    -c|--capture)
+      app_arguments+=(capture)
+      ;;
+    --install)
+      app_arguments+=(install)
+      ;;
+    --uninstall)
+      app_arguments+=(uninstall)
+      ;;
+    -h|--help)
+      app_arguments+=(help)
+      ;;
+    -v|--version)
+      app_arguments+=(version)
       ;;
     *)
       electron_arguments+=("$argument")
@@ -54,10 +82,18 @@ for argument in "$@"; do
   esac
 done
 
+if [[ "$expect_port_value" == true ]]; then
+  headless_port=invalid
+fi
+
 if (( \${#app_arguments[@]} > 1 )); then
   export NODE_MAP_CLI_MODE=invalid
 elif (( \${#app_arguments[@]} == 1 )); then
-  export NODE_MAP_CLI_MODE="\${app_arguments[0]#--}"
+  export NODE_MAP_CLI_MODE="\${app_arguments[0]}"
+fi
+
+if [[ -n "$headless_port" ]]; then
+  export NODE_MAP_HEADLESS_PORT="$headless_port"
 fi
 
 if [[ " \${electron_arguments[*]} " != *" --no-sandbox "* ]] && ! unshare -Ur true 2>/dev/null; then

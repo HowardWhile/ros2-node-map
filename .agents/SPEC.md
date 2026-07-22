@@ -658,6 +658,8 @@ npm run dist
 
 ```bash
 node-map --headless
+node-map --headless --port 9000
+node-map --headless -p 9000
 ```
 
 此模式適合在有 ROS 2 runtime、但沒有桌面環境的裝置上使用，行為如下：
@@ -665,7 +667,9 @@ node-map --headless
 * 不可建立 Electron `BrowserWindow`，也不可嘗試啟動 GUI。
 * 必須啟動 bundled ROS backend，並以同一個 HTTP server 提供 production frontend、
   HTTP API 與 WebSocket graph stream。
-* 預設監聽 `0.0.0.0:8766`，讓同一個受信任網路中的其他電腦可用瀏覽器連入。
+* 預設監聽 `0.0.0.0:8766`；`-p PORT` 與 `--port PORT` 可指定 1 至 65535 的監聽
+  port，讓同一個受信任網路中的其他電腦可用瀏覽器連入。此選項只可與
+  `--headless` 一起使用。
 * 啟動成功後必須在終端機以英文印出可直接使用的 URL：
   * `http://localhost:8766`
   * 每個可用非 loopback IPv4 位址對應的 `http://<ip>:8766`
@@ -688,6 +692,8 @@ node-map --capture
 此模式用於在沒有 GUI 的裝置上擷取一次完整 topology snapshot，行為如下：
 
 * 不可建立 Electron `BrowserWindow`，也不可啟動 HTTP server。
+* 建立 ROS discovery node 後，必須先等待至少 3 秒讓 DDS discovery 更新，再讀取 graph
+  並寫出 snapshot。
 * 必須使用與 GUI 的 `Download JSON` 相同、未套用前端顯示篩選的完整 graph JSON
   schema 與資料內容。
 * 成功後必須在目前工作目錄寫入一個新的
@@ -725,9 +731,16 @@ node-map --capture
 * 自我安裝模式只適用於由 AppImage runtime 啟動的 release AppImage；若無法辨識
   目前 AppImage 路徑，必須以英文錯誤和非零狀態結束。
 
-`--headless`、`--capture`、`--install` 與 `--uninstall` 彼此不可同時使用；任意
+`-c` 與 `--capture` 為相同的 capture 模式。`--headless`、capture、`--install` 與
+`--uninstall` 彼此不可同時使用；任意
 無效組合必須顯示 usage 並以狀態碼 `2` 結束。未提供這些選項時，既有 GUI 啟動
 行為必須保持不變。
+
+`node-map -h` 與 `node-map --help` 必須以英文列出 GUI、headless、capture、install
+與 uninstall 的可用指令，並以狀態碼 `0` 結束且不可啟動 GUI 或 ROS backend。
+
+`node-map -v` 與 `node-map --version` 必須印出目前 node-map 版本，並以狀態碼 `0`
+結束且不可啟動 GUI 或 ROS backend。
 
 Release AppImage 產生後，必須提供安裝腳本
 `scripts/install-node-map.sh`，支援以下安裝方式：

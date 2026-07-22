@@ -7,13 +7,20 @@ import {
 } from "node:fs";
 import { basename, join } from "node:path";
 
-export type CliMode = "headless" | "capture" | "install" | "uninstall";
+export type CliMode = "headless" | "capture" | "install" | "uninstall" | "help" | "version";
+
+export const CAPTURE_DISCOVERY_WAIT_SECONDS = 3;
 
 const MODE_BY_ARGUMENT: Record<string, CliMode> = {
   "--headless": "headless",
+  "-c": "capture",
   "--capture": "capture",
   "--install": "install",
   "--uninstall": "uninstall",
+  "-h": "help",
+  "--help": "help",
+  "-v": "version",
+  "--version": "version",
 };
 
 export function cliModeFromArguments(arguments_: readonly string[]): CliMode | "invalid" | null {
@@ -34,8 +41,46 @@ export function cliModeFromEnvironment(
     : "invalid";
 }
 
+export function headlessPortFromArguments(
+  arguments_: readonly string[],
+): number | "invalid" | null {
+  const values: string[] = [];
+  for (let index = 0; index < arguments_.length; index += 1) {
+    const argument = arguments_[index]!;
+    if (argument === "-p" || argument === "--port") {
+      const value = arguments_[index + 1];
+      if (value === undefined || value.startsWith("-")) return "invalid";
+      values.push(value);
+      index += 1;
+    } else if (argument.startsWith("--port=")) {
+      values.push(argument.slice("--port=".length));
+    }
+  }
+  if (values.length === 0) return null;
+  if (values.length !== 1 || !/^\d+$/.test(values[0]!)) return "invalid";
+  const port = Number(values[0]);
+  return port >= 1 && port <= 65_535 ? port : "invalid";
+}
+
+export function headlessPortFromEnvironment(
+  value: string | undefined,
+): number | "invalid" | null {
+  return value === undefined ? null : headlessPortFromArguments(["--port", value]);
+}
+
 export function cliUsage(): string {
-  return "Usage: node-map [--headless | --capture | --install | --uninstall]";
+  return [
+    "Usage: node-map [OPTION]",
+    "",
+    "Options:",
+    "  --headless           Start the web server without opening the GUI.",
+    "  -p, --port PORT      Set the headless web server port (default: 8766).",
+    "  -c, --capture  Save the current ROS graph as a JSON snapshot.",
+    "  --install    Link this AppImage as the node-map command.",
+    "  --uninstall  Remove the node-map link for this AppImage.",
+    "  -h, --help   Show this help message.",
+    "  -v, --version  Show the node-map version.",
+  ].join("\n");
 }
 
 export function userBinDirectory(environment: NodeJS.ProcessEnv): string {
