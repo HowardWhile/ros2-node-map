@@ -5,11 +5,19 @@
 本文件格式依循 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本編號遵循[語意化版本](https://semver.org/lang/zh-TW/)。
 
-## [未發布]
+## [v0.3.0] - 2026-07-22
 
 ### 新增
 
 - 提供安裝腳本，可從 GitHub latest release 安裝目前架構的 Linux AppImage，支援 `--offline` 使用本地 release，並顯示下載進度條。
+- 新增 headless web 模式，可在沒有 GUI 的裝置提供 topology 網頁、HTTP API 與 WebSocket stream；支援 `-p`／`--port` 指定監聽 port。
+- 新增 `-c`／`--capture`，在 DDS discovery 等待後將完整 topology 寫入 JSON snapshot。
+- AppImage 支援 `--install`／`--uninstall` 管理 `node-map` symlink。
+- 新增 `-h`／`--help` 與 `-v`／`--version` 指令。
+
+### 修正
+
+- 改善 AppImage `--uninstall` 的錯誤處理，避免預期失敗時產生未處理的 Promise rejection。
 
 ## [v0.2.1] - 2026-07-20
 
@@ -48,6 +56,7 @@
 - 修正 Details 與 Explorer 側邊欄可拖曳超出合理寬度的問題。
 - 改善工作台在不同視窗尺寸下的版面與面板限制。
 
-[未發布]: https://github.com/HowardWhile/ros2-node-map/compare/v0.2.1...HEAD
+[未發布]: https://github.com/HowardWhile/ros2-node-map/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.3.0
 [v0.2.1]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.1
 [v0.2.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.0
