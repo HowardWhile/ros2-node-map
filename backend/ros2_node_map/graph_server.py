@@ -5,12 +5,14 @@ from __future__ import annotations
 import asyncio
 from contextlib import suppress
 from datetime import datetime
+from pathlib import Path
 from threading import Lock
 from typing import Any, Callable, Literal, Protocol
 
 import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from . import __version__
@@ -151,6 +153,7 @@ def create_app(
     *,
     interval: float = 1.0,
     domain_controller: DomainController | None = None,
+    frontend_directory: Path | None = None,
 ) -> FastAPI:
     """Create the HTTP, OpenAPI, Swagger UI, and graph WebSocket service."""
     if interval <= 0:
@@ -204,6 +207,14 @@ def create_app(
     app.websocket("/ws/graph")(stream_graph)
     # Keep the original ws://host:port endpoint working for existing clients.
     app.websocket("/")(stream_graph)
+    if frontend_directory is not None:
+        if not frontend_directory.is_dir() or not (frontend_directory / "index.html").is_file():
+            raise ValueError(
+                f"frontend directory must contain index.html: {frontend_directory}"
+            )
+        app.mount(
+            "/", StaticFiles(directory=frontend_directory, html=True), name="frontend"
+        )
     return app
 
 
@@ -218,6 +229,7 @@ class GraphServer:
         port: int = 8766,
         interval: float = 1.0,
         domain_controller: DomainController | None = None,
+        frontend_directory: Path | None = None,
     ) -> None:
         if not host:
             raise ValueError("host must be non-empty")
@@ -230,8 +242,12 @@ class GraphServer:
         self.port = port
         self.interval = interval
         self.domain_controller = domain_controller
+        self.frontend_directory = frontend_directory
         self.app = create_app(
-            reader, interval=interval, domain_controller=domain_controller
+            reader,
+            interval=interval,
+            domain_controller=domain_controller,
+            frontend_directory=frontend_directory,
         )
 
     async def serve_forever(self) -> None:
@@ -256,11 +272,12 @@ def run_server(
     port: int = 8766,
     interval: float = 1.0,
     domain_controller: DomainController | None = None,
+    frontend_directory: Path | None = None,
 ) -> None:
     """Run a graph server for an existing rclpy node."""
     server = GraphServer(
         GraphReader(ros_node), host=host, port=port, interval=interval,
-        domain_controller=domain_controller,
+        domain_controller=domain_controller, frontend_directory=frontend_directory,
     )
     with suppress(KeyboardInterrupt):
         asyncio.run(server.serve_forever())

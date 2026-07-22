@@ -1,6 +1,6 @@
 {
   "name": "ros2-node-map-app",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "dist-electron/main.js",
@@ -39,6 +39,13 @@
     "appId": "io.github.ros2-node-map",
     "productName": "ros2-node-map",
     "asar": true,
+    "afterAllArtifactBuild": "./scripts/patch-appimage-launcher.cjs",
+    "appImage": {
+      "license": null
+    },
+    "asarUnpack": [
+      "dist/**"
+    ],
     "electronLanguages": [
       "en-US"
     ],

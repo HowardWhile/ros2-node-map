@@ -12,3 +12,15 @@ test("Linux release names include version, OS, and CPU architecture", () => {
     "${productName}-v${version}-${os}-${arch}.${ext}",
   );
 });
+
+test("production frontend assets are unpacked for the headless backend", () => {
+  assert.deepEqual(packageJson.build.asarUnpack, ["dist/**"]);
+});
+
+test("Linux AppImages install a launcher for application CLI modes", () => {
+  assert.equal(
+    packageJson.build.afterAllArtifactBuild,
+    "./scripts/patch-appimage-launcher.cjs",
+  );
+  assert.equal(packageJson.build.appImage.license, null);
+});

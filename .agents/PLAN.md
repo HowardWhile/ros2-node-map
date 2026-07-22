@@ -1,9 +1,25 @@
 # ros2-node-map 開發計畫
 
-本文件記錄開發里程碑與建議 Commit 順序。產品需求、架構與驗收規格請參考
+本文件記錄開發里程碑。產品需求、架構與驗收規格請參考
 [SPEC.md](SPEC.md)。
 
-## 1. 開發里程碑
+## 1. 里程碑 Checklist
+
+只有完成條件已實作且已驗證的里程碑才可勾選。未勾選項目可已有部分實作，
+但仍須完成列出的驗證或缺漏功能。
+
+- [x] Milestone 1：建立專案骨架
+- [x] Milestone 2：Backend Topic Graph
+- [ ] Milestone 3：WebSocket Server — 以實際 client 驗證持續收到 snapshot。
+- [ ] Milestone 4：Electron Graph Viewer — 完成 live backend 的 Electron 手動驗收。
+- [ ] Milestone 5：Service Graph — 以實際 service client/server topology 驗證。
+- [ ] Milestone 6：Action Graph — 以實際 action client/server topology 驗證。
+- [ ] Milestone 7：搜尋與篩選 — 實作 namespace filter 與 isolated node filter。
+- [ ] Milestone 8：Detail Panel — 完成 Detail Panel 的 Electron 手動驗收。
+- [ ] Milestone 9：Export — 完成 Electron 手動驗收及線上安裝腳本實測。
+- [ ] Milestone 10：Headless Modes — 實作並驗證 headless web 與 capture 模式。
+
+## 2. 開發里程碑
 
 ### Milestone 1：建立專案骨架
 
@@ -163,6 +179,8 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 * 匯出包含 Mermaid graph 語法的 Markdown 檔
 * 支援拖放或選取 graph JSON 檔並以 File mode 顯示
 * ROS runtime 不可用時自動進入 File-only Mode
+* 安裝腳本預設可從 GitHub latest release 下載目前架構的 Linux AppImage
+* 安裝腳本支援 `--offline`，只使用 `app/release` 中的 AppImage
 
 完成條件：
 
@@ -174,6 +192,7 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 * 沒有 ROS 2 Jazzy 的主機仍可開啟 app、載入 JSON 並探索 graph
 * File mode 中不可變更 ROS domain
 * 可以產生 Markdown 文件
+* 可以透過線上或離線安裝腳本建立 `node-map` 指令
 
 驗證命令：
 
@@ -186,133 +205,40 @@ npm run build
 完成前仍需依 `SPEC.md` 15.4 執行 Electron 手動測試，包含拖放匯入、匯出檔案、
 無效 JSON，以及無 ROS 2 runtime 的 File-only Mode。
 
-## 2. 建議 Commit 順序
+---
 
-### Commit 1
+### Milestone 10：Headless Modes
 
-```text
-Initial project structure for ros2-node-map
-```
+目標：
 
-內容：
+* `node-map --headless` 不啟動 GUI，並在 headless 裝置提供 production frontend、
+  HTTP API 與 WebSocket graph stream。
+* 啟動時顯示 localhost 與可用 LAN IPv4 的瀏覽器網址。
+* headless frontend 連回提供網頁的同一個主機，而不是瀏覽器本機的 localhost。
+* `node-map --capture` 不啟動 GUI 或 HTTP server，並在目前工作目錄產生完整 graph
+  JSON snapshot。
+* release AppImage 可透過 `--install` 連結自身為 `node-map`，並可透過
+  `--uninstall` 安全移除該連結。
+* 保持既有未帶選項時的 GUI 啟動行為。
 
-* README
-* SPEC
-* backend package skeleton
-* app skeleton
-* docs skeleton
+完成條件：
 
-### Commit 2
+* `node-map --headless` 不建立 `BrowserWindow`，且可由另一台電腦使用終端機顯示
+  的 LAN URL 開啟並收到即時 graph snapshot。
+* `node-map --capture` 產生可由另一台電腦 File mode 載入的完整、未套用前端篩選的
+  graph JSON，並印出絕對輸出路徑。
+* `node-map --headless --capture` 顯示 usage，並以狀態碼 `2` 結束。
+* `AppImage --install` 不下載、複製或啟動 GUI，並建立指向目前 AppImage 的
+  `node-map` symlink；`AppImage --uninstall` 只移除指向目前 AppImage 的 symlink。
+* ROS runtime、frontend assets、監聽 port 或輸出路徑不可用時，兩種模式皆以英文
+  顯示可理解的錯誤、以非零狀態結束，且不啟動 GUI。
 
-```text
-Define graph JSON schema
-```
+驗證：
 
-內容：
-
-* graph_model.py
-* TypeScript graph types
-* schema docs
-* unit tests
-
-### Commit 3
-
-```text
-Implement ROS 2 topic graph snapshot
-```
-
-內容：
-
-* node discovery
-* topic discovery
-* publisher/subscriber edges
-* snapshot CLI
-
-### Commit 4
-
-```text
-Add WebSocket graph server
-```
-
-內容：
-
-* graph_server.py
-* serve CLI
-* refresh interval
-
-### Commit 5
-
-```text
-Create Electron graph viewer
-```
-
-內容：
-
-* Electron main process
-* React app
-* WebSocket client
-* Cytoscape rendering
-
-### Commit 6
-
-```text
-Add service graph support
-```
-
-內容：
-
-* service nodes
-* service client/server edges
-* service detail panel
-
-### Commit 7
-
-```text
-Add action graph support
-```
-
-內容：
-
-* action inference
-* action nodes
-* action client/server edges
-* hide action internals
-
-### Commit 8
-
-```text
-Add search and filters
-```
-
-內容：
-
-* search box
-* namespace filter
-* kind filter
-* system topic toggle
-
-### Commit 9
-
-```text
-Add detail panel and copy commands
-```
-
-內容：
-
-* selected item panel
-* ROS CLI commands
-* copy button
-
-### Commit 10
-
-```text
-Add graph export features
-```
-
-內容：
-
-* export JSON from the Graph View
-* PNG / JSON export menu
-* export Mermaid Markdown
-* import graph JSON by drag and drop
-* File-only Mode when ROS 2 is unavailable
+* 執行 `node-map --headless`，以 localhost 與另一台電腦測試 frontend、
+  `/api/health` 與 `/ws/graph`。
+* 在可寫入的暫存目錄執行 `node-map --capture`，驗證輸出檔可被 frontend parser
+  驗證並以 File mode 開啟。
+* 以暫存 `XDG_BIN_HOME` 執行 AppImage `--install`／`--uninstall`，驗證建立與移除
+  的 symlink 都指向目前 AppImage，且非 symlink 或其他版本的 symlink 不會被覆寫。
+* 驗證互斥參數、ROS runtime 不可用、port 衝突及輸出目錄不可寫入的失敗情況。

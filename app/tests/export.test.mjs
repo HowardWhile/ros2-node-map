@@ -5,6 +5,7 @@ import {
   graphToJson,
   graphToMermaidMarkdown,
 } from "../src/graph/exporters.ts";
+import { backendUrlForPage } from "../src/api.ts";
 import { parseGraphSnapshot } from "../src/graph/snapshot.ts";
 import { GraphSessionStore } from "../src/graph/GraphSessionStore.ts";
 
@@ -25,6 +26,18 @@ const snapshot = {
     },
   ],
 };
+
+test("uses the headless server origin for browser WebSocket connections", () => {
+  assert.equal(
+    backendUrlForPage({ protocol: "http:", host: "192.168.1.20:8766" }),
+    "ws://192.168.1.20:8766/ws/graph",
+  );
+  assert.equal(
+    backendUrlForPage({ protocol: "https:", host: "node-map.example:9443" }),
+    "wss://node-map.example:9443/ws/graph",
+  );
+  assert.equal(backendUrlForPage({ protocol: "file:", host: "" }), null);
+});
 
 test("parses a complete graph snapshot and rejects invalid endpoints", () => {
   assert.deepEqual(parseGraphSnapshot(JSON.stringify(snapshot)), snapshot);

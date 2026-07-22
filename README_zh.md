@@ -15,13 +15,15 @@
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```
 
-`uv sync` 會建立 `backend/.venv`，並安裝鎖定的應用程式與開發依賴套件，
-不需要手動啟用虛擬環境。ROS discovery 所需的 `rclpy` 由已載入的 ROS 2
-環境提供，不會從 PyPI 安裝。啟動即時拓樸後端：
+`uv venv --system-site-packages` 會建立可讀取 Ubuntu 系統 Python 套件的
+`backend/.venv`，包括 ROS 2 所需的 `yaml` 模組；接著由 `uv sync` 安裝鎖定的
+應用程式與開發依賴套件。不需要手動啟用虛擬環境。ROS discovery 所需的
+`rclpy` 由已載入的 ROS 2 環境提供，不會從 PyPI 安裝。啟動即時拓樸後端：
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -76,10 +78,42 @@ npm run dist
 app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 ```
 
-例如，版本 `0.2.1` 的 x86-64 建置產物名稱為
-`ros2-node-map-v0.2.1-linux-x86_64.AppImage`。架構後綴由 electron-builder
+例如，版本 `0.3.0` 的 x86-64 建置產物名稱為
+`ros2-node-map-v0.3.0-linux-x86_64.AppImage`。架構後綴由 electron-builder
 依據選用的建置目標自動產生。
 
+## 安裝 `node-map` 指令
+
+預設模式會偵測目前系統，從 GitHub Releases 下載對應的最新 Linux x86-64 或
+ARM64 AppImage：
+
+```bash
+./scripts/install-node-map.sh
+node-map
+```
+
+也可以直接透過線上腳本安裝：
+
+```bash
+wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash
+```
+
+下載的 AppImage 會放在
+`${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`，`node-map` 指令會安裝到
+`~/.local/bin`。如果該目錄尚未加入 `PATH`，請加入後重新開啟 shell。
+
+下載 AppImage 時會顯示 Wget 進度條。
+
+若要離線安裝，直接使用 `app/release` 中已有的 AppImage：
+
+```bash
+./scripts/install-node-map.sh --offline
+```
+
+離線模式不會連線，會選擇目前 Linux 架構版本最高的 AppImage。
+
+安裝後直接輸入 `node-map` 即可啟動。安裝腳本會顯示目前模式適用的解除安裝指令；
+若將 PATH 設定加入 `~/.bashrc`，請執行 `source ~/.bashrc` 重新載入。
 
 
 ## 文件
@@ -89,8 +123,8 @@ app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 - [Graph JSON 結構](docs/graph-json-schema.md)
 - [測試說明](docs/testing.md)
 - [開發路線圖](docs/roadmap.md)
-- [功能規格](SPEC.md)
-- [開發計畫](PLAN.md)
+- [功能規格](.agents/SPEC.md)
+- [開發計畫](.agents/PLAN.md)
 
 ## 知識圖譜
 

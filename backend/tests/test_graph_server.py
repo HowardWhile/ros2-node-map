@@ -39,6 +39,19 @@ def test_server_uses_the_package_version() -> None:
     assert create_app(FakeReader()).version == __version__
 
 
+def test_server_serves_a_packaged_frontend(tmp_path) -> None:
+    (tmp_path / "index.html").write_text("<h1>node-map</h1>", encoding="utf8")
+    with TestClient(create_app(FakeReader(), frontend_directory=tmp_path)) as client:
+        response = client.get("/")
+    assert response.status_code == 200
+    assert response.text == "<h1>node-map</h1>"
+
+
+def test_server_rejects_a_frontend_directory_without_an_index(tmp_path) -> None:
+    with pytest.raises(ValueError, match="index.html"):
+        create_app(FakeReader(), frontend_directory=tmp_path)
+
+
 def test_http_endpoints_are_documented_and_return_a_snapshot() -> None:
     with TestClient(create_app(FakeReader())) as client:
         assert client.get("/api/health").json() == {"status": "ok"}

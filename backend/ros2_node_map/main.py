@@ -7,6 +7,7 @@ import os
 import sys
 from collections.abc import Sequence
 from contextlib import contextmanager
+from pathlib import Path
 from typing import Any, Iterator
 
 from . import __version__
@@ -40,6 +41,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--wait", type=float, default=1.0, metavar="SECONDS",
         help="initial ROS discovery wait (default: 1.0)",
     )
+    server.add_argument(
+        "--frontend-dir", type=Path, metavar="DIRECTORY",
+        help="serve a production frontend from DIRECTORY",
+    )
     return parser
 
 
@@ -68,7 +73,13 @@ def _snapshot(wait: float, pretty: bool) -> int:
     return 0
 
 
-def _serve(host: str, port: int, interval: float, wait: float) -> int:
+def _serve(
+    host: str,
+    port: int,
+    interval: float,
+    wait: float,
+    frontend_dir: Path | None = None,
+) -> int:
     from .graph_server import DomainController, run_server
 
     system_domain_id = os.environ.get("ROS_DOMAIN_ID", "0")
@@ -83,7 +94,7 @@ def _serve(host: str, port: int, interval: float, wait: float) -> int:
             )
             run_server(
                 node, host=host, port=port, interval=interval,
-                domain_controller=controller,
+                domain_controller=controller, frontend_directory=frontend_dir,
             )
         next_domain_id = controller.consume_restart()
         if next_domain_id is None:
@@ -98,7 +109,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.command == "snapshot":
             return _snapshot(args.wait, args.pretty)
         if args.command == "serve":
-            return _serve(args.host, args.port, args.interval, args.wait)
+            return _serve(
+                args.host, args.port, args.interval, args.wait, args.frontend_dir
+            )
     except (OSError, RuntimeError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2

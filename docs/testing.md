@@ -11,6 +11,7 @@ Run backend unit tests in the locked uv environment:
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```
@@ -23,4 +24,19 @@ the production build with:
 cd app
 npm test
 npm run build
+```
+
+For the installer, verify both modes on a supported Linux host. Use temporary
+directories for the command link and downloaded AppImage:
+
+```bash
+offline_bin="$(mktemp -d)"
+NODE_MAP_BIN_DIR="$offline_bin" ./scripts/install-node-map.sh --offline
+readlink "$offline_bin/node-map"
+
+online_bin="$(mktemp -d)"
+online_data="$(mktemp -d)"
+NODE_MAP_BIN_DIR="$online_bin" NODE_MAP_DOWNLOAD_DIR="$online_data" \
+  bash <(wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh)
+readlink "$online_bin/node-map"
 ```

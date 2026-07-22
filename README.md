@@ -15,14 +15,17 @@ ROS 2 Jazzy and Python 3.12 are the initial target.
 
 ```bash
 cd backend
+uv venv --system-site-packages
 uv sync
 uv run pytest
 ```
 
-`uv sync` creates `backend/.venv` and installs the locked application and
-development dependencies. No manual virtual-environment activation is needed.
-The ROS discovery dependency (`rclpy`) is supplied by the sourced ROS 2
-environment rather than PyPI. Start the live graph backend with:
+`uv venv --system-site-packages` creates `backend/.venv` with access to Ubuntu's
+system Python packages, including the `yaml` module required by ROS 2. `uv sync`
+then installs the locked application and development dependencies. No manual
+virtual-environment activation is needed. The ROS discovery dependency (`rclpy`)
+is supplied by the sourced ROS 2 environment rather than PyPI. Start the live
+graph backend with:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -78,9 +81,45 @@ npm run dist
 app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 ```
 
-For example, an x86-64 build of version `0.2.1` is named
-`ros2-node-map-v0.2.1-linux-x86_64.AppImage`. The architecture suffix is derived
+For example, an x86-64 build of version `0.3.0` is named
+`ros2-node-map-v0.3.0-linux-x86_64.AppImage`. The architecture suffix is derived
 from the target selected by electron-builder.
+
+## Install the `node-map` command
+
+The default mode detects the current system and downloads the matching latest Linux
+x86-64 or ARM64 AppImage from the GitHub Releases page:
+
+```bash
+./scripts/install-node-map.sh
+node-map
+```
+
+The same installer can be run directly from the online script with `wget`:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash
+```
+
+The downloaded AppImage is stored in
+`${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`, and the `node-map` command is
+installed in `~/.local/bin`. If that directory is not already in your `PATH`, add
+it and reopen your shell.
+
+The AppImage download displays a Wget progress bar.
+
+For an offline install, use the AppImage already present in `app/release`:
+
+```bash
+./scripts/install-node-map.sh --offline
+```
+
+Offline mode selects the highest versioned AppImage for the current Linux
+architecture without using the network.
+
+After installation, start the application with `node-map`. The installer prints a
+mode-specific uninstall command; if you add its PATH export to `~/.bashrc`, reload
+it with `source ~/.bashrc`.
 
 ## Documentation
 
@@ -89,8 +128,8 @@ from the target selected by electron-builder.
 - [Graph JSON schema](docs/graph-json-schema.md)
 - [Testing](docs/testing.md)
 - [Roadmap](docs/roadmap.md)
-- [Specification](SPEC.md)
-- [Development plan](PLAN.md)
+- [Specification](.agents/SPEC.md)
+- [Development plan](.agents/PLAN.md)
 
 ## Knowledge graph
 

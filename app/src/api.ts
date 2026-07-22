@@ -1,7 +1,17 @@
 import { parseGraphSnapshot } from "./graph/snapshot.ts";
 import type { GraphSnapshot } from "./types";
 
-export const DEFAULT_BACKEND_URL = "ws://127.0.0.1:8766";
+export function backendUrlForPage(location: Pick<Location, "protocol" | "host">): string | null {
+  if (location.protocol !== "http:" && location.protocol !== "https:") return null;
+  const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+  return `${protocol}//${location.host}/ws/graph`;
+}
+
+const browserBackendUrl = typeof window === "undefined"
+  ? null
+  : backendUrlForPage(window.location);
+
+export const DEFAULT_BACKEND_URL = browserBackendUrl ?? "ws://127.0.0.1:8766";
 
 export type ConnectionStatus =
   | "connecting"
