@@ -28,3 +28,9 @@ def test_serve_cli_defaults() -> None:
     assert args.port == 8766
     assert args.interval == 1.0
     assert args.wait == 1.0
+    assert args.frontend_dir is None
+
+
+def test_serve_cli_accepts_a_frontend_directory() -> None:
+    args = build_parser().parse_args(["serve", "--frontend-dir", "/tmp/frontend"])
+    assert str(args.frontend_dir) == "/tmp/frontend"
