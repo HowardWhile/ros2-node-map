@@ -1,9 +1,24 @@
 # ros2-node-map 開發計畫
 
-本文件記錄開發里程碑與建議 Commit 順序。產品需求、架構與驗收規格請參考
+本文件記錄開發里程碑。產品需求、架構與驗收規格請參考
 [SPEC.md](SPEC.md)。
 
-## 1. 開發里程碑
+## 1. 里程碑 Checklist
+
+只有完成條件已實作且已驗證的里程碑才可勾選。未勾選項目可已有部分實作，
+但仍須完成列出的驗證或缺漏功能。
+
+- [x] Milestone 1：建立專案骨架
+- [x] Milestone 2：Backend Topic Graph
+- [ ] Milestone 3：WebSocket Server — 以實際 client 驗證持續收到 snapshot。
+- [ ] Milestone 4：Electron Graph Viewer — 完成 live backend 的 Electron 手動驗收。
+- [ ] Milestone 5：Service Graph — 以實際 service client/server topology 驗證。
+- [ ] Milestone 6：Action Graph — 以實際 action client/server topology 驗證。
+- [ ] Milestone 7：搜尋與篩選 — 實作 namespace filter 與 isolated node filter。
+- [ ] Milestone 8：Detail Panel — 完成 Detail Panel 的 Electron 手動驗收。
+- [ ] Milestone 9：Export — 完成 Electron 手動驗收及線上安裝腳本實測。
+
+## 2. 開發里程碑
 
 ### Milestone 1：建立專案骨架
 
@@ -188,134 +203,3 @@ npm run build
 
 完成前仍需依 `SPEC.md` 15.4 執行 Electron 手動測試，包含拖放匯入、匯出檔案、
 無效 JSON，以及無 ROS 2 runtime 的 File-only Mode。
-
-## 2. 建議 Commit 順序
-
-### Commit 1
-
-```text
-Initial project structure for ros2-node-map
-```
-
-內容：
-
-* README
-* SPEC
-* backend package skeleton
-* app skeleton
-* docs skeleton
-
-### Commit 2
-
-```text
-Define graph JSON schema
-```
-
-內容：
-
-* graph_model.py
-* TypeScript graph types
-* schema docs
-* unit tests
-
-### Commit 3
-
-```text
-Implement ROS 2 topic graph snapshot
-```
-
-內容：
-
-* node discovery
-* topic discovery
-* publisher/subscriber edges
-* snapshot CLI
-
-### Commit 4
-
-```text
-Add WebSocket graph server
-```
-
-內容：
-
-* graph_server.py
-* serve CLI
-* refresh interval
-
-### Commit 5
-
-```text
-Create Electron graph viewer
-```
-
-內容：
-
-* Electron main process
-* React app
-* WebSocket client
-* Cytoscape rendering
-
-### Commit 6
-
-```text
-Add service graph support
-```
-
-內容：
-
-* service nodes
-* service client/server edges
-* service detail panel
-
-### Commit 7
-
-```text
-Add action graph support
-```
-
-內容：
-
-* action inference
-* action nodes
-* action client/server edges
-* hide action internals
-
-### Commit 8
-
-```text
-Add search and filters
-```
-
-內容：
-
-* search box
-* namespace filter
-* kind filter
-* system topic toggle
-
-### Commit 9
-
-```text
-Add detail panel and copy commands
-```
-
-內容：
-
-* selected item panel
-* ROS CLI commands
-* copy button
-
-### Commit 10
-
-```text
-Add graph export features
-```
-
-內容：
-
-* export JSON from the Graph View
-* PNG / JSON export menu
-* export Mermaid Markdown
-* import graph JSON by drag and drop
-* File-only Mode when ROS 2 is unavailable
