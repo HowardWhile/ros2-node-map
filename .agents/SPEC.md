@@ -652,6 +652,83 @@ npm run build
 npm run dist
 ```
 
+### 14.1 Headless Web Mode
+
+已安裝的 `node-map` 指令必須支援：
+
+```bash
+node-map --headless
+```
+
+此模式適合在有 ROS 2 runtime、但沒有桌面環境的裝置上使用，行為如下：
+
+* 不可建立 Electron `BrowserWindow`，也不可嘗試啟動 GUI。
+* 必須啟動 bundled ROS backend，並以同一個 HTTP server 提供 production frontend、
+  HTTP API 與 WebSocket graph stream。
+* 預設監聽 `0.0.0.0:8766`，讓同一個受信任網路中的其他電腦可用瀏覽器連入。
+* 啟動成功後必須在終端機以英文印出可直接使用的 URL：
+  * `http://localhost:8766`
+  * 每個可用非 loopback IPv4 位址對應的 `http://<ip>:8766`
+* 透過 headless server 載入的 frontend 必須依目前網頁的 HTTP origin 建立 WebSocket
+  URL，而不可固定連線至瀏覽器本機的 `127.0.0.1`。
+* 收到結束訊號時必須停止 HTTP server 與 bundled ROS backend。
+* 若 ROS 2 runtime、bundled backend、frontend assets 或監聽 port 不可用，必須以
+  英文顯示可理解的錯誤並以非零狀態結束。
+
+此模式不包含帳號或授權機制；使用者只可在受信任網路中使用，並自行設定防火牆。
+
+### 14.2 Headless Capture Mode
+
+已安裝的 `node-map` 指令必須支援：
+
+```bash
+node-map --capture
+```
+
+此模式用於在沒有 GUI 的裝置上擷取一次完整 topology snapshot，行為如下：
+
+* 不可建立 Electron `BrowserWindow`，也不可啟動 HTTP server。
+* 必須使用與 GUI 的 `Download JSON` 相同、未套用前端顯示篩選的完整 graph JSON
+  schema 與資料內容。
+* 成功後必須在目前工作目錄寫入一個新的
+  `ros2-node-map-<UTC timestamp>.json` 檔案，不可覆蓋既有檔案。
+* 終端機必須以英文印出已寫入檔案的絕對路徑，並提醒可將檔案複製至其他電腦，
+  透過 node-map 的 File mode 開啟。
+* 輸出的 JSON 必須能通過 frontend graph snapshot parser，並以 File mode 載入。
+* 若無法取得 ROS graph 或無法寫入檔案，必須以英文顯示可理解的錯誤並以非零
+  狀態結束，且不可留下部分輸出的 JSON 檔案。
+
+### 14.3 AppImage Self-install Mode
+
+每個 release AppImage 必須支援直接執行：
+
+```bash
+./ros2-node-map-v<version>-linux-<architecture>.AppImage --install
+./ros2-node-map-v<version>-linux-<architecture>.AppImage --uninstall
+```
+
+此模式用於讓使用者不必先取得 repository 的安裝腳本即可建立或移除
+`node-map` 指令，行為如下：
+
+* `--install` 不可建立 GUI、啟動 ROS backend 或使用網路。
+* `--install` 必須將目前正在執行的 AppImage 本身連結至
+  `${XDG_BIN_HOME:-$HOME/.local/bin}/node-map`；不可下載、複製或移動 AppImage。
+* 若 `node-map` 已是 symlink，`--install` 可更新它；若它是非 symlink 檔案，必須
+  拒絕覆寫並以非零狀態結束。
+* 成功後必須以英文顯示 `node-map` 啟動指令、
+  `./ros2-node-map-v<version>-linux-<architecture>.AppImage --uninstall` 解除安裝指令，
+  以及最後的 `source ~/.bashrc` 提醒；若目標 bin 目錄不在 `PATH`，也必須提示加入。
+* `--uninstall` 不可建立 GUI、啟動 ROS backend 或使用網路。它只可移除指向目前
+  AppImage 的 `node-map` symlink，不可刪除 AppImage 本身或任何其他檔案。
+* 若 `node-map` 不存在、不是 symlink，或指向其他 AppImage，`--uninstall` 必須拒絕
+  移除並以英文說明原因、以非零狀態結束。
+* 自我安裝模式只適用於由 AppImage runtime 啟動的 release AppImage；若無法辨識
+  目前 AppImage 路徑，必須以英文錯誤和非零狀態結束。
+
+`--headless`、`--capture`、`--install` 與 `--uninstall` 彼此不可同時使用；任意
+無效組合必須顯示 usage 並以狀態碼 `2` 結束。未提供這些選項時，既有 GUI 啟動
+行為必須保持不變。
+
 Release AppImage 產生後，必須提供安裝腳本
 `scripts/install-node-map.sh`，支援以下安裝方式：
 
@@ -786,6 +863,24 @@ expected action name: /navigate_to_pose
 examples/ros2_demo_graph/
 ```
 
+### 15.6 Headless Mode Test
+
+測試項目：
+
+* `node-map --headless` 不建立 GUI，並提供 frontend、`/api/health` 與
+  `/ws/graph`。
+* 從另一台電腦以終端機顯示的 non-loopback URL 開啟網頁，確認 frontend 可收到
+  graph snapshot。
+* `node-map --capture` 在目前工作目錄建立完整且可解析的 JSON snapshot，並可在
+  另一台電腦的 File mode 開啟。
+* `node-map --headless --capture` 以狀態碼 `2` 失敗且顯示 usage。
+* headless 與 capture 模式在 ROS runtime 或輸出目錄不可用時，正確以非零狀態
+  結束且不產生 GUI。
+* 直接執行 AppImage 的 `--install` 建立指向該 AppImage 的 `node-map` symlink，
+  且不下載、複製或啟動 GUI。
+* 直接執行同一個 AppImage 的 `--uninstall` 只移除該 symlink，不刪除 AppImage；
+  指向其他 AppImage 的 symlink 必須保留。
+
 ---
 
 ## 16. 驗收條件
@@ -806,6 +901,9 @@ examples/ros2_demo_graph/
 * 可以匯出 graph JSON
 * 可以拖放 graph JSON 並離線檢視 topology
 * ROS 2 Jazzy 不可用時，app 可進入 File-only Mode
+* 可以以 `node-map --headless` 在 headless 裝置提供瀏覽器可存取的 graph viewer
+* 可以以 `node-map --capture` 產生可由 File mode 載入的完整 graph JSON
+* Release AppImage 可透過 `--install` 與 `--uninstall` 安全管理 `node-map` 指令
 
 ---
 
