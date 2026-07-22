@@ -106,6 +106,8 @@ The downloaded AppImage is stored in
 installed in `~/.local/bin`. If that directory is not already in your `PATH`, add
 it and reopen your shell.
 
+The AppImage download displays a Wget progress bar.
+
 For an offline install, use the AppImage already present in `app/release`:
 
 ```bash
@@ -114,6 +116,10 @@ For an offline install, use the AppImage already present in `app/release`:
 
 Offline mode selects the highest versioned AppImage for the current Linux
 architecture without using the network.
+
+After installation, start the application with `node-map`. The installer prints a
+mode-specific uninstall command; if you add its PATH export to `~/.bashrc`, reload
+it with `source ~/.bashrc`.
 
 ## Documentation
 

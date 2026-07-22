@@ -102,6 +102,8 @@ wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/sc
 `${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`，`node-map` 指令會安裝到
 `~/.local/bin`。如果該目錄尚未加入 `PATH`，請加入後重新開啟 shell。
 
+下載 AppImage 時會顯示 Wget 進度條。
+
 若要離線安裝，直接使用 `app/release` 中已有的 AppImage：
 
 ```bash
@@ -109,6 +111,9 @@ wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/sc
 ```
 
 離線模式不會連線，會選擇目前 Linux 架構版本最高的 AppImage。
+
+安裝後直接輸入 `node-map` 即可啟動。安裝腳本會顯示目前模式適用的解除安裝指令；
+若將 PATH 設定加入 `~/.bashrc`，請執行 `source ~/.bashrc` 重新載入。
 
 
 ## 文件

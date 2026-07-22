@@ -13,7 +13,7 @@ if (( $# == 0 )); then
 elif (( $# == 1 )) && [[ "$1" == "--offline" ]]; then
   install_mode="offline"
 else
-  echo "用法：$0 [--offline]" >&2
+  echo "Usage: $0 [--offline]" >&2
   exit 2
 fi
 
@@ -21,7 +21,7 @@ require_command() {
   local command_name="$1"
 
   if ! command -v "$command_name" >/dev/null 2>&1; then
-    echo "找不到必要指令：$command_name" >&2
+    echo "Required command not found: $command_name" >&2
     exit 1
   fi
 }
@@ -39,14 +39,14 @@ case "${system_name}:${machine_architecture}" in
     asset_suffix="linux-arm64.AppImage"
     ;;
   *)
-    echo "不支援的系統或 CPU 架構：${system_name} ${machine_architecture}" >&2
-    echo "目前 release 提供 Linux x86_64 與 arm64 AppImage。" >&2
+    echo "Unsupported system or CPU architecture: ${system_name} ${machine_architecture}" >&2
+    echo "Available releases: Linux x86_64 and arm64 AppImage." >&2
     exit 1
     ;;
 esac
 
 if [[ -e "$command_path" && ! -L "$command_path" ]]; then
-  echo "無法覆寫既有檔案：$command_path" >&2
+  echo "Cannot overwrite existing file: $command_path" >&2
   exit 1
 fi
 
@@ -63,8 +63,8 @@ appimages=()
 
 if [[ "$install_mode" == "offline" ]]; then
   if [[ -z "$release_directory" || ! -d "$release_directory" ]]; then
-    echo "離線模式找不到 release 目錄：${release_directory:-無法判定 repo 路徑}" >&2
-    echo "請從 repo 根目錄執行，或先執行：cd app && npm run dist" >&2
+    echo "Offline mode could not find the release directory: ${release_directory:-repository path unavailable}" >&2
+    echo "Run this script from the repository, or build the AppImage first: cd app && npm run dist" >&2
     exit 1
   fi
 
@@ -74,8 +74,8 @@ if [[ "$install_mode" == "offline" ]]; then
   )
 
   if (( ${#appimages[@]} == 0 )); then
-    echo "離線模式找不到 ${asset_suffix}：$release_directory" >&2
-    echo "請先執行：cd app && npm run dist" >&2
+    echo "Offline mode could not find ${asset_suffix}: $release_directory" >&2
+    echo "Build the AppImage first: cd app && npm run dist" >&2
     exit 1
   fi
 
@@ -101,13 +101,13 @@ else
   }
   trap cleanup EXIT
 
-  echo "正在取得 GitHub 最新 release..."
+  echo "Fetching the latest GitHub release..."
   if ! wget --quiet \
     --header='Accept: application/vnd.github+json' \
     --header='X-GitHub-Api-Version: 2022-11-28' \
     --output-document="$release_metadata_path" \
     "$github_release_api_url"; then
-    echo "無法取得 GitHub 最新 release：$github_repository" >&2
+    echo "Failed to fetch the latest GitHub release: $github_repository" >&2
     exit 1
   fi
 
@@ -118,7 +118,7 @@ else
   } | head -n 1)"
 
   if [[ -z "$appimage_url" ]]; then
-    echo "GitHub 最新 release 沒有 ${asset_suffix}。" >&2
+    echo "The latest GitHub release does not contain ${asset_suffix}." >&2
     exit 1
   fi
 
@@ -126,21 +126,21 @@ else
   case "$appimage_filename" in
     ros2-node-map-v*-"$asset_suffix") ;;
     *)
-      echo "GitHub release asset 名稱不符合預期：$appimage_filename" >&2
+      echo "Unexpected GitHub release asset name: $appimage_filename" >&2
       exit 1
       ;;
   esac
 
   mkdir -p "$download_directory"
   download_path="$temporary_directory/$appimage_filename"
-  echo "正在下載：$appimage_filename"
-  if ! wget --quiet --output-document="$download_path" "$appimage_url"; then
-    echo "AppImage 下載失敗：$appimage_url" >&2
+  echo "Downloading: $appimage_filename"
+  if ! wget --progress=bar:force:noscroll --output-document="$download_path" "$appimage_url"; then
+    echo "AppImage download failed: $appimage_url" >&2
     exit 1
   fi
 
   if [[ ! -s "$download_path" ]]; then
-    echo "下載的 AppImage 是空檔案：$download_path" >&2
+    echo "The downloaded AppImage is empty: $download_path" >&2
     exit 1
   fi
 
@@ -154,13 +154,29 @@ mkdir -p "$user_bin_directory"
 chmod +x "$appimage_path"
 ln -sfn -- "$appimage_path" "$command_path"
 
-echo "node-map 已安裝：$command_path"
-echo "使用版本：$(basename "$appimage_path")"
+echo "node-map installed: $command_path"
+echo "Version: $(basename "$appimage_path")"
+echo
+echo "Run node-map:"
+echo "  node-map"
+echo
+if [[ "$install_mode" == "online" ]]; then
+  echo "To uninstall:"
+  echo "  rm -f \"$command_path\" \"$appimage_path\""
+else
+  echo "To remove the node-map command:"
+  echo "  rm -f \"$command_path\""
+fi
 
 case ":${PATH:-}:" in
   *":$user_bin_directory:"*) ;;
   *)
-    echo "目前 PATH 未包含 $user_bin_directory。請加入 PATH 後重新開啟 shell：" >&2
+    echo
+    echo "PATH does not contain $user_bin_directory. Add this line to ~/.bashrc:" >&2
     echo "export PATH=\"$user_bin_directory:\$PATH\"" >&2
     ;;
 esac
+
+echo
+echo "Reload your Bash configuration:"
+echo "  source ~/.bashrc"

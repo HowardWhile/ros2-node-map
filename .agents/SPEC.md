@@ -661,6 +661,10 @@ Release AppImage 產生後，必須提供安裝腳本
   `wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash`
 * `scripts/install-node-map.sh --offline` 必須完全不連線，從
   `app/release` 選擇目前架構版本最高的 AppImage。
+* 線上下載 AppImage 時必須顯示 Wget progress bar。
+* 安裝腳本自行輸出的訊息必須使用英文。
+* 安裝完成後必須顯示 `node-map` 的啟動指令、適合目前安裝模式的解除安裝指令，
+  並在最後提醒使用者執行 `source ~/.bashrc`。
 
 兩種模式都必須將 `node-map` 指令連結至選定的 AppImage；目前支援 Linux
 x86-64 與 ARM64。

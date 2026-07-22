@@ -9,7 +9,7 @@
 
 ### 新增
 
-- 提供安裝腳本，可從 GitHub latest release 安裝目前架構的 Linux AppImage，並支援 `--offline` 使用本地 release。
+- 提供安裝腳本，可從 GitHub latest release 安裝目前架構的 Linux AppImage，支援 `--offline` 使用本地 release，並顯示下載進度條。
 
 ## [v0.2.1] - 2026-07-20
 
