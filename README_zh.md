@@ -2,186 +2,79 @@
 
 > [English](README.md)
 
-`ros2-node-map` 是一個進階的 `rqt_graph` 風格檢視器，用來快速理解 ROS 2
-系統的整體拓樸。
+[![最新版本](https://img.shields.io/github/v/release/HowardWhile/ros2-node-map?display_name=tag&sort=semver)](https://github.com/HowardWhile/ros2-node-map/releases/latest)
+[![授權條款](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/HowardWhile/ros2-node-map?style=social)](https://github.com/HowardWhile/ros2-node-map/stargazers)
 
-![image-20260715015056371](./pic/README/image-20260715015056371.png)
+**一個互動式 ROS 2 node 檢視器，讓 node、topic、service 與 action 的關係，比 `rqt_graph` 的呈現方式更容易理解。**
 
-[觀看示範影片](./pic/README/ros2-node-map.mp4)
+![ros2-node-map 顯示 ROS node、topic、service 與 action 的互動式拓樸](./pic/README/image-20260715015056371.png)
 
-## 後端開發
+[觀看示範影片](./pic/README/ros2-node-map.mp4) · [下載 release](https://github.com/HowardWhile/ros2-node-map/releases/latest) · [閱讀文件](docs/getting-started.md)
 
-目前的目標環境為 ROS 2 Jazzy 與 Python 3.12。
+## 為什麼需要 ros2-node-map？
 
-```bash
-cd backend
-uv venv --system-site-packages
-uv sync
-uv run pytest
-```
+大型 ROS 2 系統同時包含 publisher、subscriber、service 與 action；若全部擠在
+一張圖上，很難快速判斷系統拓樸。`ros2-node-map` 提供可探索的工作區：
 
-`uv venv --system-site-packages` 會建立可讀取 Ubuntu 系統 Python 套件的
-`backend/.venv`，包括 ROS 2 所需的 `yaml` 模組；接著由 `uv sync` 安裝鎖定的
-應用程式與開發依賴套件。不需要手動啟用虛擬環境。ROS discovery 所需的
-`rclpy` 由已載入的 ROS 2 環境提供，不會從 PyPI 安裝。啟動即時拓樸後端：
+- 將 **node、topic、service 與 action** 分別呈現在 graph 中。
+- 可搜尋、依 namespace 與類型篩選、選取項目並查看關聯。
+- 在有 ROS 2 Jazzy 的 Linux 主機進行即時 discovery；沒有 ROS 時也可直接開啟 graph JSON snapshot。
+- 可匯出完整 **JSON**、目前畫面的 **PNG**，或可見拓樸的 **Mermaid Markdown**。
 
-```bash
-source /opt/ros/jazzy/setup.bash
-uv run ros2-node-map-backend serve
-```
+## 快速開始
 
-若不透過 UI，想直接檢查單次 snapshot，可執行：
+### 在 Linux 檢視即時 ROS 2 graph
 
-```bash
-source /opt/ros/jazzy/setup.bash
-uv run ros2-node-map-backend snapshot --pretty
-```
-
-## App 開發
-
-請使用目前的 Node.js LTS 版本。
-
-```bash
-cd app
-npm install
-npm run dev
-```
-
-若要開啟 Electron 外殼：
-
-```bash
-npm run electron:dev
-```
-
-## Snapshot 檔案與匯出
-
-拓樸匯出選單可以將目前畫面儲存為 PNG 或可攜式 Mermaid Markdown，也可以
-將完整的來源 snapshot 儲存為 graph JSON。
-
-JSON 匯出不受目前顯示篩選器影響；檔案重新載入後，App 才會再次套用篩選器。
-
-可使用 **Open JSON** 按鈕開啟 graph JSON snapshot，也可以將單一 JSON 檔案
-拖放到應用程式視窗的任何位置。如果系統沒有 ROS 2 環境，仍可使用離線檢視與匯出功能。
-
-## 建置獨立執行檔
-
-請在 Ubuntu 24.04／Python 3.12 環境建置 Linux x86-64 AppImage。建置環境需要
-Node.js LTS、npm、Python 3，以及 [uv](https://docs.astral.sh/uv/)：
-
-```bash
-cd app
-npm install
-npm run dist
-```
-
-```text
-app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
-```
-
-例如，版本 `0.3.0` 的 x86-64 建置產物名稱為
-`ros2-node-map-v0.3.0-linux-x86_64.AppImage`。架構後綴由 electron-builder
-依據選用的建置目標自動產生。
-
-Windows 可建置不含 ROS backend 的 portable File-only 版本：
-
-```powershell
-cd app
-npm install
-npm run dist:win
-```
-
-Windows 版本不會啟動 ROS discovery，portable EXE 內部使用 ZIP 壓縮，取捨為
-較大的檔案換取較快的啟動解壓時間；並提供 graph JSON 的開啟、拖放、互動、
-篩選、詳細資訊與匯出功能。Linux 主機若缺少 ROS 2 Jazzy 或 bundled backend，
-也會自動使用相同的 File-only Mode。
-
-## 安裝 `node-map` 指令
-
-預設模式會偵測目前系統，從 GitHub Releases 下載對應的最新 Linux x86-64 或
-ARM64 AppImage：
-
-```bash
-./scripts/install-node-map.sh
-node-map
-```
-
-也可以直接透過線上腳本安裝：
+Linux x86-64 或 ARM64 可安裝最新 AppImage 後直接啟動：
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash
+node-map
 ```
 
-下載的 AppImage 會放在
-`${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`，`node-map` 指令會安裝到
-`~/.local/bin`。如果該目錄尚未加入 `PATH`，請加入後重新開啟 shell。
+即時 discovery 需要主機已有 ROS 2 Jazzy。若 ROS 不可用，app 會進入
+**File-only Mode**，仍可檢視已匯出的 snapshot。
 
-下載 AppImage 時會顯示 Wget 進度條。
+### 在任何環境開啟 snapshot
 
-若要離線安裝，直接使用 `app/release` 中已有的 AppImage：
+啟動 app 後選擇 **Open JSON**，或將 graph JSON 檔拖放到視窗中。File-only Mode
+保留 graph 探索、篩選、詳細資訊與匯出功能，不需要 ROS discovery；Windows 固定使用此模式。
 
-```bash
-./scripts/install-node-map.sh --offline
-```
+[Getting started](docs/getting-started.md) 說明 release、離線安裝、backend 與 Windows 建置細節。
 
-離線模式不會連線，會選擇目前 Linux 架構版本最高的 AppImage。
+## 可以解決什麼問題？
 
-安裝後直接輸入 `node-map` 即可啟動。安裝腳本會顯示目前模式適用的解除安裝指令；
-若將 PATH 設定加入 `~/.bashrc`，請執行 `source ~/.bashrc` 重新載入。
+| 需求 | ros2-node-map 提供的能力 |
+| --- | --- |
+| 理解資料流 | 以 topic node 呈現有方向的 publisher／subscriber 關係 |
+| 檢查 RPC 與任務 | 顯示 service、action 的 client／server 關係 |
+| 降低雜訊 | 搜尋及 namespace、類型、系統資源、action internal 篩選 |
+| 分享拓樸 | 穩定的 graph JSON snapshot 與 Mermaid Markdown 匯出 |
+| 不在 robot 上工作 | 無 ROS 或 Windows 主機也可開啟 snapshot |
 
+## 選擇使用模式
+
+| 模式 | 適用情境 | 執行內容 |
+| --- | --- | --- |
+| Live mode | 有 ROS 2 Jazzy 的 Linux 主機 | bundled Python backend discovery 並串流 ROS graph |
+| File-only Mode | Windows、沒有 ROS 的 Linux，或離線 review | 只執行 Electron viewer，載入 graph JSON snapshot |
+| Headless / capture | 沒有桌面環境的 Linux ROS 主機 | 以 HTTP 提供 viewer，或輸出一次 graph JSON snapshot |
 
 ## 文件
 
-- [變更日誌](CHANGELOG.md)
-- [架構說明](docs/architecture.md)
-- [Graph JSON 結構](docs/graph-json-schema.md)
-- [測試說明](docs/testing.md)
-- [開發路線圖](docs/roadmap.md)
-- [功能規格](.agents/SPEC.md)
-- [開發計畫](.agents/PLAN.md)
+- [Getting started](docs/getting-started.md) — 安裝、啟動、File-only Mode 與 snapshot 流程
+- [架構](docs/architecture.md) — backend/frontend 邊界、HTTP API、WebSocket 與 runtime capability
+- [開發與封裝](docs/development.md) — 本機環境、backend CLI、測試與 release build
+- [Graph JSON schema](docs/graph-json-schema.md) — 穩定的 snapshot 格式
+- [測試](docs/testing.md) — 自動與手動驗證
+- [更新日誌](CHANGELOG.md) · [開發路線圖](docs/roadmap.md)
 
-## 知識圖譜
+## 協助改善
 
-本專案使用 [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
-分析程式碼，產生描述程式碼結構、元件關係與導覽路徑的知識圖譜。
-
-知識圖譜有兩種使用方式：一般使用者可以透過互動式 Dashboard 瀏覽；AI agent
-則可以直接檢視 JSON 圖譜資料。
-
-### 提供給 AI agent
-
-請在提示詞中加入以下指示：
-
-> 查閱 `.ua/knowledge-graph.json`，它是本專案的知識圖譜。
-
-> [!WARNING]
-> 原始碼仍是最終事實。若圖譜是根據較舊版本的程式碼產生，請在使用圖譜內容
-> 前重新產生。
-
-### 提供給一般使用者
-
-#### 準備環境
-
-請安裝 [Node.js LTS](https://nodejs.org/)，以取得 `npm` 與 `npx` 指令。可用
-下列指令確認安裝狀態：
-
-```bash
-node --version
-npx --version
-```
-
-安裝最新版本的 Understand-Anything viewer：
-
-```bash
-npm install --global https://github.com/Egonex-AI/Understand-Anything/releases/latest/download/understand-anything-viewer.tgz
-```
-
-#### 啟動 Dashboard
-
-在專案根目錄執行：
-
-```bash
-understand-anything-viewer .
-```
+如果 `ros2-node-map` 幫助你理解 ROS 2 系統，歡迎 [Star 專案](https://github.com/HowardWhile/ros2-node-map/stargazers)，
+讓更多 ROS 開發者能找到它。Bug report 與具體工作流程建議可透過
+[issue tracker](https://github.com/HowardWhile/ros2-node-map/issues) 提出。
 
 ## 授權
 
