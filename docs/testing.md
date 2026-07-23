@@ -26,6 +26,17 @@ npm test
 npm run build
 ```
 
+On Windows, also build the portable File-only release and verify opening,
+dragging, filtering, and exporting a graph JSON snapshot:
+
+```powershell
+cd app
+npm run dist:win
+```
+
+The portable build uses ZIP compression so its launch-time extraction remains
+responsive; the resulting EXE is intentionally larger than an LZMA/7z build.
+
 For the installer, verify both modes on a supported Linux host. Use temporary
 directories for the command link and downloaded AppImage:
 

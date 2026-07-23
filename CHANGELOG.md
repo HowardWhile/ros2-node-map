@@ -5,6 +5,18 @@
 本文件格式依循 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本編號遵循[語意化版本](https://semver.org/lang/zh-TW/)。
 
+## [未發布]
+
+### 新增
+
+- 新增 Windows portable File-only 版本；不包含 ROS backend，可載入、檢視與匯出 graph JSON。
+
+### 修正
+
+- Linux 缺少 ROS 2 或 bundled backend 時，明確切換為 File-only Mode。
+- 版本一致性檢查現在同時支援 LF 與 Windows CRLF 換行。
+- Windows portable EXE 改用 ZIP 壓縮，降低啟動時的解壓延遲。
+
 ## [v0.3.0] - 2026-07-22
 
 ### 新增

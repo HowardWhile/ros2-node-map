@@ -16,28 +16,28 @@ function readJson(path) {
 }
 
 function projectVersion(toml) {
-  const projectBlock = toml.match(/\[project\][\s\S]*?\nversion = "([^"]+)"/);
+  const projectBlock = toml.match(/\[project\][\s\S]*?\r?\nversion = "([^"]+)"/);
   if (!projectBlock) throw new Error("找不到 Backend 專案版本。");
   return projectBlock[1];
 }
 
 function lockedPackageVersion(toml, packageName) {
   const packageBlock = toml.match(
-    new RegExp(`\\[\\[package\\]\\]\\nname = "${packageName}"\\nversion = "([^"]+)"`),
+    new RegExp(`\\[\\[package\\]\\]\\r?\\nname = "${packageName}"\\r?\\nversion = "([^"]+)"`),
   );
   if (!packageBlock) throw new Error(`找不到 ${packageName} 的鎖檔版本。`);
   return packageBlock[1];
 }
 
 function replaceProjectVersion(toml, version) {
-  const projectExpression = /(\[project\][\s\S]*?\nversion = ")[^"]+("\n)/;
+  const projectExpression = /(\[project\][\s\S]*?\r?\nversion = ")[^"]+("\r?\n)/;
   if (!projectExpression.test(toml)) throw new Error("找不到 Backend 專案版本。");
   return toml.replace(projectExpression, `$1${version}$2`);
 }
 
 function replaceLockedPackageVersion(toml, packageName, version) {
   const packageExpression = new RegExp(
-    `(\\[\\[package\\]\\]\\nname = "${packageName}"\\nversion = ")[^"]+("\\n)`,
+    `(\\[\\[package\\]\\]\\r?\\nname = "${packageName}"\\r?\\nversion = ")[^"]+("\\r?\\n)`,
   );
   if (!packageExpression.test(toml)) {
     throw new Error(`找不到 ${packageName} 的鎖檔版本。`);

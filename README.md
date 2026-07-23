@@ -85,6 +85,21 @@ For example, an x86-64 build of version `0.3.0` is named
 `ros2-node-map-v0.3.0-linux-x86_64.AppImage`. The architecture suffix is derived
 from the target selected by electron-builder.
 
+On Windows, build a portable File-only application:
+
+```powershell
+cd app
+npm install
+npm run dist:win
+```
+
+The Windows build never starts ROS discovery or bundles the Python backend. It
+uses ZIP compression inside the portable EXE to reduce launch-time extraction,
+trading a larger download for faster startup. It can open or drag graph JSON
+snapshots and keeps the graph interaction, filtering, details, and export
+features. Linux builds use the same File-only Mode automatically when ROS 2
+Jazzy or the bundled backend is unavailable.
+
 ## Install the `node-map` command
 
 The default mode detects the current system and downloads the matching latest Linux

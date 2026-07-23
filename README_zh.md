@@ -82,6 +82,19 @@ app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
 `ros2-node-map-v0.3.0-linux-x86_64.AppImage`。架構後綴由 electron-builder
 依據選用的建置目標自動產生。
 
+Windows 可建置不含 ROS backend 的 portable File-only 版本：
+
+```powershell
+cd app
+npm install
+npm run dist:win
+```
+
+Windows 版本不會啟動 ROS discovery，portable EXE 內部使用 ZIP 壓縮，取捨為
+較大的檔案換取較快的啟動解壓時間；並提供 graph JSON 的開啟、拖放、互動、
+篩選、詳細資訊與匯出功能。Linux 主機若缺少 ROS 2 Jazzy 或 bundled backend，
+也會自動使用相同的 File-only Mode。
+
 ## 安裝 `node-map` 指令
 
 預設模式會偵測目前系統，從 GitHub Releases 下載對應的最新 Linux x86-64 或
