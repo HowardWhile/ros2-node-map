@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ros2-node-map"
-version = "0.3.0"
+version = "0.3.1"
 description = "ROS 2 graph discovery backend for ros2-node-map"
 readme = { text = "ROS 2 graph discovery backend for ros2-node-map.", content-type = "text/plain" }
 requires-python = ">=3.10"

@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "bf5d8968f610251e7e7897a45b98527372cbad53",
-  "generatedAt": "2026-07-20T05:54:00.041Z",
+  "gitCommitHash": "cced0b577a9a8dfc4736caefe25db34c96cc137d",
+  "generatedAt": "2026-07-23T16:32:30.266Z",
   "files": {
     "AGENTS.md": {
       "filePath": "AGENTS.md",
-      "contentHash": "4bf84d76aba5b65ab98dfad047e92789349275d38b0c48315c9c852113b291f1",
+      "contentHash": "1c3e343719dbd34bfb086a6f37b6e401dd686ca2a7bb0fab0b3e897e6c428aeb",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -15,7 +15,7 @@
     },
     "app/electron/main.ts": {
       "filePath": "app/electron/main.ts",
-      "contentHash": "f5921c056d5024a56f070da702351567283a639024b23cb23111598aaf4b1095",
+      "contentHash": "83e9522373a45757449f7fb7f61c618642e6fddc8dcad29e5e2b0ef0108a05fe",
       "functions": [
         {
           "name": "rosSetupPath",
@@ -32,11 +32,18 @@
           "lineCount": 3
         },
         {
+          "name": "bundledFrontendDirectory",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
           "name": "inspectRuntime",
           "params": [],
           "returnType": "RuntimeStatus",
           "exported": false,
-          "lineCount": 10
+          "lineCount": 18
         },
         {
           "name": "publishRuntimeStatus",
@@ -100,11 +107,37 @@
           "lineCount": 9
         },
         {
-          "name": "startPackagedBackend",
+          "name": "bundledBackendEnvironment",
           "params": [],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "bundledBackendCommand",
+          "params": [
+            "arguments_"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "startPackagedBackend",
+          "params": [
+            "options"
+          ],
           "returnType": "void",
           "exported": false,
-          "lineCount": 58
+          "lineCount": 48
+        },
+        {
+          "name": "runBundledBackend",
+          "params": [
+            "arguments_"
+          ],
+          "returnType": "Promise<string>",
+          "exported": false,
+          "lineCount": 20
         },
         {
           "name": "stopPackagedBackend",
@@ -140,6 +173,66 @@
           "returnType": "void",
           "exported": false,
           "lineCount": 19
+        },
+        {
+          "name": "headlessUrls",
+          "params": [
+            "port"
+          ],
+          "returnType": "string[]",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "waitForHeadlessServer",
+          "params": [
+            "port"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "nextCapturePath",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "writeCapture",
+          "params": [
+            "content"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "runHeadlessMode",
+          "params": [
+            "port"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "runCaptureMode",
+          "params": [],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "runCliMode",
+          "params": [
+            "mode",
+            "headlessPort"
+          ],
+          "returnType": "Promise<void>",
+          "exported": false,
+          "lineCount": 40
         }
       ],
       "classes": [],
@@ -158,14 +251,23 @@
             "existsSync",
             "mkdirSync",
             "readFileSync",
+            "renameSync",
+            "unlinkSync",
             "writeFileSync"
+          ]
+        },
+        {
+          "source": "node:os",
+          "specifiers": [
+            "networkInterfaces"
           ]
         },
         {
           "source": "node:path",
           "specifiers": [
             "dirname",
-            "join"
+            "join",
+            "resolve"
           ]
         },
         {
@@ -180,10 +282,31 @@
           "specifiers": [
             "fileURLToPath"
           ]
+        },
+        {
+          "source": "./cli.js",
+          "specifiers": [
+            "CAPTURE_DISCOVERY_WAIT_SECONDS",
+            "cliModeFromArguments",
+            "cliModeFromEnvironment",
+            "cliUsage",
+            "headlessPortFromArguments",
+            "headlessPortFromEnvironment",
+            "installCurrentAppImage",
+            "installMessage",
+            "uninstallCurrentAppImage"
+          ]
+        },
+        {
+          "source": "./runtime.js",
+          "specifiers": [
+            "runtimeStatusFor",
+            "RuntimeStatus"
+          ]
         }
       ],
       "exports": [],
-      "totalLines": 255,
+      "totalLines": 482,
       "hasStructuralAnalysis": true
     },
     "app/electron/preload.ts": {
@@ -226,12 +349,12 @@
     },
     "app/package.json": {
       "filePath": "app/package.json",
-      "contentHash": "7b75caef4a9319b396fe7565633a616161021b2a42a2675fc3a01767168e8be0",
+      "contentHash": "c9699a5f416c0938ed826b2e6047ea7256e51f305ccae864d0fe77a50db0dee7",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 72,
+      "totalLines": 95,
       "hasStructuralAnalysis": true
     },
     "app/scripts/package-backend.mjs": {
@@ -293,8 +416,17 @@
     },
     "app/src/api.ts": {
       "filePath": "app/src/api.ts",
-      "contentHash": "d92e2b77d2512451ccb0db19d46deb6fc345e58995be3ca4baf3e0edc1cedbb5",
+      "contentHash": "25535a79022b522cf5f1e2b2e7850bc936c4b51070b02d66b5568770db1f0134",
       "functions": [
+        {
+          "name": "backendUrlForPage",
+          "params": [
+            "location"
+          ],
+          "returnType": "string | null",
+          "exported": true,
+          "lineCount": 5
+        },
         {
           "name": "connectGraphStream",
           "params": [
@@ -323,10 +455,11 @@
         }
       ],
       "exports": [
+        "backendUrlForPage",
         "DEFAULT_BACKEND_URL",
         "connectGraphStream"
       ],
-      "totalLines": 60,
+      "totalLines": 70,
       "hasStructuralAnalysis": true
     },
     "app/src/cytoscape-cola.d.ts": {
@@ -1015,7 +1148,7 @@
     },
     "app/src/GraphView.tsx": {
       "filePath": "app/src/GraphView.tsx",
-      "contentHash": "1e99235c5f8839d3aa79bdcd5360bba9eadd17e20619ce630e019dae236e838d",
+      "contentHash": "592c9969adf7548536c245d329f467e01bb2cf14c48d49d803deaf2e46804ac6",
       "functions": [
         {
           "name": "updateLabelVisibility",
@@ -1089,7 +1222,7 @@
             "{\n  snapshot,\n  exportSnapshot,\n  backendUrl,\n  sourceMode,\n  connectionStatus,\n  fileName,\n  fileError,\n  fileDragActive,\n  runtimeReady,\n  liveAvailable,\n  runtimeMessage,\n  selectionRequest,\n  onSelectionChange,\n  onOpenFile,\n  onResumeLive,\n}"
           ],
           "exported": true,
-          "lineCount": 267
+          "lineCount": 270
         }
       ],
       "classes": [],
@@ -1114,6 +1247,12 @@
           "specifiers": [
             "useEffect",
             "useRef"
+          ]
+        },
+        {
+          "source": "../package.json",
+          "specifiers": [
+            "packageJson"
           ]
         },
         {
@@ -1145,7 +1284,7 @@
       "exports": [
         "GraphView"
       ],
-      "totalLines": 593,
+      "totalLines": 597,
       "hasStructuralAnalysis": true
     },
     "app/src/main.tsx": {
@@ -1226,12 +1365,12 @@
     },
     "app/src/styles.css": {
       "filePath": "app/src/styles.css",
-      "contentHash": "870f3963c59d3aaa1aec3dc7da0c03be8f63ba8d9883fcb35a1028fb6dac708b",
+      "contentHash": "c03c386e34b08274d784da3aa35070e71596f51c843158a9a6282761f6114e49",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 413,
+      "totalLines": 414,
       "hasStructuralAnalysis": false
     },
     "app/src/types.ts": {
@@ -1721,7 +1860,7 @@
     },
     "app/tests/export.test.mjs": {
       "filePath": "app/tests/export.test.mjs",
-      "contentHash": "ea8a74ab49398fbea4540fe62c612b1e451d0369a5daa258451cf642d0677220",
+      "contentHash": "558549a648a24a1397ec5559d88c0df2b990adf12150e50737e481ee65829562",
       "functions": [],
       "classes": [],
       "imports": [
@@ -1745,6 +1884,12 @@
           ]
         },
         {
+          "source": "../src/api.ts",
+          "specifiers": [
+            "backendUrlForPage"
+          ]
+        },
+        {
           "source": "../src/graph/snapshot.ts",
           "specifiers": [
             "parseGraphSnapshot"
@@ -1758,7 +1903,7 @@
         }
       ],
       "exports": [],
-      "totalLines": 94,
+      "totalLines": 107,
       "hasStructuralAnalysis": true
     },
     "app/tsconfig.app.json": {
@@ -1826,7 +1971,7 @@
     },
     "backend/pyproject.toml": {
       "filePath": "backend/pyproject.toml",
-      "contentHash": "43bc256b0d5ef02827f36f4a1a744563d7f2625fe0a18bf21ed8b8d1f9e73aab",
+      "contentHash": "73237ab1557a32439df8c57ef57639036d26552c5b864397f1dd5cccdf91b63b",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1836,12 +1981,36 @@
     },
     "backend/ros2_node_map/__init__.py": {
       "filePath": "backend/ros2_node_map/__init__.py",
-      "contentHash": "a95a5cf5c1b28b962956dcffa736588b0df57d8f83fdad3853305d663b721dd9",
-      "functions": [],
+      "contentHash": "4c58b8353ee81533cee2482f12e1f68dceec6c3f662780733d53073d0c1e11a9",
+      "functions": [
+        {
+          "name": "_resolve_version",
+          "params": [],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
       "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 5,
+      "imports": [
+        {
+          "source": "importlib.metadata",
+          "specifiers": [
+            "PackageNotFoundError",
+            "version"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "environ"
+          ]
+        }
+      ],
+      "exports": [
+        "_resolve_version"
+      ],
+      "totalLines": 18,
       "hasStructuralAnalysis": true
     },
     "backend/ros2_node_map/action_reader.py": {
@@ -2160,7 +2329,7 @@
     },
     "backend/ros2_node_map/graph_server.py": {
       "filePath": "backend/ros2_node_map/graph_server.py",
-      "contentHash": "10dcd33ab4c5a2542385723725418465ab36058c583bd52a2a2db23457f7bb4f",
+      "contentHash": "c7d3a487d20552e631d81ff7d309302d6c94f1e8df57e3020f0e2118a2dc4f1c",
       "functions": [
         {
           "name": "snapshot_response",
@@ -2176,11 +2345,12 @@
           "params": [
             "reader",
             "interval",
-            "domain_controller"
+            "domain_controller",
+            "frontend_directory"
           ],
           "returnType": "FastAPI",
           "exported": true,
-          "lineCount": 59
+          "lineCount": 68
         },
         {
           "name": "run_server",
@@ -2189,11 +2359,12 @@
             "host",
             "port",
             "interval",
-            "domain_controller"
+            "domain_controller",
+            "frontend_directory"
           ],
           "returnType": "None",
           "exported": true,
-          "lineCount": 15
+          "lineCount": 16
         }
       ],
       "classes": [
@@ -2311,7 +2482,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 40
+          "lineCount": 45
         }
       ],
       "imports": [
@@ -2331,6 +2502,12 @@
           "source": "datetime",
           "specifiers": [
             "datetime"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
           ]
         },
         {
@@ -2369,12 +2546,24 @@
           ]
         },
         {
+          "source": "fastapi.staticfiles",
+          "specifiers": [
+            "StaticFiles"
+          ]
+        },
+        {
           "source": "pydantic",
           "specifiers": [
             "BaseModel",
             "ConfigDict",
             "Field",
             "model_validator"
+          ]
+        },
+        {
+          "source": ".",
+          "specifiers": [
+            "__version__"
           ]
         },
         {
@@ -2405,19 +2594,19 @@
         "GraphServer",
         "run_server"
       ],
-      "totalLines": 266,
+      "totalLines": 284,
       "hasStructuralAnalysis": true
     },
     "backend/ros2_node_map/main.py": {
       "filePath": "backend/ros2_node_map/main.py",
-      "contentHash": "387214979caccecd3deac2c1529c48ef0c426ea54250f20d2fe066990a697546",
+      "contentHash": "9fff90f2f7cc203542f5d6083dec4a115bf1558940ad7385d333235ea1e7f6b3",
       "functions": [
         {
           "name": "build_parser",
           "params": [],
           "returnType": "argparse.ArgumentParser",
           "exported": true,
-          "lineCount": 29
+          "lineCount": 33
         },
         {
           "name": "_ros_node",
@@ -2445,11 +2634,12 @@
             "host",
             "port",
             "interval",
-            "wait"
+            "wait",
+            "frontend_dir"
           ],
           "returnType": "int",
           "exported": true,
-          "lineCount": 22
+          "lineCount": 28
         },
         {
           "name": "main",
@@ -2458,7 +2648,7 @@
           ],
           "returnType": "int",
           "exported": true,
-          "lineCount": 11
+          "lineCount": 13
         }
       ],
       "classes": [],
@@ -2494,10 +2684,22 @@
           ]
         },
         {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
           "source": "typing",
           "specifiers": [
             "Any",
             "Iterator"
+          ]
+        },
+        {
+          "source": ".",
+          "specifiers": [
+            "__version__"
           ]
         }
       ],
@@ -2508,7 +2710,7 @@
         "_serve",
         "main"
       ],
-      "totalLines": 108,
+      "totalLines": 123,
       "hasStructuralAnalysis": true
     },
     "backend/ros2_node_map/service_reader.py": {
@@ -2798,7 +3000,7 @@
     },
     "backend/tests/test_graph_server.py": {
       "filePath": "backend/tests/test_graph_server.py",
-      "contentHash": "ee5ddf0bcbc0204be23a083642f66d455c298755b09d14711347ebfb899920e5",
+      "contentHash": "a293cb4f1ff2144ace7cc16f9f96219d837cd272c5168acd6854446419bd6bbf",
       "functions": [
         {
           "name": "test_server_validates_configuration",
@@ -2806,6 +3008,31 @@
           "returnType": "None",
           "exported": true,
           "lineCount": 5
+        },
+        {
+          "name": "test_server_uses_the_package_version",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "test_server_serves_a_packaged_frontend",
+          "params": [
+            "tmp_path"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_server_rejects_a_frontend_directory_without_an_index",
+          "params": [
+            "tmp_path"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
         },
         {
           "name": "test_http_endpoints_are_documented_and_return_a_snapshot",
@@ -2891,6 +3118,12 @@
           ]
         },
         {
+          "source": "ros2_node_map",
+          "specifiers": [
+            "__version__"
+          ]
+        },
+        {
           "source": "ros2_node_map.graph_model",
           "specifiers": [
             "GraphNode",
@@ -2912,6 +3145,9 @@
         "FakeReader",
         "PopulatedReader",
         "test_server_validates_configuration",
+        "test_server_uses_the_package_version",
+        "test_server_serves_a_packaged_frontend",
+        "test_server_rejects_a_frontend_directory_without_an_index",
         "test_http_endpoints_are_documented_and_return_a_snapshot",
         "test_snapshot_response_preserves_the_strict_node_schema",
         "test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
@@ -2919,12 +3155,12 @@
         "test_domain_api_validates_custom_domain_id",
         "test_domain_api_allows_local_vite_origins"
       ],
-      "totalLines": 114,
+      "totalLines": 132,
       "hasStructuralAnalysis": true
     },
     "backend/tests/test_main.py": {
       "filePath": "backend/tests/test_main.py",
-      "contentHash": "1fde707a8e010bf69bed2188a60d2c0831589f73057432c7335dfbaf009b7478",
+      "contentHash": "294520d5083cfbd97915f4666f47af7516b2f484ccdec7df3ca2c7e97b59d071",
       "functions": [
         {
           "name": "test_snapshot_cli_defaults",
@@ -2941,11 +3177,27 @@
           "lineCount": 3
         },
         {
+          "name": "test_cli_reports_the_package_version",
+          "params": [
+            "capsys"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
           "name": "test_serve_cli_defaults",
           "params": [],
           "returnType": "None",
           "exported": true,
-          "lineCount": 6
+          "lineCount": 7
+        },
+        {
+          "name": "test_serve_cli_accepts_a_frontend_directory",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
         }
       ],
       "classes": [],
@@ -2954,6 +3206,12 @@
           "source": "pytest",
           "specifiers": [
             "pytest"
+          ]
+        },
+        {
+          "source": "ros2_node_map",
+          "specifiers": [
+            "__version__"
           ]
         },
         {
@@ -2966,19 +3224,21 @@
       "exports": [
         "test_snapshot_cli_defaults",
         "test_cli_requires_a_command",
-        "test_serve_cli_defaults"
+        "test_cli_reports_the_package_version",
+        "test_serve_cli_defaults",
+        "test_serve_cli_accepts_a_frontend_directory"
       ],
-      "totalLines": 24,
+      "totalLines": 37,
       "hasStructuralAnalysis": true
     },
     "docs/architecture.md": {
       "filePath": "docs/architecture.md",
-      "contentHash": "16b09dcdffcf32318bad9a3dbcd8fbae8c424ab1d80d0d4852399f235f2c5959",
+      "contentHash": "19b2673a6362cfa9c90bcbdfa37a76a16af6888e0563099f490c81b3c032dead",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 54,
+      "totalLines": 59,
       "hasStructuralAnalysis": true
     },
     "docs/graph-json-schema.md": {
@@ -3003,7 +3263,7 @@
     },
     "docs/roadmap.md": {
       "filePath": "docs/roadmap.md",
-      "contentHash": "eaeea25d8f9461ca37832eb97d97200f44062274ff110ab2f84bf4975ac02d2a",
+      "contentHash": "d4ebe209ce3de13b566e7b8e65974fb5fa958193372895af10f1b7cb5487c570",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -3013,42 +3273,22 @@
     },
     "docs/testing.md": {
       "filePath": "docs/testing.md",
-      "contentHash": "40e990644a14f80906c82ba550d7c183051d416b9d794d80927ad6962dbedf2f",
+      "contentHash": "aa24746432f5a6ae26451c2956a6f73f4891650c73e8713f3675ff7bce2d09ea",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 27,
-      "hasStructuralAnalysis": true
-    },
-    "PLAN.md": {
-      "filePath": "PLAN.md",
-      "contentHash": "b9f6ec2e29188b1d310d64532eb78bdf0c3859a0de15398eef156e3e64fec4c7",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 319,
+      "totalLines": 54,
       "hasStructuralAnalysis": true
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "8d523629c2d5c6f27a1ef719c2043e57ce37f0c7155725a240dab6de367ec73e",
+      "contentHash": "9e4b2854bf75192f9b0d8c598a5a091585b53ead087a1e0aff4916e8334c8fa6",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 119,
-      "hasStructuralAnalysis": true
-    },
-    "SPEC.md": {
-      "filePath": "SPEC.md",
-      "contentHash": "52b5f917e1f196c19eb9839aa8de8662cdcab377eb115ad6c2b4b1887cfa4b2c",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 825,
+      "totalLines": 88,
       "hasStructuralAnalysis": true
     }
   }

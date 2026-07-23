@@ -7,15 +7,26 @@
 
 ## [未發布]
 
+## [v0.3.1] - 2026-07-24
+
 ### 新增
 
 - 新增 Windows portable File-only 版本；不包含 ROS backend，可載入、檢視與匯出 graph JSON。
+- 新增本機 Docker Buildx 建置腳本，可產生 Linux x86_64 與 ARM64 AppImage，無須依賴 GitHub Actions。
+- 新增 AppImage 建置、版本命名、單一架構建置及疑難排解文件。
+
+### 變更
+
+- AppImage 打包前會自動準備 Electron 預設圖示。
+- 更新繁體中文知識圖譜、專案導覽與 README 截圖。
 
 ### 修正
 
 - Linux 缺少 ROS 2 或 bundled backend 時，明確切換為 File-only Mode。
 - 版本一致性檢查現在同時支援 LF 與 Windows CRLF 換行。
 - Windows portable EXE 改用 ZIP 壓縮，降低啟動時的解壓延遲。
+- AppImage 的 `-c`／`--capture` 與 `--headless` 模式會自動停用 GUI、GPU 與軟體光柵化，避免無 X server 的裝置因 Electron 顯示初始化失敗。
+- AppImage launcher 可在 x86_64 主機直接修補 ARM64 產物，不需要執行跨架構 AppImage。
 
 ## [v0.3.0] - 2026-07-22
 
@@ -68,7 +79,8 @@
 - 修正 Details 與 Explorer 側邊欄可拖曳超出合理寬度的問題。
 - 改善工作台在不同視窗尺寸下的版面與面板限制。
 
-[未發布]: https://github.com/HowardWhile/ros2-node-map/compare/v0.3.0...HEAD
+[未發布]: https://github.com/HowardWhile/ros2-node-map/compare/v0.3.1...HEAD
+[v0.3.1]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.3.1
 [v0.3.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.3.0
 [v0.2.1]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.1
 [v0.2.0]: https://github.com/HowardWhile/ros2-node-map/releases/tag/v0.2.0

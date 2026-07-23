@@ -9,7 +9,7 @@ app/release/ros2-node-map-v<version>-linux-arm64.AppImage
 ```
 
 The version is read from `app/package.json`. The build script does not hard-code
-`0.3.0`, so changing the synchronized product version changes both output
+`0.3.1`, so changing the synchronized product version changes both output
 filenames automatically.
 
 ## Prerequisites
@@ -98,8 +98,8 @@ AppImage starts in File-only Mode.
 Capture and headless modes can run from an SSH session without an X server:
 
 ```bash
-./ros2-node-map-v0.3.0-linux-arm64.AppImage -c
-./ros2-node-map-v0.3.0-linux-arm64.AppImage --headless
+./ros2-node-map-v0.3.1-linux-arm64.AppImage -c
+./ros2-node-map-v0.3.1-linux-arm64.AppImage --headless
 ```
 
 For these non-GUI modes, the AppImage launcher automatically passes Electron's
