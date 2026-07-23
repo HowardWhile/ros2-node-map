@@ -2,180 +2,85 @@
 
 > [繁體中文](README_zh.md)
 
-`ros2-node-map` is an advanced `rqt_graph`-style viewer for quickly
-understanding the overall topology of a ROS 2 system.
+[![Latest release](https://img.shields.io/github/v/release/HowardWhile/ros2-node-map?display_name=tag&sort=semver)](https://github.com/HowardWhile/ros2-node-map/releases/latest)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/HowardWhile/ros2-node-map?style=social)](https://github.com/HowardWhile/ros2-node-map/stargazers)
 
-![image-20260715015056371](./pic/README/image-20260715015056371.png)
+**An interactive ROS 2 node viewer that makes relationships among nodes, topics, services, and actions easier to understand than `rqt_graph`.**
 
-[Watch the demo video](./pic/README/ros2-node-map.mp4)
+![ros2-node-map graph viewer showing ROS nodes, topics, services, and actions](./pic/README/image-20260715015056371.png)
 
-## Backend development
+[Watch the demo video](./pic/README/ros2-node-map.mp4) · [Download a release](https://github.com/HowardWhile/ros2-node-map/releases/latest) · [Read the docs](docs/getting-started.md)
 
-ROS 2 Jazzy and Python 3.12 are the initial target.
+## Why ros2-node-map?
 
-```bash
-cd backend
-uv venv --system-site-packages
-uv sync
-uv run pytest
-```
+Large ROS 2 systems are difficult to inspect when every publisher, subscriber,
+service, and action becomes one dense graph. `ros2-node-map` gives the topology
+its own interactive workspace:
 
-`uv venv --system-site-packages` creates `backend/.venv` with access to Ubuntu's
-system Python packages, including the `yaml` module required by ROS 2. `uv sync`
-then installs the locked application and development dependencies. No manual
-virtual-environment activation is needed. The ROS discovery dependency (`rclpy`)
-is supplied by the sourced ROS 2 environment rather than PyPI. Start the live
-graph backend with:
+![ros2-node-map explorer, graph view, and item details](./pic/README/image-20260723184721026.jpg)
 
-```bash
-source /opt/ros/jazzy/setup.bash
-uv run ros2-node-map-backend serve
-```
+- Explore **nodes, topics, services, and actions** as separate graph entities.
+- Search, filter namespaces and resource kinds, select items, and inspect their relationships.
+- Use live discovery on a Linux host with ROS 2 Jazzy, or open a portable graph JSON snapshot without ROS.
+- Export the complete snapshot as **JSON**, the current view as **PNG**, or the visible topology as **Mermaid Markdown**.
 
-To inspect one snapshot without the UI:
+## Quick start
 
-```bash
-source /opt/ros/jazzy/setup.bash
-uv run ros2-node-map-backend snapshot --pretty
-```
+### Live ROS 2 graph on Linux
 
-## App development
-
-Use a current Node.js LTS release.
-
-```bash
-cd app
-npm install
-npm run dev
-```
-
-To open the Electron shell during development:
-
-```bash
-npm run electron:dev
-```
-
-## Snapshot files and exports
-
-The graph export menu can save the current view as PNG or portable Mermaid
-Markdown, and save the complete source snapshot as graph JSON. JSON exports
-are unaffected by active display filters; filters are applied again by the app
-when that file is reopened.
-
-Open a graph JSON snapshot with the **Open JSON** button or drag one JSON file
-anywhere onto the application window. If the system does not have a ROS 2
-environment, offline viewing and export features remain available.
-
-## Build standalone executable
-
-Build the Linux x86-64 AppImage from an Ubuntu 24.04 / Python 3.12 environment.
-The build machine needs Node.js LTS, npm, Python 3, and [uv](https://docs.astral.sh/uv/):
-
-```bash
-cd app
-npm install
-npm run dist
-```
-
-```text
-app/release/ros2-node-map-v<version>-linux-<architecture>.AppImage
-```
-
-For example, an x86-64 build of version `0.3.0` is named
-`ros2-node-map-v0.3.0-linux-x86_64.AppImage`. The architecture suffix is derived
-from the target selected by electron-builder.
-
-## Install the `node-map` command
-
-The default mode detects the current system and downloads the matching latest Linux
-x86-64 or ARM64 AppImage from the GitHub Releases page:
-
-```bash
-./scripts/install-node-map.sh
-node-map
-```
-
-The same installer can be run directly from the online script with `wget`:
+On Linux x86-64 or ARM64, install the latest AppImage and start the viewer:
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/HowardWhile/ros2-node-map/develop/scripts/install-node-map.sh | bash
+node-map
 ```
 
-The downloaded AppImage is stored in
-`${XDG_DATA_HOME:-~/.local/share}/ros2-node-map/`, and the `node-map` command is
-installed in `~/.local/bin`. If that directory is not already in your `PATH`, add
-it and reopen your shell.
+For live discovery, the host needs ROS 2 Jazzy. If ROS is unavailable, the app
+opens in **File-only Mode** instead, so you can still inspect exported snapshots.
 
-The AppImage download displays a Wget progress bar.
+### Open a graph snapshot anywhere
 
-For an offline install, use the AppImage already present in `app/release`:
+Start the app, choose **Open JSON**, or drag a graph JSON file onto the window.
+File-only Mode keeps graph exploration, filters, details, and exports available
+without ROS discovery. Windows uses this mode by design.
 
-```bash
-./scripts/install-node-map.sh --offline
-```
+See [Getting started](docs/getting-started.md) for release, offline, backend, and
+Windows build details.
 
-Offline mode selects the highest versioned AppImage for the current Linux
-architecture without using the network.
+## What you can do
 
-After installation, start the application with `node-map`. The installer prints a
-mode-specific uninstall command; if you add its PATH export to `~/.bashrc`, reload
-it with `source ~/.bashrc`.
+| Need | ros2-node-map provides |
+| --- | --- |
+| Understand data flow | Directed publisher and subscriber relationships through topic nodes |
+| Inspect RPC and tasks | Service and action client/server relationships |
+| Reduce graph noise | Search plus namespace, kind, system-resource, and action-internal filters |
+| Share a topology | Stable graph JSON snapshots and Mermaid Markdown exports |
+| Work away from the robot | Open snapshots on hosts without ROS, including Windows |
+
+## Choose a mode
+
+| Mode | When to use it | What runs |
+| --- | --- | --- |
+| Live mode | Linux with ROS 2 Jazzy | The bundled Python backend discovers and streams the ROS graph |
+| File-only Mode | Windows, a Linux host without ROS, or offline review | Only the Electron graph viewer; load graph JSON snapshots |
+| Headless / capture | A Linux ROS host without a desktop | Serve the viewer over HTTP or write one graph JSON snapshot |
 
 ## Documentation
 
-- [Changelog](CHANGELOG.md)
-- [Architecture](docs/architecture.md)
-- [Graph JSON schema](docs/graph-json-schema.md)
-- [Testing](docs/testing.md)
-- [Roadmap](docs/roadmap.md)
-- [Specification](.agents/SPEC.md)
-- [Development plan](.agents/PLAN.md)
+- [Getting started](docs/getting-started.md) — install, launch, File-only Mode, and snapshot workflow
+- [Architecture](docs/architecture.md) — backend/frontend boundary, HTTP API, WebSocket, and runtime capability
+- [Development and packaging](docs/development.md) — local setup, backend CLI, tests, and release builds
+- [Local AppImage builds](docs/appimage-build.md) — build Linux x86-64 and ARM64 packages with Docker Buildx
+- [Graph JSON schema](docs/graph-json-schema.md) — stable snapshot contract
+- [Testing](docs/testing.md) — automated and manual verification
+- [Changelog](CHANGELOG.md) · [Roadmap](docs/roadmap.md)
 
-## Knowledge graph
+## Help improve it
 
-This project uses [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
-to analyze the codebase and generate a knowledge graph that describes its
-structure, component relationships, and guided exploration paths.
-
-The graph can be used in two ways: users can explore it through the interactive
-dashboard, while AI agents can inspect the JSON graph directly.
-
-### For AI agents
-
-Include the following instruction in your prompt:
-
-> Read `.ua/knowledge-graph.json`. It is the knowledge graph for this project.
-
-> [!WARNING]
-> The source code remains the final source of truth. If the graph was generated
-> from an older revision than the current codebase, regenerate it before relying
-> on its contents.
-
-### For users
-
-#### Prerequisites
-
-Install [Node.js LTS](https://nodejs.org/) to obtain the `npm` and `npx`
-commands. Verify the installation with:
-
-```bash
-node --version
-npx --version
-```
-
-Install the latest Understand-Anything viewer:
-
-```bash
-npm install --global https://github.com/Egonex-AI/Understand-Anything/releases/latest/download/understand-anything-viewer.tgz
-```
-
-#### Launch the dashboard
-
-From the project root, run:
-
-```bash
-understand-anything-viewer .
-```
+If `ros2-node-map` helps you understand a ROS 2 system, [star the project](https://github.com/HowardWhile/ros2-node-map/stargazers)
+to make it easier for other ROS developers to find. Bug reports and concrete
+workflow feedback are welcome through the [issue tracker](https://github.com/HowardWhile/ros2-node-map/issues).
 
 ## License
 

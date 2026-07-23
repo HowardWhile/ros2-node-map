@@ -179,6 +179,7 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 * 匯出包含 Mermaid graph 語法的 Markdown 檔
 * 支援拖放或選取 graph JSON 檔並以 File mode 顯示
 * ROS runtime 不可用時自動進入 File-only Mode
+* Windows release 固定使用 File-only Mode，且不包含或啟動 ROS backend
 * 安裝腳本預設可從 GitHub latest release 下載目前架構的 Linux AppImage
 * 安裝腳本支援 `--offline`，只使用 `app/release` 中的 AppImage
 
@@ -190,6 +191,7 @@ ros2-node-map-backend serve --host 0.0.0.0 --port 8766
 * JSON 載回後保留完整資料，畫面再依目前 filter 設定顯示
 * JSON schema 不相容或檔案格式錯誤時可顯示錯誤且保留既有畫面
 * 沒有 ROS 2 Jazzy 的主機仍可開啟 app、載入 JSON 並探索 graph
+* Windows portable release 可開啟 app、載入 JSON 並探索 graph
 * File mode 中不可變更 ROS domain
 * 可以產生 Markdown 文件
 * 可以透過線上或離線安裝腳本建立 `node-map` 指令

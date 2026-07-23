@@ -24,9 +24,9 @@
       "Cytoscape.js",
       "Lumino"
     ],
-    "description": "以 Electron、React 與 ROS 2 backend 建立可互動的 ROS 2 topology viewer，支援即時 discovery、snapshot 檔案模式與 graph 匯出。",
-    "analyzedAt": "2026-07-20T05:53:50.349Z",
-    "gitCommitHash": "bf5d8968f610251e7e7897a45b98527372cbad53"
+    "description": "以 Electron、React 與 ROS 2 backend 建立可互動的 ROS 2 topology viewer，支援即時 discovery、snapshot 檔案模式、headless/capture 與 graph 匯出。",
+    "analyzedAt": "2026-07-23T16:31:38.286Z",
+    "gitCommitHash": "cced0b577a9a8dfc4736caefe25db34c96cc137d"
   },
   "nodes": [
     {
@@ -158,155 +158,6 @@
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
     },
     {
-      "id": "file:app/src/GraphView.tsx",
-      "type": "file",
-      "name": "GraphView.tsx",
-      "filePath": "app/src/GraphView.tsx",
-      "summary": "程式碼實作：app/src/GraphView.tsx。包含 592 行 typescript 內容。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:updateLabelVisibility:180",
-      "type": "function",
-      "name": "updateLabelVisibility",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        180,
-        185
-      ],
-      "summary": "函式 updateLabelVisibility，位於 app/src/GraphView.tsx 第 180 至 185 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:toElements:187",
-      "type": "function",
-      "name": "toElements",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        187,
-        192
-      ],
-      "summary": "函式 toElements，位於 app/src/GraphView.tsx 第 187 至 192 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:startAiryWebLayout:194",
-      "type": "function",
-      "name": "startAiryWebLayout",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        194,
-        206
-      ],
-      "summary": "函式 startAiryWebLayout，位於 app/src/GraphView.tsx 第 194 至 206 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:startContinuousForceLayout:208",
-      "type": "function",
-      "name": "startContinuousForceLayout",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        208,
-        226
-      ],
-      "summary": "函式 startContinuousForceLayout，位於 app/src/GraphView.tsx 第 208 至 226 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:placeNewNodes:228",
-      "type": "function",
-      "name": "placeNewNodes",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        228,
-        263
-      ],
-      "summary": "函式 placeNewNodes，位於 app/src/GraphView.tsx 第 228 至 263 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:syncGraphSnapshot:265",
-      "type": "function",
-      "name": "syncGraphSnapshot",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        265,
-        311
-      ],
-      "summary": "函式 syncGraphSnapshot，位於 app/src/GraphView.tsx 第 265 至 311 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:fitVisibleNodes:313",
-      "type": "function",
-      "name": "fitVisibleNodes",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        313,
-        324
-      ],
-      "summary": "函式 fitVisibleNodes，位於 app/src/GraphView.tsx 第 313 至 324 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/GraphView.tsx:GraphView:326",
-      "type": "function",
-      "name": "GraphView",
-      "filePath": "app/src/GraphView.tsx",
-      "lineRange": [
-        326,
-        592
-      ],
-      "summary": "函式 GraphView，位於 app/src/GraphView.tsx 第 326 至 592 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
       "id": "file:app/src/Sidebar.tsx",
       "type": "file",
       "name": "Sidebar.tsx",
@@ -351,36 +202,6 @@
         "code"
       ],
       "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "file:app/src/api.ts",
-      "type": "file",
-      "name": "api.ts",
-      "filePath": "app/src/api.ts",
-      "summary": "程式碼實作：app/src/api.ts。包含 59 行 typescript 內容。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/src/api.ts:connectGraphStream:18",
-      "type": "function",
-      "name": "connectGraphStream",
-      "filePath": "app/src/api.ts",
-      "lineRange": [
-        18,
-        59
-      ],
-      "summary": "函式 connectGraphStream，位於 app/src/api.ts 第 18 至 59 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "simple",
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
     },
     {
@@ -489,7 +310,8 @@
       "summary": "程式碼實作：app/src/graph/exporters.ts。包含 71 行 typescript 內容。",
       "tags": [
         "typescript",
-        "code"
+        "code",
+        "tested"
       ],
       "complexity": "simple",
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
@@ -587,7 +409,8 @@
       "summary": "程式碼實作：app/src/graph/snapshot.ts。包含 139 行 typescript 內容。",
       "tags": [
         "typescript",
-        "code"
+        "code",
+        "tested"
       ],
       "complexity": "moderate",
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
@@ -742,19 +565,6 @@
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
     },
     {
-      "id": "file:app/tests/export.test.mjs",
-      "type": "file",
-      "name": "export.test.mjs",
-      "filePath": "app/tests/export.test.mjs",
-      "summary": "程式碼實作：app/tests/export.test.mjs。包含 93 行 javascript 內容。",
-      "tags": [
-        "javascript",
-        "code"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 javascript；此節點由結構抽取器分析。"
-    },
-    {
       "id": "file:app/src/graph/DetailsView.tsx",
       "type": "file",
       "name": "DetailsView.tsx",
@@ -852,7 +662,8 @@
       "summary": "程式碼實作：app/src/graph/GraphSessionStore.ts。包含 251 行 typescript 內容。",
       "tags": [
         "typescript",
-        "code"
+        "code",
+        "tested"
       ],
       "complexity": "moderate",
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
@@ -1357,240 +1168,6 @@
       "languageNotes": "使用 python；此節點由結構抽取器分析。"
     },
     {
-      "id": "file:backend/ros2_node_map/graph_server.py",
-      "type": "file",
-      "name": "graph_server.py",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "summary": "程式碼實作：backend/ros2_node_map/graph_server.py。包含 265 行 python 內容。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/graph_server.py:snapshot_response:143",
-      "type": "function",
-      "name": "snapshot_response",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        143,
-        145
-      ],
-      "summary": "函式 snapshot_response，位於 backend/ros2_node_map/graph_server.py 第 143 至 145 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/graph_server.py:create_app:148",
-      "type": "function",
-      "name": "create_app",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        148,
-        206
-      ],
-      "summary": "函式 create_app，位於 backend/ros2_node_map/graph_server.py 第 148 至 206 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/graph_server.py:run_server:251",
-      "type": "function",
-      "name": "run_server",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        251,
-        265
-      ],
-      "summary": "函式 run_server，位於 backend/ros2_node_map/graph_server.py 第 251 至 265 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
-      "type": "class",
-      "name": "SnapshotReader",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        20,
-        21
-      ],
-      "summary": "類別或型別 SnapshotReader，位於 backend/ros2_node_map/graph_server.py 第 20 至 21 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
-      "type": "class",
-      "name": "RosNodeResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        24,
-        33
-      ],
-      "summary": "類別或型別 RosNodeResponse，位於 backend/ros2_node_map/graph_server.py 第 24 至 33 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
-      "type": "class",
-      "name": "RosResourceResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        36,
-        44
-      ],
-      "summary": "類別或型別 RosResourceResponse，位於 backend/ros2_node_map/graph_server.py 第 36 至 44 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
-      "type": "class",
-      "name": "GraphEdgeResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        47,
-        55
-      ],
-      "summary": "類別或型別 GraphEdgeResponse，位於 backend/ros2_node_map/graph_server.py 第 47 至 55 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
-      "type": "class",
-      "name": "GraphSnapshotResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        58,
-        67
-      ],
-      "summary": "類別或型別 GraphSnapshotResponse，位於 backend/ros2_node_map/graph_server.py 第 58 至 67 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
-      "type": "class",
-      "name": "HealthResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        70,
-        71
-      ],
-      "summary": "類別或型別 HealthResponse，位於 backend/ros2_node_map/graph_server.py 第 70 至 71 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
-      "type": "class",
-      "name": "DomainConfigRequest",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        74,
-        84
-      ],
-      "summary": "類別或型別 DomainConfigRequest，位於 backend/ros2_node_map/graph_server.py 第 74 至 84 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
-      "type": "class",
-      "name": "DomainConfigResponse",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        87,
-        92
-      ],
-      "summary": "類別或型別 DomainConfigResponse，位於 backend/ros2_node_map/graph_server.py 第 87 至 92 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:DomainController",
-      "type": "class",
-      "name": "DomainController",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        95,
-        140
-      ],
-      "summary": "類別或型別 DomainController，位於 backend/ros2_node_map/graph_server.py 第 95 至 140 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/ros2_node_map/graph_server.py:GraphServer",
-      "type": "class",
-      "name": "GraphServer",
-      "filePath": "backend/ros2_node_map/graph_server.py",
-      "lineRange": [
-        209,
-        248
-      ],
-      "summary": "類別或型別 GraphServer，位於 backend/ros2_node_map/graph_server.py 第 209 至 248 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
       "id": "file:backend/ros2_node_map/service_reader.py",
       "type": "file",
       "name": "service_reader.py",
@@ -1936,172 +1513,6 @@
       "languageNotes": "使用 python；此節點由結構抽取器分析。"
     },
     {
-      "id": "file:backend/tests/test_graph_server.py",
-      "type": "file",
-      "name": "test_graph_server.py",
-      "filePath": "backend/tests/test_graph_server.py",
-      "summary": "程式碼實作：backend/tests/test_graph_server.py。包含 113 行 python 內容。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_server_validates_configuration:30",
-      "type": "function",
-      "name": "test_server_validates_configuration",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        30,
-        34
-      ],
-      "summary": "函式 test_server_validates_configuration，位於 backend/tests/test_graph_server.py 第 30 至 34 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot:37",
-      "type": "function",
-      "name": "test_http_endpoints_are_documented_and_return_a_snapshot",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        37,
-        45
-      ],
-      "summary": "函式 test_http_endpoints_are_documented_and_return_a_snapshot，位於 backend/tests/test_graph_server.py 第 37 至 45 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema:48",
-      "type": "function",
-      "name": "test_snapshot_response_preserves_the_strict_node_schema",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        48,
-        63
-      ],
-      "summary": "函式 test_snapshot_response_preserves_the_strict_node_schema，位於 backend/tests/test_graph_server.py 第 48 至 63 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths:66",
-      "type": "function",
-      "name": "test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        66,
-        70
-      ],
-      "summary": "函式 test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths，位於 backend/tests/test_graph_server.py 第 66 至 70 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart:73",
-      "type": "function",
-      "name": "test_domain_api_requests_a_ros_context_restart",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        73,
-        88
-      ],
-      "summary": "函式 test_domain_api_requests_a_ros_context_restart，位於 backend/tests/test_graph_server.py 第 73 至 88 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id:91",
-      "type": "function",
-      "name": "test_domain_api_validates_custom_domain_id",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        91,
-        99
-      ],
-      "summary": "函式 test_domain_api_validates_custom_domain_id，位於 backend/tests/test_graph_server.py 第 91 至 99 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins:102",
-      "type": "function",
-      "name": "test_domain_api_allows_local_vite_origins",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        102,
-        113
-      ],
-      "summary": "函式 test_domain_api_allows_local_vite_origins，位於 backend/tests/test_graph_server.py 第 102 至 113 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/tests/test_graph_server.py:FakeReader",
-      "type": "class",
-      "name": "FakeReader",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        10,
-        12
-      ],
-      "summary": "類別或型別 FakeReader，位於 backend/tests/test_graph_server.py 第 10 至 12 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "class:backend/tests/test_graph_server.py:PopulatedReader",
-      "type": "class",
-      "name": "PopulatedReader",
-      "filePath": "backend/tests/test_graph_server.py",
-      "lineRange": [
-        15,
-        27
-      ],
-      "summary": "類別或型別 PopulatedReader，位於 backend/tests/test_graph_server.py 第 15 至 27 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
       "id": "file:app/src/workbench/PanelRegistry.ts",
       "type": "file",
       "name": "PanelRegistry.ts",
@@ -2341,37 +1752,11 @@
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
     },
     {
-      "id": "document:AGENTS.md",
-      "type": "document",
-      "name": "AGENTS.md",
-      "filePath": "AGENTS.md",
-      "summary": "專案文件：AGENTS.md。包含 38 行 markdown 內容。",
-      "tags": [
-        "markdown",
-        "docs"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 markdown；此節點由結構抽取器分析。"
-    },
-    {
       "id": "document:PLAN.md",
       "type": "document",
       "name": "PLAN.md",
       "filePath": "PLAN.md",
       "summary": "專案文件：PLAN.md。包含 318 行 markdown 內容。",
-      "tags": [
-        "markdown",
-        "docs"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 markdown；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "document:README.md",
-      "type": "document",
-      "name": "README.md",
-      "filePath": "README.md",
-      "summary": "專案文件：README.md。包含 118 行 markdown 內容。",
       "tags": [
         "markdown",
         "docs"
@@ -2404,19 +1789,6 @@
       ],
       "complexity": "simple",
       "languageNotes": "使用 html；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "config:app/package.json",
-      "type": "config",
-      "name": "package.json",
-      "filePath": "app/package.json",
-      "summary": "專案設定：app/package.json。包含 71 行 json 內容。",
-      "tags": [
-        "json",
-        "config"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 json；此節點由結構抽取器分析。"
     },
     {
       "id": "config:app/tsconfig.app.json",
@@ -2458,19 +1830,6 @@
       "languageNotes": "使用 json；此節點由結構抽取器分析。"
     },
     {
-      "id": "document:docs/architecture.md",
-      "type": "document",
-      "name": "architecture.md",
-      "filePath": "docs/architecture.md",
-      "summary": "專案文件：docs/architecture.md。包含 53 行 markdown 內容。",
-      "tags": [
-        "markdown",
-        "docs"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 markdown；此節點由結構抽取器分析。"
-    },
-    {
       "id": "document:docs/graph-json-schema.md",
       "type": "document",
       "name": "graph-json-schema.md",
@@ -2495,334 +1854,6 @@
       ],
       "complexity": "simple",
       "languageNotes": "使用 json；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "document:docs/roadmap.md",
-      "type": "document",
-      "name": "roadmap.md",
-      "filePath": "docs/roadmap.md",
-      "summary": "專案文件：docs/roadmap.md。包含 14 行 markdown 內容。",
-      "tags": [
-        "markdown",
-        "docs"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 markdown；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "document:docs/testing.md",
-      "type": "document",
-      "name": "testing.md",
-      "filePath": "docs/testing.md",
-      "summary": "專案文件：docs/testing.md。包含 26 行 markdown 內容。",
-      "tags": [
-        "markdown",
-        "docs"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 markdown；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "file:app/electron/main.ts",
-      "type": "file",
-      "name": "main.ts",
-      "filePath": "app/electron/main.ts",
-      "summary": "程式碼實作：app/electron/main.ts。包含 254 行 typescript 內容。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:rosSetupPath:26",
-      "type": "function",
-      "name": "rosSetupPath",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        26,
-        28
-      ],
-      "summary": "函式 rosSetupPath，位於 app/electron/main.ts 第 26 至 28 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:bundledBackendAvailable:30",
-      "type": "function",
-      "name": "bundledBackendAvailable",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        30,
-        32
-      ],
-      "summary": "函式 bundledBackendAvailable，位於 app/electron/main.ts 第 30 至 32 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:inspectRuntime:34",
-      "type": "function",
-      "name": "inspectRuntime",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        34,
-        43
-      ],
-      "summary": "函式 inspectRuntime，位於 app/electron/main.ts 第 34 至 43 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:publishRuntimeStatus:45",
-      "type": "function",
-      "name": "publishRuntimeStatus",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        45,
-        50
-      ],
-      "summary": "函式 publishRuntimeStatus，位於 app/electron/main.ts 第 45 至 50 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:validDomainId:52",
-      "type": "function",
-      "name": "validDomainId",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        52,
-        54
-      ],
-      "summary": "函式 validDomainId，位於 app/electron/main.ts 第 52 至 54 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:systemDomainId:56",
-      "type": "function",
-      "name": "systemDomainId",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        56,
-        59
-      ],
-      "summary": "函式 systemDomainId，位於 app/electron/main.ts 第 56 至 59 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:domainSettingsPath:61",
-      "type": "function",
-      "name": "domainSettingsPath",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        61,
-        63
-      ],
-      "summary": "函式 domainSettingsPath，位於 app/electron/main.ts 第 61 至 63 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:loadDomainSettings:65",
-      "type": "function",
-      "name": "loadDomainSettings",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        65,
-        75
-      ],
-      "summary": "函式 loadDomainSettings，位於 app/electron/main.ts 第 65 至 75 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:saveDomainSettings:77",
-      "type": "function",
-      "name": "saveDomainSettings",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        77,
-        80
-      ],
-      "summary": "函式 saveDomainSettings，位於 app/electron/main.ts 第 77 至 80 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:effectiveDomainId:82",
-      "type": "function",
-      "name": "effectiveDomainId",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        82,
-        86
-      ],
-      "summary": "函式 effectiveDomainId，位於 app/electron/main.ts 第 82 至 86 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:domainConfig:88",
-      "type": "function",
-      "name": "domainConfig",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        88,
-        96
-      ],
-      "summary": "函式 domainConfig，位於 app/electron/main.ts 第 88 至 96 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:startPackagedBackend:98",
-      "type": "function",
-      "name": "startPackagedBackend",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        98,
-        155
-      ],
-      "summary": "函式 startPackagedBackend，位於 app/electron/main.ts 第 98 至 155 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:stopPackagedBackend:157",
-      "type": "function",
-      "name": "stopPackagedBackend",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        157,
-        178
-      ],
-      "summary": "函式 stopPackagedBackend，位於 app/electron/main.ts 第 157 至 178 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:restartPackagedBackend:180",
-      "type": "function",
-      "name": "restartPackagedBackend",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        180,
-        183
-      ],
-      "summary": "函式 restartPackagedBackend，位於 app/electron/main.ts 第 180 至 183 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "type": "function",
-      "name": "registerDomainHandlers",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        185,
-        209
-      ],
-      "summary": "函式 registerDomainHandlers，位於 app/electron/main.ts 第 185 至 209 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:registerRuntimeHandlers:211",
-      "type": "function",
-      "name": "registerRuntimeHandlers",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        211,
-        213
-      ],
-      "summary": "函式 registerRuntimeHandlers，位於 app/electron/main.ts 第 211 至 213 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:app/electron/main.ts:createWindow:215",
-      "type": "function",
-      "name": "createWindow",
-      "filePath": "app/electron/main.ts",
-      "lineRange": [
-        215,
-        233
-      ],
-      "summary": "函式 createWindow，位於 app/electron/main.ts 第 215 至 233 行。",
-      "tags": [
-        "typescript",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
     },
     {
       "id": "file:app/electron/preload.ts",
@@ -2909,19 +1940,6 @@
       ],
       "complexity": "simple",
       "languageNotes": "使用 typescript；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "file:app/src/styles.css",
-      "type": "file",
-      "name": "styles.css",
-      "filePath": "app/src/styles.css",
-      "summary": "介面標記或樣式：app/src/styles.css。包含 412 行 css 內容。",
-      "tags": [
-        "css",
-        "markup"
-      ],
-      "complexity": "complex",
-      "languageNotes": "使用 css；此節點由結構抽取器分析。"
     },
     {
       "id": "file:app/src/vite-env.d.ts",
@@ -3036,32 +2054,6 @@
       "languageNotes": "使用 unknown；此節點由結構抽取器分析。"
     },
     {
-      "id": "config:backend/pyproject.toml",
-      "type": "config",
-      "name": "pyproject.toml",
-      "filePath": "backend/pyproject.toml",
-      "summary": "專案設定：backend/pyproject.toml。包含 31 行 toml 內容。",
-      "tags": [
-        "toml",
-        "config"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 toml；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "file:backend/ros2_node_map/__init__.py",
-      "type": "file",
-      "name": "__init__.py",
-      "filePath": "backend/ros2_node_map/__init__.py",
-      "summary": "程式碼實作：backend/ros2_node_map/__init__.py。包含 4 行 python 內容。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
       "id": "file:backend/ros2_node_map/filters.py",
       "type": "file",
       "name": "filters.py",
@@ -3072,104 +2064,6 @@
         "code"
       ],
       "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "file:backend/ros2_node_map/main.py",
-      "type": "file",
-      "name": "main.py",
-      "filePath": "backend/ros2_node_map/main.py",
-      "summary": "程式碼實作：backend/ros2_node_map/main.py。包含 107 行 python 內容。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/main.py:build_parser:13",
-      "type": "function",
-      "name": "build_parser",
-      "filePath": "backend/ros2_node_map/main.py",
-      "lineRange": [
-        13,
-        41
-      ],
-      "summary": "函式 build_parser，位於 backend/ros2_node_map/main.py 第 13 至 41 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/main.py:_ros_node:45",
-      "type": "function",
-      "name": "_ros_node",
-      "filePath": "backend/ros2_node_map/main.py",
-      "lineRange": [
-        45,
-        58
-      ],
-      "summary": "函式 _ros_node，位於 backend/ros2_node_map/main.py 第 45 至 58 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/main.py:_snapshot:61",
-      "type": "function",
-      "name": "_snapshot",
-      "filePath": "backend/ros2_node_map/main.py",
-      "lineRange": [
-        61,
-        66
-      ],
-      "summary": "函式 _snapshot，位於 backend/ros2_node_map/main.py 第 61 至 66 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/main.py:_serve:69",
-      "type": "function",
-      "name": "_serve",
-      "filePath": "backend/ros2_node_map/main.py",
-      "lineRange": [
-        69,
-        90
-      ],
-      "summary": "函式 _serve，位於 backend/ros2_node_map/main.py 第 69 至 90 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
-    },
-    {
-      "id": "function:backend/ros2_node_map/main.py:main:93",
-      "type": "function",
-      "name": "main",
-      "filePath": "backend/ros2_node_map/main.py",
-      "lineRange": [
-        93,
-        103
-      ],
-      "summary": "函式 main，位於 backend/ros2_node_map/main.py 第 93 至 103 行。",
-      "tags": [
-        "python",
-        "code"
-      ],
-      "complexity": "moderate",
       "languageNotes": "使用 python；此節點由結構抽取器分析。"
     },
     {
@@ -3186,68 +2080,1316 @@
       "languageNotes": "使用 unknown；此節點由結構抽取器分析。"
     },
     {
+      "id": "file:app/src/GraphView.tsx",
+      "type": "file",
+      "name": "GraphView.tsx",
+      "filePath": "app/src/GraphView.tsx",
+      "summary": "實作 ROS 2 topology 的 Cytoscape 互動式檢視器，負責節點樣式、增量同步、力導向佈局、選取聚焦、縮放與 PNG／JSON／Mermaid 匯出控制。",
+      "tags": [
+        "react-component",
+        "graph-visualization",
+        "cytoscape",
+        "interaction",
+        "export"
+      ],
+      "complexity": "complex",
+      "languageNotes": "此 React 元件透過 refs 保存 Cytoscape 與長時間運作的 layout 實例，並以多個 effect 分隔初始化、snapshot 同步及外部選取請求。"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:startAiryWebLayout",
+      "type": "function",
+      "name": "startAiryWebLayout",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        195,
+        207
+      ],
+      "summary": "先執行一次 COSE 佈局建立疏朗的初始位置，再切換至持續運作的 Cola 力導向佈局。",
+      "tags": [
+        "graph-layout",
+        "cytoscape",
+        "initialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:startContinuousForceLayout",
+      "type": "function",
+      "name": "startContinuousForceLayout",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        209,
+        227
+      ],
+      "summary": "設定並啟動可持續調整 topology 的 Cola 佈局，控制重疊、間距、邊長與收斂條件。",
+      "tags": [
+        "graph-layout",
+        "force-directed",
+        "cytoscape"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:placeNewNodes",
+      "type": "function",
+      "name": "placeNewNodes",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        229,
+        264
+      ],
+      "summary": "將新增節點放置在既有鄰居或畫布中心附近，並以多圈候選位置評分減少與既有節點重疊。",
+      "tags": [
+        "node-placement",
+        "graph-layout",
+        "spatial-heuristic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:syncGraphSnapshot",
+      "type": "function",
+      "name": "syncGraphSnapshot",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        266,
+        312
+      ],
+      "summary": "在 Cytoscape batch 中增量套用 snapshot，移除消失項目、更新資料並重建端點已變更的 edge，同時回報是否需要重新啟動力導向佈局。",
+      "tags": [
+        "graph-sync",
+        "incremental-update",
+        "snapshot",
+        "cytoscape"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:fitVisibleNodes",
+      "type": "function",
+      "name": "fitVisibleNodes",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        314,
+        325
+      ],
+      "summary": "以動畫將目前未被淡化的節點縮放至可視範圍，完成後重新計算 label 顯示狀態。",
+      "tags": [
+        "viewport",
+        "animation",
+        "graph-interaction"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/GraphView.tsx:GraphView",
+      "type": "function",
+      "name": "GraphView",
+      "filePath": "app/src/GraphView.tsx",
+      "lineRange": [
+        327,
+        596
+      ],
+      "summary": "建立並管理 Cytoscape 畫布的 React 元件，協調 topology 更新、節點選取、File-only 狀態、domain 控制與各種圖形操作及匯出功能。",
+      "tags": [
+        "react-component",
+        "graph-view",
+        "event-handler",
+        "state-integration",
+        "export"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:app/src/api.ts",
+      "type": "file",
+      "name": "api.ts",
+      "filePath": "app/src/api.ts",
+      "summary": "提供 frontend 的 WebSocket graph stream 連線層，依頁面 origin 推導 headless server 位址、驗證收到的 snapshot，並在斷線後自動重連。",
+      "tags": [
+        "websocket",
+        "api-client",
+        "reconnection",
+        "snapshot-validation",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/src/api.ts:backendUrlForPage",
+      "type": "function",
+      "name": "backendUrlForPage",
+      "filePath": "app/src/api.ts",
+      "lineRange": [
+        4,
+        8
+      ],
+      "summary": "將 HTTP 或 HTTPS 頁面的 protocol 與 host 轉換成同源的 WebSocket graph endpoint，非網頁協定則回傳 null。",
+      "tags": [
+        "url-builder",
+        "websocket",
+        "headless"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/src/api.ts:connectGraphStream",
+      "type": "function",
+      "name": "connectGraphStream",
+      "filePath": "app/src/api.ts",
+      "lineRange": [
+        28,
+        69
+      ],
+      "summary": "建立 graph WebSocket、轉換連線狀態並解析 snapshot；連線關閉時排程重試，回傳的清理函式則停止重連並關閉 socket。",
+      "tags": [
+        "websocket",
+        "reconnection",
+        "event-handler",
+        "snapshot-stream"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:app/tests/export.test.mjs",
+      "type": "file",
+      "name": "export.test.mjs",
+      "filePath": "app/tests/export.test.mjs",
+      "summary": "驗證 headless 同源 WebSocket URL、graph snapshot schema、JSON／Mermaid 匯出 round trip，以及 File mode 匯入時完整資料與錯誤復原行為。",
+      "tags": [
+        "test",
+        "graph-export",
+        "snapshot-validation",
+        "file-mode",
+        "headless"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/ros2_node_map/graph_server.py",
+      "type": "file",
+      "name": "graph_server.py",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "summary": "提供 ROS 2 graph snapshot 的 FastAPI 與 WebSocket 服務，並整合 ROS domain 切換、靜態前端託管及 Uvicorn 執行生命週期。",
+      "tags": [
+        "api-handler",
+        "service",
+        "websocket",
+        "ros2",
+        "serialization",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "以 Pydantic model 固定傳輸 schema，並在 FastAPI app factory 內定義 HTTP 與 WebSocket handlers。"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
+      "type": "class",
+      "name": "SnapshotReader",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        23,
+        24
+      ],
+      "summary": "定義可提供 GraphSnapshot 的結構化 Protocol，讓 API server 能接受正式 GraphReader 或測試替身。",
+      "tags": [
+        "type-definition",
+        "protocol",
+        "dependency-injection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
+      "type": "class",
+      "name": "RosNodeResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        27,
+        36
+      ],
+      "summary": "描述 ROS node 在 API snapshot 中的嚴格回應格式，包含識別碼、名稱與 namespace。",
+      "tags": [
+        "data-model",
+        "pydantic",
+        "serialization",
+        "ros2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
+      "type": "class",
+      "name": "RosResourceResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        39,
+        47
+      ],
+      "summary": "描述 ROS topic、service 或 action 資源的 API 回應格式及其介面型別清單。",
+      "tags": [
+        "data-model",
+        "pydantic",
+        "serialization",
+        "ros2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
+      "type": "class",
+      "name": "GraphEdgeResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        50,
+        58
+      ],
+      "summary": "定義 graph snapshot 中有向關係的傳輸欄位，連結來源與目標節點。",
+      "tags": [
+        "data-model",
+        "pydantic",
+        "graph",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
+      "type": "class",
+      "name": "GraphSnapshotResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        61,
+        70
+      ],
+      "summary": "彙整版本、時間、ROS domain、節點與邊，形成 HTTP 與 WebSocket 共用的穩定 snapshot schema。",
+      "tags": [
+        "data-model",
+        "pydantic",
+        "graph",
+        "api-schema"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
+      "type": "class",
+      "name": "HealthResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        73,
+        74
+      ],
+      "summary": "定義 health endpoint 回傳服務狀態的最小資料模型。",
+      "tags": [
+        "data-model",
+        "health-check",
+        "pydantic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
+      "type": "class",
+      "name": "DomainConfigRequest",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        77,
+        87
+      ],
+      "summary": "驗證 ROS domain 切換請求，限制 custom domain 範圍並要求 custom 模式必須提供 ID。",
+      "tags": [
+        "data-model",
+        "validation",
+        "pydantic",
+        "ros-domain"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
+      "type": "class",
+      "name": "DomainConfigResponse",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        90,
+        95
+      ],
+      "summary": "呈現系統、自訂與目前生效的 ROS domain 設定，供 domain API 回傳。",
+      "tags": [
+        "data-model",
+        "configuration",
+        "pydantic",
+        "ros-domain"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "class",
+      "name": "DomainController",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        98,
+        143
+      ],
+      "summary": "以 lock 保護 ROS domain 偏好與重啟旗標，並在切換設定時通知目前執行中的 server 停止。",
+      "tags": [
+        "service",
+        "state-management",
+        "thread-safety",
+        "ros-domain"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 threading.Lock 將設定變更、server callback 與重啟消費流程序列化。"
+    },
+    {
+      "id": "function:backend/ros2_node_map/graph_server.py:snapshot_response",
+      "type": "function",
+      "name": "snapshot_response",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        146,
+        148
+      ],
+      "summary": "把內部 GraphSnapshot 字典轉換並驗證為穩定的 Pydantic API response。",
+      "tags": [
+        "serialization",
+        "validation",
+        "adapter",
+        "graph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "function",
+      "name": "create_app",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        151,
+        218
+      ],
+      "summary": "建立 FastAPI application，註冊 health、snapshot、domain 與雙路徑 WebSocket handlers，並可選擇掛載封裝後的前端。",
+      "tags": [
+        "factory",
+        "api-handler",
+        "websocket",
+        "cors",
+        "static-files"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "採 app factory 與巢狀 route functions，使 reader、更新間隔及 domain controller 能由呼叫端注入。"
+    },
+    {
+      "id": "class:backend/ros2_node_map/graph_server.py:GraphServer",
+      "type": "class",
+      "name": "GraphServer",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        221,
+        265
+      ],
+      "summary": "驗證 server 組態、持有 FastAPI app，並管理 Uvicorn 與 DomainController 之間的停止 callback 生命週期。",
+      "tags": [
+        "service",
+        "uvicorn",
+        "lifecycle",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/ros2_node_map/graph_server.py:run_server",
+      "type": "function",
+      "name": "run_server",
+      "filePath": "backend/ros2_node_map/graph_server.py",
+      "lineRange": [
+        268,
+        283
+      ],
+      "summary": "以既有 rclpy node 建立 GraphReader 與 GraphServer，並在 asyncio event loop 中持續服務。",
+      "tags": [
+        "entry-point",
+        "service",
+        "asyncio",
+        "ros2"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/test_graph_server.py",
+      "type": "file",
+      "name": "test_graph_server.py",
+      "filePath": "backend/tests/test_graph_server.py",
+      "summary": "驗證 graph server 的組態、版本、靜態前端、HTTP/OpenAPI、WebSocket、snapshot schema、ROS domain 切換與 CORS 行為。",
+      "tags": [
+        "test",
+        "integration-test",
+        "fastapi",
+        "websocket",
+        "ros-domain"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 pytest、FastAPI TestClient 與 reader test doubles，在不啟動真實 ROS graph discovery 的情況下覆蓋 API 行為。"
+    },
+    {
+      "id": "class:backend/tests/test_graph_server.py:FakeReader",
+      "type": "class",
+      "name": "FakeReader",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        11,
+        13
+      ],
+      "summary": "提供固定空白 GraphSnapshot 的輕量測試替身。",
+      "tags": [
+        "test",
+        "test-double",
+        "fixture"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/tests/test_graph_server.py:PopulatedReader",
+      "type": "class",
+      "name": "PopulatedReader",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        16,
+        28
+      ],
+      "summary": "建立含 ROS node 與 topic 的固定 snapshot，用於驗證嚴格的 API node schema。",
+      "tags": [
+        "test",
+        "test-double",
+        "fixture",
+        "graph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_server_validates_configuration",
+      "type": "function",
+      "name": "test_server_validates_configuration",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        31,
+        35
+      ],
+      "summary": "確認 GraphServer 拒絕無效的 port 與更新間隔。",
+      "tags": [
+        "test",
+        "validation",
+        "server-config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_server_uses_the_package_version",
+      "type": "function",
+      "name": "test_server_uses_the_package_version",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        38,
+        39
+      ],
+      "summary": "確認 FastAPI metadata 使用套件本身的版本號。",
+      "tags": [
+        "test",
+        "versioning",
+        "api-metadata"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_server_serves_a_packaged_frontend",
+      "type": "function",
+      "name": "test_server_serves_a_packaged_frontend",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        42,
+        47
+      ],
+      "summary": "確認 server 能從指定目錄回傳封裝後的 index.html。",
+      "tags": [
+        "test",
+        "static-files",
+        "frontend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_server_rejects_a_frontend_directory_without_an_index",
+      "type": "function",
+      "name": "test_server_rejects_a_frontend_directory_without_an_index",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        50,
+        52
+      ],
+      "summary": "確認缺少 index.html 的前端目錄會在 app 建立時被拒絕。",
+      "tags": [
+        "test",
+        "validation",
+        "static-files"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot",
+      "type": "function",
+      "name": "test_http_endpoints_are_documented_and_return_a_snapshot",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        55,
+        63
+      ],
+      "summary": "驗證 health 與 snapshot endpoints 的回應，以及 snapshot path 已列入 OpenAPI schema。",
+      "tags": [
+        "test",
+        "http",
+        "openapi",
+        "snapshot"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema",
+      "type": "function",
+      "name": "test_snapshot_response_preserves_the_strict_node_schema",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        66,
+        81
+      ],
+      "summary": "逐欄確認 ROS node 與 topic 在 snapshot response 中維持穩定且嚴格的 JSON shape。",
+      "tags": [
+        "test",
+        "serialization",
+        "api-schema",
+        "snapshot"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+      "type": "function",
+      "name": "test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        84,
+        88
+      ],
+      "summary": "確認 canonical 與相容舊版的 WebSocket paths 都會傳送 graph snapshot。",
+      "tags": [
+        "test",
+        "websocket",
+        "backward-compatibility",
+        "snapshot"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart",
+      "type": "function",
+      "name": "test_domain_api_requests_a_ros_context_restart",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        91,
+        106
+      ],
+      "summary": "驗證 domain API 可切換到 custom domain，並讓 controller 回報待執行的 ROS context restart。",
+      "tags": [
+        "test",
+        "ros-domain",
+        "state-management",
+        "api-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id",
+      "type": "function",
+      "name": "test_domain_api_validates_custom_domain_id",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        109,
+        117
+      ],
+      "summary": "確認 domain API 拒絕超出範圍或缺漏的 custom domain ID。",
+      "tags": [
+        "test",
+        "validation",
+        "ros-domain",
+        "http"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins",
+      "type": "function",
+      "name": "test_domain_api_allows_local_vite_origins",
+      "filePath": "backend/tests/test_graph_server.py",
+      "lineRange": [
+        120,
+        131
+      ],
+      "summary": "確認 CORS preflight 接受 localhost 上使用動態 port 的 Vite 開發來源。",
+      "tags": [
+        "test",
+        "cors",
+        "vite",
+        "http"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "定義 Agent 在專案中分析、修改與驗證程式碼時必須遵循的事實來源、工作順序與限制。要求先依序確認 SPEC、PLAN 及相關測試，並維持實作與文件同步。",
+      "tags": [
+        "documentation",
+        "agent-guidelines",
+        "development-process",
+        "verification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "提供 ros2-node-map 的英文專案概覽、主要功能、快速安裝方式與 Live、File-only、Headless/capture 模式選擇。亦導引讀者前往架構、開發封裝、AppImage、資料格式與測試等深入文件。",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "project-overview",
+        "ros2",
+        "appimage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "以 Markdown 表格、程式碼區塊、圖片與文件連結組成面向使用者的專案入口頁。"
+    },
+    {
+      "id": "config:app/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "app/package.json",
+      "summary": "定義 Electron 與 React 桌面應用程式的套件相依性、開發與測試命令，以及透過 electron-builder 產生 Linux AppImage 和 Windows portable 執行檔的封裝設定。Linux 套件會納入 ROS 2 Python backend 與其 runtime site-packages，並在產物建立後修補 AppImage launcher。",
+      "tags": [
+        "configuration",
+        "electron",
+        "build-system",
+        "appimage",
+        "desktop-packaging"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "此 JSON 同時作為 npm manifest 與 electron-builder 設定；以 scripts 串接 TypeScript、Vite、backend 封裝和跨平台桌面產物建置。"
+    },
+    {
+      "id": "document:docs/architecture.md",
+      "type": "document",
+      "name": "architecture.md",
+      "filePath": "docs/architecture.md",
+      "summary": "說明 ROS 2 discovery backend 與 Electron、React 前端之間的責任邊界、HTTP／WebSocket API，以及 Linux 與 Windows 在 Live Mode 和 File-only Mode 下的 runtime capability。",
+      "tags": [
+        "架構文件",
+        "ros2",
+        "backend-api",
+        "file-mode"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:docs/roadmap.md",
+      "type": "document",
+      "name": "roadmap.md",
+      "filePath": "docs/roadmap.md",
+      "summary": "列出專案由 repository 骨架、ROS 2 graph discovery 與 WebSocket 串流，逐步演進至互動檢視、搜尋篩選及 JSON／Mermaid 匯出的十項開發目標。",
+      "tags": [
+        "產品路線圖",
+        "開發里程碑",
+        "ros2",
+        "graph-export"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:docs/testing.md",
+      "type": "document",
+      "name": "testing.md",
+      "filePath": "docs/testing.md",
+      "summary": "記錄 backend、ROS 2 integration、frontend 與 Electron 的分層驗證策略，並提供 uv、npm、Windows portable release 及 Linux installer 的實際驗證指令。",
+      "tags": [
+        "測試文件",
+        "分層驗證",
+        "integration-test",
+        "release-validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:app/electron/main.ts",
+      "type": "file",
+      "name": "main.ts",
+      "filePath": "app/electron/main.ts",
+      "summary": "Electron 主程序入口，負責偵測 ROS 2 runtime、管理內嵌 Python backend、建立桌面視窗，以及協調 GUI、headless、capture 與 AppImage CLI 模式。它也透過 IPC 管理 ROS_DOMAIN_ID 設定與 backend 重啟。",
+      "tags": [
+        "entry-point",
+        "electron",
+        "process-management",
+        "headless",
+        "ipc"
+      ],
+      "complexity": "complex",
+      "languageNotes": "以 TypeScript 將 Electron lifecycle、子程序管理與 CLI 模式集中於單一主程序，並以 async function 處理 backend 啟停與 readiness 檢查。"
+    },
+    {
+      "id": "function:app/electron/main.ts:inspectRuntime",
+      "type": "function",
+      "name": "inspectRuntime",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        55,
+        72
+      ],
+      "summary": "檢查目前平台、ROS setup 檔案與內嵌 backend 是否可用，並建立供 GUI 與 CLI 共用的 runtime 狀態。",
+      "tags": [
+        "runtime-detection",
+        "ros2",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:loadDomainSettings",
+      "type": "function",
+      "name": "loadDomainSettings",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        94,
+        104
+      ],
+      "summary": "從 Electron userData 讀取並驗證 ROS domain 設定；檔案缺失或格式無效時安全回退至系統環境。",
+      "tags": [
+        "configuration",
+        "ros-domain",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:bundledBackendEnvironment",
+      "type": "function",
+      "name": "bundledBackendEnvironment",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        134,
+        147
+      ],
+      "summary": "組合內嵌 Python backend 的執行環境，注入應用程式版本、有效 ROS domain 與打包後的 PYTHONPATH。",
+      "tags": [
+        "process-environment",
+        "python-backend",
+        "packaging"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:bundledBackendCommand",
+      "type": "function",
+      "name": "bundledBackendCommand",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        149,
+        160
+      ],
+      "summary": "產生透過 bash 載入 ROS 2 setup 後執行內嵌 Python module 的命令參數。",
+      "tags": [
+        "command-builder",
+        "ros2",
+        "python-backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:startPackagedBackend",
+      "type": "function",
+      "name": "startPackagedBackend",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        162,
+        209
+      ],
+      "summary": "在打包模式中啟動 backend server 子程序，傳遞 host、port 與 frontend 目錄，並將啟動或非預期結束反映到 runtime 狀態。",
+      "tags": [
+        "process-management",
+        "backend-service",
+        "error-handling",
+        "headless"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/electron/main.ts:runBundledBackend",
+      "type": "function",
+      "name": "runBundledBackend",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        211,
+        230
+      ],
+      "summary": "以一次性子程序執行內嵌 backend 命令，收集 stdout 與 stderr，供 capture 模式取得 snapshot 或回報失敗。",
+      "tags": [
+        "process-management",
+        "capture",
+        "async-io"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/electron/main.ts:stopPackagedBackend",
+      "type": "function",
+      "name": "stopPackagedBackend",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        232,
+        253
+      ],
+      "summary": "先以 SIGTERM 優雅停止 backend，逾時後再以 SIGKILL 結束，避免 Electron 關閉時殘留子程序。",
+      "tags": [
+        "process-management",
+        "graceful-shutdown",
+        "timeout"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/electron/main.ts:registerDomainHandlers",
+      "type": "function",
+      "name": "registerDomainHandlers",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        260,
+        284
+      ],
+      "summary": "註冊讀寫 ROS domain 的 Electron IPC handlers，驗證 domain 範圍、保存設定，並在變更後重啟 backend。",
+      "tags": [
+        "ipc",
+        "ros-domain",
+        "validation",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/electron/main.ts:createWindow",
+      "type": "function",
+      "name": "createWindow",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        290,
+        308
+      ],
+      "summary": "建立具隔離 preload context 的 Electron BrowserWindow，開發環境載入 Vite URL，正式環境則載入打包後 HTML。",
+      "tags": [
+        "electron-window",
+        "gui",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:headlessUrls",
+      "type": "function",
+      "name": "headlessUrls",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        310,
+        319
+      ],
+      "summary": "列出 headless server 的 localhost 與所有非內部 IPv4 存取網址，方便終端使用者連線。",
+      "tags": [
+        "headless",
+        "networking",
+        "url-builder"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:waitForHeadlessServer",
+      "type": "function",
+      "name": "waitForHeadlessServer",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        321,
+        336
+      ],
+      "summary": "輪詢 backend health endpoint 並監看子程序狀態，在 15 秒內確認 headless server ready，否則拋出明確錯誤。",
+      "tags": [
+        "health-check",
+        "headless",
+        "polling",
+        "timeout"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:nextCapturePath",
+      "type": "function",
+      "name": "nextCapturePath",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        338,
+        347
+      ],
+      "summary": "依 UTC timestamp 在目前目錄產生不衝突的 ROS graph snapshot JSON 檔名。",
+      "tags": [
+        "capture",
+        "file-path",
+        "collision-avoidance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:writeCapture",
+      "type": "function",
+      "name": "writeCapture",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        349,
+        361
+      ],
+      "summary": "先驗證 snapshot JSON，再以暫存檔加 rename 原子寫入最終 capture 檔案，失敗時清除殘留檔。",
+      "tags": [
+        "capture",
+        "serialization",
+        "atomic-write",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:runHeadlessMode",
+      "type": "function",
+      "name": "runHeadlessMode",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        363,
+        382
+      ],
+      "summary": "驗證 runtime 與 frontend assets 後啟動對外監聽的 backend，等待服務 ready 並輸出可連線網址與終止訊號處理。",
+      "tags": [
+        "headless",
+        "backend-service",
+        "runtime-detection",
+        "signal-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:app/electron/main.ts:runCaptureMode",
+      "type": "function",
+      "name": "runCaptureMode",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        384,
+        395
+      ],
+      "summary": "在確認 ROS 2 live mode 後呼叫內嵌 backend 擷取 graph snapshot，原子保存 JSON 並輸出後續使用提示。",
+      "tags": [
+        "capture",
+        "ros2",
+        "snapshot",
+        "cli"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:app/electron/main.ts:runCliMode",
+      "type": "function",
+      "name": "runCliMode",
+      "filePath": "app/electron/main.ts",
+      "lineRange": [
+        397,
+        436
+      ],
+      "summary": "分派 help、version、AppImage install/uninstall、headless 與 capture 模式，統一處理參數錯誤、退出碼及 backend 清理。",
+      "tags": [
+        "cli",
+        "dispatcher",
+        "appimage",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:app/src/styles.css",
+      "type": "file",
+      "name": "styles.css",
+      "filePath": "app/src/styles.css",
+      "summary": "定義 ROS 2 topology viewer 的完整深色介面樣式，涵蓋 toolbar、graph canvas、domain 控制、匯出選單、可縮放側欄、資源樹、詳細面板與響應式版面。",
+      "tags": [
+        "stylesheet",
+        "responsive-design",
+        "graph-ui",
+        "dark-theme",
+        "component-styles"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 CSS Grid、Flexbox、pseudo-elements、狀態 class 與 media queries 組成高密度桌面介面，並以一致色彩區分 ROS resource 類型。"
+    },
+    {
+      "id": "config:backend/pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "backend/pyproject.toml",
+      "summary": "定義 Python backend 套件 ros2-node-map 0.3.1 的 setuptools build、FastAPI/Uvicorn runtime dependencies、開發測試套件、CLI entry point 與 pytest 設定。",
+      "tags": [
+        "configuration",
+        "python",
+        "build-system",
+        "dependencies",
+        "test-config"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/ros2_node_map/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/ros2_node_map/__init__.py",
+      "summary": "初始化 ros2_node_map Python package，優先從 Electron 注入的環境變數取得版本，否則查詢已安裝套件 metadata。",
+      "tags": [
+        "entry-point",
+        "package-metadata",
+        "versioning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/ros2_node_map/__init__.py:_resolve_version",
+      "type": "function",
+      "name": "_resolve_version",
+      "filePath": "backend/ros2_node_map/__init__.py",
+      "lineRange": [
+        7,
+        14
+      ],
+      "summary": "解析 backend 顯示版本，依序採用 ROS2_NODE_MAP_VERSION、安裝套件 metadata，最後回退為 unknown。",
+      "tags": [
+        "versioning",
+        "package-metadata",
+        "fallback"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/ros2_node_map/main.py",
+      "type": "file",
+      "name": "main.py",
+      "filePath": "backend/ros2_node_map/main.py",
+      "summary": "Python backend CLI 入口，提供 ROS graph snapshot 與 WebSocket server 子命令，管理 rclpy node lifecycle，並支援 runtime ROS domain 切換及 production frontend serving。",
+      "tags": [
+        "entry-point",
+        "cli",
+        "ros2",
+        "backend-service",
+        "snapshot",
+        "tested"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 contextmanager 封裝 rclpy node 的初始化與確定性清理，並以 lazy imports 延後載入 ROS 與 server 元件。"
+    },
+    {
+      "id": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "function",
+      "name": "build_parser",
+      "filePath": "backend/ros2_node_map/main.py",
+      "lineRange": [
+        16,
+        48
+      ],
+      "summary": "建立 backend argparse CLI，定義 version、snapshot 與 serve 子命令及其 discovery、network 與 frontend 參數。",
+      "tags": [
+        "cli",
+        "argument-parser",
+        "configuration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/ros2_node_map/main.py:_ros_node",
+      "type": "function",
+      "name": "_ros_node",
+      "filePath": "backend/ros2_node_map/main.py",
+      "lineRange": [
+        52,
+        65
+      ],
+      "summary": "建立指定 ROS domain 的暫時 rclpy node，等待 discovery 後交給呼叫端使用，最後保證 destroy 與 shutdown。",
+      "tags": [
+        "ros2",
+        "context-manager",
+        "resource-lifecycle"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/ros2_node_map/main.py:_snapshot",
+      "type": "function",
+      "name": "_snapshot",
+      "filePath": "backend/ros2_node_map/main.py",
+      "lineRange": [
+        68,
+        73
+      ],
+      "summary": "使用 GraphReader 從暫時 ROS node 建立 graph snapshot，並依 pretty 選項輸出 JSON。",
+      "tags": [
+        "snapshot",
+        "ros2",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/ros2_node_map/main.py:_serve",
+      "type": "function",
+      "name": "_serve",
+      "filePath": "backend/ros2_node_map/main.py",
+      "lineRange": [
+        76,
+        103
+      ],
+      "summary": "建立可重啟的 ROS graph server；每次依目前 domain 建立 node、啟動 server，並在 DomainController 要求切換時重建 runtime。",
+      "tags": [
+        "backend-service",
+        "ros-domain",
+        "websocket",
+        "restart-loop"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/ros2_node_map/main.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "backend/ros2_node_map/main.py",
+      "lineRange": [
+        106,
+        118
+      ],
+      "summary": "解析 CLI 並分派 snapshot 或 serve 流程，將可預期的 runtime 錯誤轉換為訊息與退出碼 2。",
+      "tags": [
+        "entry-point",
+        "cli",
+        "dispatcher",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
       "id": "file:backend/tests/test_main.py",
       "type": "file",
       "name": "test_main.py",
       "filePath": "backend/tests/test_main.py",
-      "summary": "程式碼實作：backend/tests/test_main.py。包含 23 行 python 內容。",
+      "summary": "驗證 backend CLI parser 的 snapshot 與 serve 預設值、必要子命令、版本輸出，以及 production frontend 目錄參數。",
       "tags": [
-        "python",
-        "code"
+        "test",
+        "cli",
+        "pytest",
+        "argument-parser"
       ],
-      "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
+      "complexity": "simple"
     },
     {
-      "id": "function:backend/tests/test_main.py:test_snapshot_cli_defaults:6",
+      "id": "function:backend/tests/test_main.py:test_snapshot_cli_defaults",
       "type": "function",
       "name": "test_snapshot_cli_defaults",
       "filePath": "backend/tests/test_main.py",
       "lineRange": [
-        6,
-        10
+        7,
+        11
       ],
-      "summary": "函式 test_snapshot_cli_defaults，位於 backend/tests/test_main.py 第 6 至 10 行。",
+      "summary": "確認 snapshot 子命令的 discovery wait 與 pretty JSON 預設值。",
       "tags": [
-        "python",
-        "code"
+        "test",
+        "snapshot",
+        "cli-defaults"
       ],
-      "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
+      "complexity": "simple"
     },
     {
-      "id": "function:backend/tests/test_main.py:test_cli_requires_a_command:13",
+      "id": "function:backend/tests/test_main.py:test_cli_requires_a_command",
       "type": "function",
       "name": "test_cli_requires_a_command",
       "filePath": "backend/tests/test_main.py",
       "lineRange": [
-        13,
-        15
+        14,
+        16
       ],
-      "summary": "函式 test_cli_requires_a_command，位於 backend/tests/test_main.py 第 13 至 15 行。",
+      "summary": "確認未指定子命令時 argparse 會拒絕執行。",
       "tags": [
-        "python",
-        "code"
+        "test",
+        "validation",
+        "cli"
       ],
-      "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
+      "complexity": "simple"
     },
     {
-      "id": "function:backend/tests/test_main.py:test_serve_cli_defaults:18",
+      "id": "function:backend/tests/test_main.py:test_cli_reports_the_package_version",
+      "type": "function",
+      "name": "test_cli_reports_the_package_version",
+      "filePath": "backend/tests/test_main.py",
+      "lineRange": [
+        19,
+        22
+      ],
+      "summary": "確認 --version 會輸出 backend 指令名稱與 package 解析出的版本。",
+      "tags": [
+        "test",
+        "versioning",
+        "cli-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_main.py:test_serve_cli_defaults",
       "type": "function",
       "name": "test_serve_cli_defaults",
       "filePath": "backend/tests/test_main.py",
       "lineRange": [
-        18,
-        23
+        25,
+        31
       ],
-      "summary": "函式 test_serve_cli_defaults，位於 backend/tests/test_main.py 第 18 至 23 行。",
+      "summary": "確認 serve 子命令的 host、port、refresh interval、discovery wait 與 frontend 目錄預設值。",
       "tags": [
-        "python",
-        "code"
+        "test",
+        "server",
+        "cli-defaults"
       ],
-      "complexity": "simple",
-      "languageNotes": "使用 python；此節點由結構抽取器分析。"
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_main.py:test_serve_cli_accepts_a_frontend_directory",
+      "type": "function",
+      "name": "test_serve_cli_accepts_a_frontend_directory",
+      "filePath": "backend/tests/test_main.py",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "確認 serve 子命令可將 --frontend-dir 解析為 Path。",
+      "tags": [
+        "test",
+        "frontend-serving",
+        "cli"
+      ],
+      "complexity": "simple"
     }
   ],
   "edges": [
@@ -3290,14 +3432,6 @@
       "direction": "forward",
       "description": "DetailPanel 呼叫 commandFor。",
       "weight": 0.8
-    },
-    {
-      "source": "file:app/src/DomainControl.tsx",
-      "target": "file:app/src/api.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/DomainControl.tsx 匯入 app/src/api.ts。",
-      "weight": 0.7
     },
     {
       "source": "file:app/src/DomainControl.tsx",
@@ -3356,174 +3490,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "file:app/src/api.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 匯入 app/src/api.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "file:app/src/DomainControl.tsx",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 匯入 app/src/DomainControl.tsx。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "file:app/src/graph/downloads.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 匯入 app/src/graph/downloads.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "file:app/src/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 匯入 app/src/types.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:updateLabelVisibility:180",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 updateLabelVisibility。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:toElements:187",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 toElements。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:startAiryWebLayout:194",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 startAiryWebLayout。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:startContinuousForceLayout:208",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 startContinuousForceLayout。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:placeNewNodes:228",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 placeNewNodes。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:syncGraphSnapshot:265",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 syncGraphSnapshot。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:fitVisibleNodes:313",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 fitVisibleNodes。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:GraphView:326",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 包含函式 GraphView。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/GraphView.tsx",
-      "target": "function:app/src/GraphView.tsx:GraphView:326",
-      "type": "exports",
-      "direction": "forward",
-      "description": "app/src/GraphView.tsx 匯出 GraphView。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:startAiryWebLayout:194",
-      "target": "function:app/src/GraphView.tsx:startContinuousForceLayout:208",
-      "type": "calls",
-      "direction": "forward",
-      "description": "startAiryWebLayout 呼叫 startContinuousForceLayout。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:fitVisibleNodes:313",
-      "target": "function:app/src/GraphView.tsx:updateLabelVisibility:180",
-      "type": "calls",
-      "direction": "forward",
-      "description": "fitVisibleNodes 呼叫 updateLabelVisibility。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:updateLabelVisibility:180",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 updateLabelVisibility。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:toElements:187",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 toElements。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:startAiryWebLayout:194",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 startAiryWebLayout。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:syncGraphSnapshot:265",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 syncGraphSnapshot。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:placeNewNodes:228",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 placeNewNodes。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/src/GraphView.tsx:GraphView:326",
-      "target": "function:app/src/GraphView.tsx:startContinuousForceLayout:208",
-      "type": "calls",
-      "direction": "forward",
-      "description": "GraphView 呼叫 startContinuousForceLayout。",
-      "weight": 0.8
-    },
-    {
       "source": "file:app/src/Sidebar.tsx",
       "target": "file:app/src/types.ts",
       "type": "imports",
@@ -3561,38 +3527,6 @@
       "type": "calls",
       "direction": "forward",
       "description": "Sidebar 呼叫 nodesOfKind。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:app/src/api.ts",
-      "target": "file:app/src/graph/snapshot.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/api.ts 匯入 app/src/graph/snapshot.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/api.ts",
-      "target": "file:app/src/types.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/api.ts 匯入 app/src/types.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/api.ts",
-      "target": "function:app/src/api.ts:connectGraphStream:18",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/src/api.ts 包含函式 connectGraphStream。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/src/api.ts",
-      "target": "function:app/src/api.ts:connectGraphStream:18",
-      "type": "exports",
-      "direction": "forward",
-      "description": "app/src/api.ts 匯出 connectGraphStream。",
       "weight": 0.8
     },
     {
@@ -3988,30 +3922,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:app/tests/export.test.mjs",
-      "target": "file:app/src/graph/exporters.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/tests/export.test.mjs 匯入 app/src/graph/exporters.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/tests/export.test.mjs",
-      "target": "file:app/src/graph/GraphSessionStore.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/tests/export.test.mjs 匯入 app/src/graph/GraphSessionStore.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/tests/export.test.mjs",
-      "target": "file:app/src/graph/snapshot.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/tests/export.test.mjs 匯入 app/src/graph/snapshot.ts。",
-      "weight": 0.7
-    },
-    {
       "source": "file:app/src/graph/DetailsView.tsx",
       "target": "file:app/src/DetailPanel.tsx",
       "type": "imports",
@@ -4109,14 +4019,6 @@
     },
     {
       "source": "file:app/src/graph/GraphPanelView.tsx",
-      "target": "file:app/src/GraphView.tsx",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/graph/GraphPanelView.tsx 匯入 app/src/GraphView.tsx。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/graph/GraphPanelView.tsx",
       "target": "function:app/src/graph/GraphPanelView.tsx:GraphPanelView:5",
       "type": "contains",
       "direction": "forward",
@@ -4133,26 +4035,10 @@
     },
     {
       "source": "file:app/src/graph/GraphSessionStore.ts",
-      "target": "file:app/src/api.ts",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/graph/GraphSessionStore.ts 匯入 app/src/api.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/graph/GraphSessionStore.ts",
       "target": "file:app/src/graph/snapshot.ts",
       "type": "imports",
       "direction": "forward",
       "description": "app/src/graph/GraphSessionStore.ts 匯入 app/src/graph/snapshot.ts。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:app/src/graph/GraphSessionStore.ts",
-      "target": "file:app/src/GraphView.tsx",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/graph/GraphSessionStore.ts 匯入 app/src/GraphView.tsx。",
       "weight": 0.7
     },
     {
@@ -4290,14 +4176,6 @@
       "direction": "forward",
       "description": "app/src/graph/useGraphSession.ts 匯出 useGraphSession。",
       "weight": 0.8
-    },
-    {
-      "source": "file:app/src/main.tsx",
-      "target": "file:app/src/styles.css",
-      "type": "imports",
-      "direction": "forward",
-      "description": "app/src/main.tsx 匯入 app/src/styles.css。",
-      "weight": 0.7
     },
     {
       "source": "file:app/src/main.tsx",
@@ -4684,230 +4562,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "file:backend/ros2_node_map/graph_model.py",
-      "type": "imports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯入 backend/ros2_node_map/graph_model.py。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "file:backend/ros2_node_map/graph_reader.py",
-      "type": "imports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯入 backend/ros2_node_map/graph_reader.py。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:snapshot_response:143",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含函式 snapshot_response。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:create_app:148",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含函式 create_app。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:run_server:251",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含函式 run_server。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 SnapshotReader。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 RosNodeResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 RosResourceResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 GraphEdgeResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 GraphSnapshotResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 HealthResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 DomainConfigRequest。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 DomainConfigResponse。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 DomainController。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphServer",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 包含類別或型別 GraphServer。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 SnapshotReader。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 RosNodeResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 RosResourceResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 GraphEdgeResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 GraphSnapshotResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 HealthResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 DomainConfigRequest。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 DomainConfigResponse。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 DomainController。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:snapshot_response:143",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 snapshot_response。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:create_app:148",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 create_app。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "class:backend/ros2_node_map/graph_server.py:GraphServer",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 GraphServer。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/ros2_node_map/graph_server.py",
-      "target": "function:backend/ros2_node_map/graph_server.py:run_server:251",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/ros2_node_map/graph_server.py 匯出 run_server。",
-      "weight": 0.8
-    },
-    {
       "source": "file:backend/ros2_node_map/service_reader.py",
       "target": "file:backend/ros2_node_map/graph_model.py",
       "type": "imports",
@@ -5220,166 +4874,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "file:backend/ros2_node_map/graph_model.py",
-      "type": "imports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯入 backend/ros2_node_map/graph_model.py。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "file:backend/ros2_node_map/graph_server.py",
-      "type": "imports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯入 backend/ros2_node_map/graph_server.py。",
-      "weight": 0.7
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_server_validates_configuration:30",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_server_validates_configuration。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot:37",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_http_endpoints_are_documented_and_return_a_snapshot。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema:48",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_snapshot_response_preserves_the_strict_node_schema。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths:66",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart:73",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_domain_api_requests_a_ros_context_restart。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id:91",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_domain_api_validates_custom_domain_id。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins:102",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含函式 test_domain_api_allows_local_vite_origins。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "class:backend/tests/test_graph_server.py:FakeReader",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含類別或型別 FakeReader。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "class:backend/tests/test_graph_server.py:PopulatedReader",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 包含類別或型別 PopulatedReader。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "class:backend/tests/test_graph_server.py:FakeReader",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 FakeReader。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "class:backend/tests/test_graph_server.py:PopulatedReader",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 PopulatedReader。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_server_validates_configuration:30",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_server_validates_configuration。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot:37",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_http_endpoints_are_documented_and_return_a_snapshot。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema:48",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_snapshot_response_preserves_the_strict_node_schema。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths:66",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart:73",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_domain_api_requests_a_ros_context_restart。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id:91",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_domain_api_validates_custom_domain_id。",
-      "weight": 0.8
-    },
-    {
-      "source": "file:backend/tests/test_graph_server.py",
-      "target": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins:102",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_graph_server.py 匯出 test_domain_api_allows_local_vite_origins。",
-      "weight": 0.8
-    },
-    {
       "source": "file:app/src/workbench/PanelRegistry.ts",
       "target": "class:app/src/workbench/PanelRegistry.ts:PanelRegistry",
       "type": "contains",
@@ -5604,286 +5098,6 @@
       "weight": 0.8
     },
     {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:rosSetupPath:26",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 rosSetupPath。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:bundledBackendAvailable:30",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 bundledBackendAvailable。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:inspectRuntime:34",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 inspectRuntime。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:publishRuntimeStatus:45",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 publishRuntimeStatus。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:validDomainId:52",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 validDomainId。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:systemDomainId:56",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 systemDomainId。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:domainSettingsPath:61",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 domainSettingsPath。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:loadDomainSettings:65",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 loadDomainSettings。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:saveDomainSettings:77",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 saveDomainSettings。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:effectiveDomainId:82",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 effectiveDomainId。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:domainConfig:88",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 domainConfig。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:startPackagedBackend:98",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 startPackagedBackend。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:stopPackagedBackend:157",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 stopPackagedBackend。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:restartPackagedBackend:180",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 restartPackagedBackend。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 registerDomainHandlers。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:registerRuntimeHandlers:211",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 registerRuntimeHandlers。",
-      "weight": 1
-    },
-    {
-      "source": "file:app/electron/main.ts",
-      "target": "function:app/electron/main.ts:createWindow:215",
-      "type": "contains",
-      "direction": "forward",
-      "description": "app/electron/main.ts 包含函式 createWindow。",
-      "weight": 1
-    },
-    {
-      "source": "function:app/electron/main.ts:inspectRuntime:34",
-      "target": "function:app/electron/main.ts:rosSetupPath:26",
-      "type": "calls",
-      "direction": "forward",
-      "description": "inspectRuntime 呼叫 rosSetupPath。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:inspectRuntime:34",
-      "target": "function:app/electron/main.ts:bundledBackendAvailable:30",
-      "type": "calls",
-      "direction": "forward",
-      "description": "inspectRuntime 呼叫 bundledBackendAvailable。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:systemDomainId:56",
-      "target": "function:app/electron/main.ts:validDomainId:52",
-      "type": "calls",
-      "direction": "forward",
-      "description": "systemDomainId 呼叫 validDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:loadDomainSettings:65",
-      "target": "function:app/electron/main.ts:domainSettingsPath:61",
-      "type": "calls",
-      "direction": "forward",
-      "description": "loadDomainSettings 呼叫 domainSettingsPath。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:loadDomainSettings:65",
-      "target": "function:app/electron/main.ts:validDomainId:52",
-      "type": "calls",
-      "direction": "forward",
-      "description": "loadDomainSettings 呼叫 validDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:saveDomainSettings:77",
-      "target": "function:app/electron/main.ts:domainSettingsPath:61",
-      "type": "calls",
-      "direction": "forward",
-      "description": "saveDomainSettings 呼叫 domainSettingsPath。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:effectiveDomainId:82",
-      "target": "function:app/electron/main.ts:systemDomainId:56",
-      "type": "calls",
-      "direction": "forward",
-      "description": "effectiveDomainId 呼叫 systemDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:domainConfig:88",
-      "target": "function:app/electron/main.ts:systemDomainId:56",
-      "type": "calls",
-      "direction": "forward",
-      "description": "domainConfig 呼叫 systemDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:domainConfig:88",
-      "target": "function:app/electron/main.ts:effectiveDomainId:82",
-      "type": "calls",
-      "direction": "forward",
-      "description": "domainConfig 呼叫 effectiveDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:startPackagedBackend:98",
-      "target": "function:app/electron/main.ts:rosSetupPath:26",
-      "type": "calls",
-      "direction": "forward",
-      "description": "startPackagedBackend 呼叫 rosSetupPath。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:startPackagedBackend:98",
-      "target": "function:app/electron/main.ts:effectiveDomainId:82",
-      "type": "calls",
-      "direction": "forward",
-      "description": "startPackagedBackend 呼叫 effectiveDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:startPackagedBackend:98",
-      "target": "function:app/electron/main.ts:publishRuntimeStatus:45",
-      "type": "calls",
-      "direction": "forward",
-      "description": "startPackagedBackend 呼叫 publishRuntimeStatus。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:restartPackagedBackend:180",
-      "target": "function:app/electron/main.ts:stopPackagedBackend:157",
-      "type": "calls",
-      "direction": "forward",
-      "description": "restartPackagedBackend 呼叫 stopPackagedBackend。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:restartPackagedBackend:180",
-      "target": "function:app/electron/main.ts:startPackagedBackend:98",
-      "type": "calls",
-      "direction": "forward",
-      "description": "restartPackagedBackend 呼叫 startPackagedBackend。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "target": "function:app/electron/main.ts:domainConfig:88",
-      "type": "calls",
-      "direction": "forward",
-      "description": "registerDomainHandlers 呼叫 domainConfig。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "target": "function:app/electron/main.ts:validDomainId:52",
-      "type": "calls",
-      "direction": "forward",
-      "description": "registerDomainHandlers 呼叫 validDomainId。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "target": "function:app/electron/main.ts:saveDomainSettings:77",
-      "type": "calls",
-      "direction": "forward",
-      "description": "registerDomainHandlers 呼叫 saveDomainSettings。",
-      "weight": 0.8
-    },
-    {
-      "source": "function:app/electron/main.ts:registerDomainHandlers:185",
-      "target": "function:app/electron/main.ts:restartPackagedBackend:180",
-      "type": "calls",
-      "direction": "forward",
-      "description": "registerDomainHandlers 呼叫 restartPackagedBackend。",
-      "weight": 0.8
-    },
-    {
       "source": "file:app/scripts/package-backend.mjs",
       "target": "function:app/scripts/package-backend.mjs:run:12",
       "type": "contains",
@@ -5940,123 +5154,934 @@
       "weight": 0.8
     },
     {
-      "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:build_parser:13",
+      "source": "file:app/src/GraphView.tsx",
+      "target": "file:app/src/api.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "file:app/src/DomainControl.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "file:app/src/graph/downloads.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "file:app/src/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "file:app/src/graph/snapshot.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "file:app/src/types.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/tests/export.test.mjs",
+      "target": "file:app/src/graph/exporters.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/tests/export.test.mjs",
+      "target": "file:app/src/graph/GraphSessionStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/tests/export.test.mjs",
+      "target": "file:app/src/graph/snapshot.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:startAiryWebLayout",
       "type": "contains",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 包含函式 build_parser。",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:startContinuousForceLayout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:placeNewNodes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:syncGraphSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:fitVisibleNodes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:GraphView",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "function:app/src/api.ts:backendUrlForPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "function:app/src/api.ts:connectGraphStream",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/src/GraphView.tsx",
+      "target": "function:app/src/GraphView.tsx:GraphView",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "function:app/src/api.ts:backendUrlForPage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "function:app/src/api.ts:connectGraphStream",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/api.ts",
+      "target": "file:app/tests/export.test.mjs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/graph/exporters.ts",
+      "target": "file:app/tests/export.test.mjs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/graph/GraphSessionStore.ts",
+      "target": "file:app/tests/export.test.mjs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/src/graph/snapshot.ts",
+      "target": "file:app/tests/export.test.mjs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "file:backend/ros2_node_map/graph_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "file:backend/ros2_node_map/graph_reader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "file:backend/ros2_node_map/graph_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "file:backend/ros2_node_map/graph_server.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:snapshot_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:run_server",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "class:backend/tests/test_graph_server.py:FakeReader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "class:backend/tests/test_graph_server.py:PopulatedReader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_validates_configuration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_uses_the_package_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_serves_a_packaged_frontend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_rejects_a_frontend_directory_without_an_index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:SnapshotReader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:RosNodeResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:RosResourceResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphEdgeResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphSnapshotResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:HealthResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainConfigResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:snapshot_response",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphServer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "function:backend/ros2_node_map/graph_server.py:run_server",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "class:backend/tests/test_graph_server.py:FakeReader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "class:backend/tests/test_graph_server.py:PopulatedReader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_validates_configuration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_uses_the_package_version",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_serves_a_packaged_frontend",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_server_rejects_a_frontend_directory_without_an_index",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_graph_server.py",
+      "target": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/ros2_node_map/graph_server.py:run_server",
+      "target": "class:backend/ros2_node_map/graph_reader.py:GraphReader",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_server_validates_configuration",
+      "target": "class:backend/ros2_node_map/graph_server.py:GraphServer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_server_uses_the_package_version",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_server_serves_a_packaged_frontend",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_server_rejects_a_frontend_directory_without_an_index",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_http_endpoints_are_documented_and_return_a_snapshot",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_snapshot_response_preserves_the_strict_node_schema",
+      "target": "function:backend/ros2_node_map/graph_server.py:snapshot_response",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_websocket_sends_a_snapshot_on_the_canonical_and_legacy_paths",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_requests_a_ros_context_restart",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_validates_custom_domain_id",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins",
+      "target": "class:backend/ros2_node_map/graph_server.py:DomainController",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_graph_server.py:test_domain_api_allows_local_vite_origins",
+      "target": "function:backend/ros2_node_map/graph_server.py:create_app",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/graph_server.py",
+      "target": "file:backend/tests/test_graph_server.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/roadmap.md",
+      "target": "document:docs/architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/testing.md",
+      "target": "document:docs/architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:inspectRuntime",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:loadDomainSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:bundledBackendEnvironment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:bundledBackendCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:startPackagedBackend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:runBundledBackend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:stopPackagedBackend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:registerDomainHandlers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:createWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:headlessUrls",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:waitForHeadlessServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:nextCapturePath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:writeCapture",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:runHeadlessMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:runCaptureMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:app/electron/main.ts",
+      "target": "function:app/electron/main.ts:runCliMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/__init__.py",
+      "target": "function:backend/ros2_node_map/__init__.py:_resolve_version",
+      "type": "contains",
+      "direction": "forward",
       "weight": 1
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_ros_node:45",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
       "type": "contains",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 包含函式 _ros_node。",
       "weight": 1
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_snapshot:61",
+      "target": "function:backend/ros2_node_map/main.py:_ros_node",
       "type": "contains",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 包含函式 _snapshot。",
       "weight": 1
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_serve:69",
+      "target": "function:backend/ros2_node_map/main.py:_snapshot",
       "type": "contains",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 包含函式 _serve。",
       "weight": 1
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:main:93",
+      "target": "function:backend/ros2_node_map/main.py:_serve",
       "type": "contains",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 包含函式 main。",
       "weight": 1
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:build_parser:13",
+      "target": "function:backend/ros2_node_map/main.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_snapshot_cli_defaults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_cli_requires_a_command",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_cli_reports_the_package_version",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_serve_cli_defaults",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_serve_cli_accepts_a_frontend_directory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/ros2_node_map/__init__.py",
+      "target": "function:backend/ros2_node_map/__init__.py:_resolve_version",
       "type": "exports",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 匯出 build_parser。",
       "weight": 0.8
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_ros_node:45",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
       "type": "exports",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 匯出 _ros_node。",
       "weight": 0.8
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_snapshot:61",
+      "target": "function:backend/ros2_node_map/main.py:_ros_node",
       "type": "exports",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 匯出 _snapshot。",
       "weight": 0.8
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:_serve:69",
+      "target": "function:backend/ros2_node_map/main.py:_snapshot",
       "type": "exports",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 匯出 _serve。",
       "weight": 0.8
     },
     {
       "source": "file:backend/ros2_node_map/main.py",
-      "target": "function:backend/ros2_node_map/main.py:main:93",
+      "target": "function:backend/ros2_node_map/main.py:_serve",
       "type": "exports",
       "direction": "forward",
-      "description": "backend/ros2_node_map/main.py 匯出 main。",
       "weight": 0.8
     },
     {
-      "source": "function:backend/ros2_node_map/main.py:_snapshot:61",
-      "target": "function:backend/ros2_node_map/main.py:_ros_node:45",
-      "type": "calls",
+      "source": "file:backend/ros2_node_map/main.py",
+      "target": "function:backend/ros2_node_map/main.py:main",
+      "type": "exports",
       "direction": "forward",
-      "description": "_snapshot 呼叫 _ros_node。",
       "weight": 0.8
     },
     {
-      "source": "function:backend/ros2_node_map/main.py:_serve:69",
-      "target": "function:backend/ros2_node_map/main.py:_ros_node:45",
-      "type": "calls",
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_snapshot_cli_defaults",
+      "type": "exports",
       "direction": "forward",
-      "description": "_serve 呼叫 _ros_node。",
       "weight": 0.8
     },
     {
-      "source": "function:backend/ros2_node_map/main.py:main:93",
-      "target": "function:backend/ros2_node_map/main.py:build_parser:13",
-      "type": "calls",
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_cli_requires_a_command",
+      "type": "exports",
       "direction": "forward",
-      "description": "main 呼叫 build_parser。",
       "weight": 0.8
     },
     {
-      "source": "function:backend/ros2_node_map/main.py:main:93",
-      "target": "function:backend/ros2_node_map/main.py:_snapshot:61",
-      "type": "calls",
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_cli_reports_the_package_version",
+      "type": "exports",
       "direction": "forward",
-      "description": "main 呼叫 _snapshot。",
       "weight": 0.8
     },
     {
-      "source": "function:backend/ros2_node_map/main.py:main:93",
-      "target": "function:backend/ros2_node_map/main.py:_serve:69",
-      "type": "calls",
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_serve_cli_defaults",
+      "type": "exports",
       "direction": "forward",
-      "description": "main 呼叫 _serve。",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_main.py",
+      "target": "function:backend/tests/test_main.py:test_serve_cli_accepts_a_frontend_directory",
+      "type": "exports",
+      "direction": "forward",
       "weight": 0.8
     },
     {
@@ -6064,56 +6089,118 @@
       "target": "file:backend/ros2_node_map/main.py",
       "type": "imports",
       "direction": "forward",
-      "description": "backend/tests/test_main.py 匯入 backend/ros2_node_map/main.py。",
       "weight": 0.7
     },
     {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_snapshot_cli_defaults:6",
-      "type": "contains",
+      "source": "function:backend/tests/test_main.py:test_snapshot_cli_defaults",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "calls",
       "direction": "forward",
-      "description": "backend/tests/test_main.py 包含函式 test_snapshot_cli_defaults。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_cli_requires_a_command:13",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_main.py 包含函式 test_cli_requires_a_command。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_serve_cli_defaults:18",
-      "type": "contains",
-      "direction": "forward",
-      "description": "backend/tests/test_main.py 包含函式 test_serve_cli_defaults。",
-      "weight": 1
-    },
-    {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_snapshot_cli_defaults:6",
-      "type": "exports",
-      "direction": "forward",
-      "description": "backend/tests/test_main.py 匯出 test_snapshot_cli_defaults。",
       "weight": 0.8
     },
     {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_cli_requires_a_command:13",
-      "type": "exports",
+      "source": "function:backend/tests/test_main.py:test_cli_requires_a_command",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "calls",
       "direction": "forward",
-      "description": "backend/tests/test_main.py 匯出 test_cli_requires_a_command。",
       "weight": 0.8
     },
     {
-      "source": "file:backend/tests/test_main.py",
-      "target": "function:backend/tests/test_main.py:test_serve_cli_defaults:18",
-      "type": "exports",
+      "source": "function:backend/tests/test_main.py:test_cli_reports_the_package_version",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "calls",
       "direction": "forward",
-      "description": "backend/tests/test_main.py 匯出 test_serve_cli_defaults。",
       "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_main.py:test_serve_cli_defaults",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/test_main.py:test_serve_cli_accepts_a_frontend_directory",
+      "target": "function:backend/ros2_node_map/main.py:build_parser",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/ros2_node_map/main.py",
+      "target": "file:backend/tests/test_main.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:backend/pyproject.toml",
+      "target": "file:backend/ros2_node_map/main.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:backend/pyproject.toml",
+      "target": "file:backend/tests/test_main.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:app/src/styles.css",
+      "target": "file:app/src/main.tsx",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "function:app/src/api.ts:connectGraphStream",
+      "target": "function:app/src/graph/snapshot.ts:parseGraphSnapshot:125",
+      "type": "calls",
+      "direction": "forward",
+      "description": "connectGraphStream 呼叫 parseGraphSnapshot 解析 WebSocket 收到的 graph snapshot。",
+      "weight": 0.8
+    },
+    {
+      "source": "file:app/src/DomainControl.tsx",
+      "target": "file:app/src/api.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:app/src/graph/GraphPanelView.tsx",
+      "target": "file:app/src/GraphView.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:app/src/graph/GraphSessionStore.ts",
+      "target": "file:app/src/api.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:app/src/graph/GraphSessionStore.ts",
+      "target": "file:app/src/GraphView.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:app/src/main.tsx",
+      "target": "file:app/src/styles.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
     }
   ],
   "layers": [
@@ -6225,72 +6312,122 @@
   "tour": [
     {
       "order": 1,
-      "title": "專案目標與規格",
-      "description": "先閱讀 README、SPEC 與 PLAN，了解 ros2-node-map 的產品目標、資料 schema、File mode 與開發里程碑。",
+      "title": "專案全貌",
+      "description": "先從 README 掌握 ros2-node-map 要解決的 ROS 2 topology 閱讀問題，以及 Live、File-only、headless 與 capture 等使用模式。接著用架構文件建立整體心智模型：Python backend 負責 discovery 與資料服務，Electron／React 則負責執行環境與互動式視覺化。",
       "nodeIds": [
         "document:README.md",
-        "document:SPEC.md",
-        "document:PLAN.md",
-        "document:AGENTS.md"
+        "document:docs/architecture.md"
       ]
     },
     {
       "order": 2,
-      "title": "前端啟動與 Graph View",
-      "description": "從 main.tsx 和 Workbench bootstrap 進入，追蹤 Graph View、Explorer、Details 與面板配置如何組合。",
+      "title": "Electron 多模式入口",
+      "description": "延續上一站的架構分工，Electron main process 是桌面與 CLI runtime 的總控入口，會偵測 ROS 2、管理內嵌 backend，並分流 GUI、headless、capture 與 AppImage 操作。preload 則在 renderer 與 Electron 能力之間建立受控橋接，讓前端不必直接接觸 Node.js runtime。",
       "nodeIds": [
-        "file:app/src/main.tsx",
-        "file:app/src/workbench/bootstrap.ts",
-        "file:app/src/GraphView.tsx",
-        "file:app/src/graph/GraphPanelView.tsx"
-      ]
+        "file:app/electron/main.ts",
+        "file:app/electron/preload.ts"
+      ],
+      "languageLesson": "Electron 採用 main／renderer 雙程序模型；preload 搭配 context isolation 可只暴露必要 IPC API，降低 renderer 直接取得系統權限的風險。"
     },
     {
       "order": 3,
-      "title": "Snapshot、篩選與匯出",
-      "description": "查看 GraphSessionStore 如何保存完整 snapshot、套用前端篩選，並由 exporters 產生 JSON 與 Mermaid Markdown。",
+      "title": "Backend 服務入口",
+      "description": "Electron 決定執行模式後，Python CLI 入口負責啟動 snapshot 或 serve 流程，並管理 rclpy node 的生命週期。graph server 再以 FastAPI、HTTP 與 WebSocket 提供 topology snapshot、ROS domain 切換和 production frontend，形成 GUI 與 headless 共用的服務邊界。",
       "nodeIds": [
-        "file:app/src/graph/GraphSessionStore.ts",
-        "file:app/src/graph/snapshot.ts",
-        "file:app/src/graph/exporters.ts",
-        "file:app/src/graph/downloads.ts",
-        "file:app/src/Sidebar.tsx"
-      ]
+        "file:backend/ros2_node_map/main.py",
+        "file:backend/ros2_node_map/graph_server.py"
+      ],
+      "languageLesson": "Python CLI 將參數解析與實際服務生命週期分開，可讓相同 backend 核心同時服務一次性 snapshot 與長時間運行的 WebSocket server。"
     },
     {
       "order": 4,
-      "title": "ROS 2 Backend graph pipeline",
-      "description": "從 CLI 與 server 進入 backend，理解 graph model、reader、service/action discovery 及 WebSocket snapshot 傳輸。",
+      "title": "ROS Graph 建模",
+      "description": "在服務入口之下，graph reader 掃描 ROS 2 nodes、topics 與關係，service reader 和 action reader 補齊 RPC 與長任務語意。graph model 是這條資料管線的共同契約，也是 backend 中 fan-in 最高的核心檔案，將 discovery 結果整理為前後端都能理解的穩定 snapshot。",
       "nodeIds": [
-        "file:backend/ros2_node_map/main.py",
         "file:backend/ros2_node_map/graph_model.py",
         "file:backend/ros2_node_map/graph_reader.py",
-        "file:backend/ros2_node_map/graph_server.py",
-        "file:backend/ros2_node_map/action_reader.py",
-        "file:backend/ros2_node_map/service_reader.py"
-      ]
+        "file:backend/ros2_node_map/service_reader.py",
+        "file:backend/ros2_node_map/action_reader.py"
+      ],
+      "languageLesson": "Python dataclass 適合表達具固定欄位的 graph entity；把 ROS discovery 與序列化 model 分離，可降低 middleware 細節滲入 API contract。"
     },
     {
       "order": 5,
-      "title": "Electron 與 ROS runtime 整合",
-      "description": "了解 Electron main/preload 如何檢查 ROS 2 Jazzy、啟動 backend、切換 domain，以及在不可用時進入 File-only mode。",
+      "title": "Snapshot 資料契約",
+      "description": "前一站產生的 snapshot 必須符合明確且可攜的資料契約，才能在 Live stream、capture 與 File-only Mode 之間安全交換。schema 文件解釋欄位語意，JSON Schema 則提供機器可驗證的結構，讓不同 runtime 仍能共享同一份 topology。",
       "nodeIds": [
-        "file:app/electron/main.ts",
-        "file:app/electron/preload.ts",
-        "file:app/scripts/package-backend.mjs"
-      ]
+        "document:docs/graph-json-schema.md",
+        "config:docs/graph.schema.json"
+      ],
+      "languageLesson": "JSON Schema 把必要欄位、型別與允許值寫成可驗證規則；版本化 schema 能讓匯入端在資料不相容時明確拒絕，而不是產生難以追查的畫面錯誤。"
     },
     {
       "order": 6,
-      "title": "測試與資料契約",
-      "description": "最後閱讀 graph schema 與測試，確認 snapshot validation、export round-trip、backend response 與 CLI 行為。",
+      "title": "React 與 Workbench 啟動",
+      "description": "有了資料契約後，React entry point 掛載前端，而 Workbench bootstrap 註冊並組合可停駐的 graph、explorer、toolbar 與 detail panels。WorkbenchShell 和 PanelRegistry 分別管理版面生命週期與 panel factory，使介面功能能以模組化方式加入，而不必集中在單一元件。",
       "nodeIds": [
-        "config:docs/graph.schema.json",
-        "file:backend/tests/test_graph_model.py",
-        "file:backend/tests/test_graph_reader.py",
+        "file:app/src/main.tsx",
+        "file:app/src/workbench/bootstrap.ts",
+        "file:app/src/workbench/WorkbenchShell.ts",
+        "file:app/src/workbench/PanelRegistry.ts"
+      ],
+      "languageLesson": "React 負責 panel 內容，Workbench abstraction 負責配置與生命週期；這種 composition 能將 UI rendering 與桌面式 layout 管理分離。"
+    },
+    {
+      "order": 7,
+      "title": "Graph Session 狀態",
+      "description": "Workbench 建立後，GraphSessionStore 成為前端 topology、連線狀態、篩選與選取行為的集中協調點，useGraphSession 再把 store 轉成 React 可訂閱的介面。共用 types 定義前端資料詞彙，api 與 snapshot 模組則分別處理 WebSocket 即時輸入及檔案資料驗證，讓 Live 與 File mode 能匯入同一套 session。",
+      "nodeIds": [
+        "file:app/src/graph/GraphSessionStore.ts",
+        "file:app/src/graph/useGraphSession.ts",
+        "file:app/src/types.ts",
+        "file:app/src/api.ts",
+        "file:app/src/graph/snapshot.ts"
+      ],
+      "languageLesson": "外部 store 搭配 React subscription hook 可讓狀態生命週期獨立於元件樹；TypeScript 型別則在 WebSocket、檔案匯入與 UI 之間提供一致的靜態契約。"
+    },
+    {
+      "order": 8,
+      "title": "互動式 Graph View",
+      "description": "Graph session 準備好後，GraphView 使用 Cytoscape 呈現 ROS entity 與有方向的關係，並負責增量同步、佈局、縮放、聚焦及匯出控制。Sidebar、DetailPanel 與 DomainControl 將探索、關係檢視和 ROS_DOMAIN_ID 操作拆成獨立互動面板，讓大型 topology 可以逐步縮小問題範圍。",
+      "nodeIds": [
+        "file:app/src/GraphView.tsx",
+        "file:app/src/Sidebar.tsx",
+        "file:app/src/DetailPanel.tsx",
+        "file:app/src/DomainControl.tsx"
+      ],
+      "languageLesson": "React 元件管理控制狀態，而 Cytoscape 管理高頻 graph rendering；將兩者透過明確同步邊界連接，可避免每次 React render 都重建整張圖。"
+    },
+    {
+      "order": 9,
+      "title": "匯入與匯出",
+      "description": "建立互動視圖後，exporters 將 topology 轉為 JSON 與 Mermaid，downloads 則負責把結果交付給使用者。這套流程與 snapshot 驗證共同支撐 capture 分享和 File-only round trip，使 robot 上擷取的 graph 能移到沒有 ROS 2 的電腦繼續分析。",
+      "nodeIds": [
+        "file:app/src/graph/exporters.ts",
+        "file:app/src/graph/downloads.ts",
+        "file:app/src/graph/snapshot.ts"
+      ]
+    },
+    {
+      "order": 10,
+      "title": "跨 Runtime 封裝",
+      "description": "功能完成後，兩份 package manifest 分別描述 Electron／React 與 Python backend 的依賴、命令和版本。package-backend 腳本把 Python runtime 納入桌面發行物，而 Electron package 設定再產生 AppImage 或 Windows portable，使前面介紹的多模式入口能在目標平台直接運行。",
+      "nodeIds": [
+        "config:app/package.json",
+        "config:backend/pyproject.toml",
+        "file:app/scripts/package-backend.mjs"
+      ],
+      "languageLesson": "跨語言桌面封裝的關鍵是固定 runtime 邊界與版本來源：JavaScript package 管桌面產物，Python manifest 管 backend 契約，封裝腳本只負責把兩者組合成可部署單位。"
+    },
+    {
+      "order": 11,
+      "title": "分層驗證策略",
+      "description": "最後以測試文件串起整個架構的驗收層次，從 backend model、server 與 CLI 到 frontend snapshot、同源 WebSocket 和匯出 round trip。graph server 與 export 測試覆蓋兩條最重要的跨層路徑，確保服務契約、File mode 與 headless 使用情境在發行前維持一致。",
+      "nodeIds": [
+        "document:docs/testing.md",
         "file:backend/tests/test_graph_server.py",
-        "file:app/tests/export.test.mjs",
-        "document:docs/testing.md"
+        "file:backend/tests/test_main.py",
+        "file:app/tests/export.test.mjs"
       ]
     }
   ]

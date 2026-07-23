@@ -48,6 +48,11 @@ context-isolated preload bridge. If live discovery is unavailable or the
 packaged backend exits unexpectedly, the renderer enters File-only Mode while
 JSON import and all graph exports remain available.
 
+Windows releases are portable File-only applications. They do not package or
+start the Python/ROS backend. Linux releases enable live mode only when both the
+ROS 2 setup file and bundled backend are available; otherwise they use the same
+File-only capability path.
+
 This boundary allows the backend to run on a robot while the UI runs on a
 developer workstation. The initial transport will be a periodically refreshed
 WebSocket snapshot rather than incremental graph events.

@@ -22,6 +22,7 @@ import {
   installMessage,
   uninstallCurrentAppImage,
 } from "./cli.js";
+import { runtimeStatusFor, type RuntimeStatus } from "./runtime.js";
 
 const currentDirectory = dirname(fileURLToPath(import.meta.url));
 let backendProcess: ChildProcess | undefined;
@@ -29,12 +30,6 @@ let quitting = false;
 let headlessModeActive = false;
 type DomainMode = "system" | "custom";
 interface DomainSettings { mode: DomainMode; customDomainId?: string; }
-interface RuntimeStatus {
-  rosAvailable: boolean;
-  backendAvailable: boolean;
-  liveAvailable: boolean;
-  reason?: string;
-}
 let domainSettings: DomainSettings = { mode: "system" };
 let runtimeStatus: RuntimeStatus = {
   rosAvailable: false,
@@ -58,14 +53,22 @@ function bundledFrontendDirectory(): string {
 }
 
 function inspectRuntime(): RuntimeStatus {
+  if (process.platform !== "linux") {
+    return runtimeStatusFor({
+      platform: process.platform,
+      rosAvailable: false,
+      backendAvailable: false,
+      rosSetupPath: rosSetupPath(),
+    });
+  }
   const rosAvailable = existsSync(rosSetupPath());
   const backendAvailable = bundledBackendAvailable();
-  const reason = !rosAvailable
-    ? `ROS 2 was not found at ${rosSetupPath()}.`
-    : !backendAvailable
-      ? "The bundled ros2-node-map backend is missing."
-      : undefined;
-  return { rosAvailable, backendAvailable, liveAvailable: rosAvailable && backendAvailable, reason };
+  return runtimeStatusFor({
+    platform: process.platform,
+    rosAvailable,
+    backendAvailable,
+    rosSetupPath: rosSetupPath(),
+  });
 }
 
 function publishRuntimeStatus(status: RuntimeStatus): void {

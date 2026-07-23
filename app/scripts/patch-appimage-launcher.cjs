@@ -1,4 +1,4 @@
-const { chmod, mkdtemp, rename, rm, writeFile } = require("node:fs/promises");
+const { chmod, mkdtemp, readFile, rename, rm, writeFile } = require("node:fs/promises");
 const { createReadStream, createWriteStream } = require("node:fs");
 const { tmpdir } = require("node:os");
 const { join } = require("node:path");
@@ -16,17 +16,33 @@ function run(command, arguments_, options = {}) {
   });
 }
 
-function runOutput(command, arguments_) {
-  return new Promise((resolve, reject) => {
-    let output = "";
-    const child = spawn(command, arguments_, { stdio: ["ignore", "pipe", "inherit"] });
-    child.stdout.on("data", (chunk) => { output += chunk; });
-    child.once("error", reject);
-    child.once("exit", (code) => {
-      if (code === 0) resolve(output.trim());
-      else reject(new Error(`${command} exited with status ${code ?? "unknown"}.`));
-    });
-  });
+function findSquashfsOffset(image) {
+  const magic = Buffer.from("hsqs");
+  let offset = -1;
+  while ((offset = image.indexOf(magic, offset + 1)) !== -1) {
+    if (offset + 96 > image.length) continue;
+
+    const blockSize = image.readUInt32LE(offset + 12);
+    const compression = image.readUInt16LE(offset + 20);
+    const blockLog = image.readUInt16LE(offset + 22);
+    const majorVersion = image.readUInt16LE(offset + 28);
+    const minorVersion = image.readUInt16LE(offset + 30);
+    const bytesUsed = image.readBigUInt64LE(offset + 40);
+    const remainingBytes = BigInt(image.length - offset);
+
+    const validBlockSize = blockSize >= 4096
+      && blockSize <= 1_048_576
+      && (blockSize & (blockSize - 1)) === 0
+      && blockLog === Math.log2(blockSize);
+    const validCompression = compression >= 1 && compression <= 6;
+    const validVersion = majorVersion === 4 && minorVersion === 0;
+    const validSize = bytesUsed >= 96n && bytesUsed <= remainingBytes;
+
+    if (validBlockSize && validCompression && validVersion && validSize) {
+      return offset;
+    }
+  }
+  throw new Error("Could not find a valid SquashFS filesystem in the AppImage.");
 }
 
 function launcher() {
@@ -90,6 +106,14 @@ if (( \${#app_arguments[@]} > 1 )); then
   export NODE_MAP_CLI_MODE=invalid
 elif (( \${#app_arguments[@]} == 1 )); then
   export NODE_MAP_CLI_MODE="\${app_arguments[0]}"
+  if [[ "\${app_arguments[0]}" == headless || "\${app_arguments[0]}" == capture ]]; then
+    electron_arguments=(
+      --headless
+      --disable-gpu
+      --disable-software-rasterizer
+      "\${electron_arguments[@]}"
+    )
+  fi
 fi
 
 if [[ -n "$headless_port" ]]; then
@@ -110,11 +134,16 @@ async function patchAppImage(artifactPath) {
   const payloadPath = join(temporaryDirectory, "payload.squashfs");
   const replacementPath = join(temporaryDirectory, "replacement.AppImage");
   try {
-    const runtimeOffset = await runOutput(artifactPath, ["--appimage-offset"]);
-    if (!/^\d+$/.test(runtimeOffset)) {
-      throw new Error(`Could not determine the AppImage runtime offset for ${artifactPath}.`);
-    }
-    await run(artifactPath, ["--appimage-extract"], { cwd: temporaryDirectory, stdio: "ignore" });
+    const runtimeOffset = findSquashfsOffset(await readFile(artifactPath));
+    await run("unsquashfs", [
+      "-quiet",
+      "-no-progress",
+      "-offset",
+      String(runtimeOffset),
+      "-dest",
+      rootDirectory,
+      artifactPath,
+    ], { stdio: "ignore" });
     await writeFile(join(rootDirectory, "AppRun"), launcher(), { mode: 0o755 });
     await chmod(join(rootDirectory, "AppRun"), 0o755);
     await run("mksquashfs", [rootDirectory, payloadPath, "-noappend", "-comp", "gzip", "-quiet"]);
@@ -138,3 +167,5 @@ module.exports = async function patchAppImageLauncher(context) {
     await patchAppImage(artifactPath);
   }
 };
+module.exports.findSquashfsOffset = findSquashfsOffset;
+module.exports.launcher = launcher;

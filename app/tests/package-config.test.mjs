@@ -13,6 +13,18 @@ test("Linux release names include version, OS, and CPU architecture", () => {
   );
 });
 
+test("Windows releases are portable file-only applications without the ROS backend", () => {
+  assert.deepEqual(packageJson.build.win.target, ["portable"]);
+  assert.equal(
+    packageJson.build.win.artifactName,
+    "${productName}-v${version}-${os}-${arch}.${ext}",
+  );
+  assert.equal(packageJson.scripts["dist:win"], "npm run build && electron-builder --win portable");
+  assert.equal(packageJson.build.portable.useZip, true);
+  assert.equal(packageJson.build.extraResources, undefined);
+  assert.equal(packageJson.build.linux.extraResources.length, 2);
+});
+
 test("production frontend assets are unpacked for the headless backend", () => {
   assert.deepEqual(packageJson.build.asarUnpack, ["dist/**"]);
 });
