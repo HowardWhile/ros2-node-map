@@ -71,6 +71,7 @@ Windows build details.
 - [Getting started](docs/getting-started.md) — install, launch, File-only Mode, and snapshot workflow
 - [Architecture](docs/architecture.md) — backend/frontend boundary, HTTP API, WebSocket, and runtime capability
 - [Development and packaging](docs/development.md) — local setup, backend CLI, tests, and release builds
+- [Local AppImage builds](docs/appimage-build.md) — build Linux x86-64 and ARM64 packages with Docker Buildx
 - [Graph JSON schema](docs/graph-json-schema.md) — stable snapshot contract
 - [Testing](docs/testing.md) — automated and manual verification
 - [Changelog](CHANGELOG.md) · [Roadmap](docs/roadmap.md)

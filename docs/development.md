@@ -68,13 +68,15 @@ npm run build
 
 ## Release builds
 
-Build the Linux AppImage on Ubuntu 24.04 / Python 3.12:
+Build both Linux x86-64 and ARM64 AppImages locally with Docker Buildx:
 
 ```bash
-cd app
-npm install
-npm run dist
+./scripts/build-appimages.sh
 ```
+
+To build only one architecture, pass `--arch x86_64` or `--arch arm64`.
+See [Building Linux AppImages locally](appimage-build.md) for prerequisites,
+output filenames, versioning, and troubleshooting.
 
 Build the Windows portable File-only EXE:
 
@@ -91,6 +93,7 @@ launch-time extraction work.
 ## More technical references
 
 - [Architecture](architecture.md) — HTTP endpoints, WebSocket stream, and runtime boundary
+- [Building Linux AppImages locally](appimage-build.md) — local x86-64 and ARM64 release packaging
 - [Graph JSON schema](graph-json-schema.md) — transport contract
 - [Testing](testing.md) — manual and automated verification
 
