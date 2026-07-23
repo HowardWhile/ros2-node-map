@@ -18,6 +18,8 @@ Large ROS 2 systems are difficult to inspect when every publisher, subscriber,
 service, and action becomes one dense graph. `ros2-node-map` gives the topology
 its own interactive workspace:
 
+![ros2-node-map explorer, graph view, and item details](./pic/README/image-20260723184721026.jpg)
+
 - Explore **nodes, topics, services, and actions** as separate graph entities.
 - Search, filter namespaces and resource kinds, select items, and inspect their relationships.
 - Use live discovery on a Linux host with ROS 2 Jazzy, or open a portable graph JSON snapshot without ROS.

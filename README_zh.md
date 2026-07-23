@@ -17,6 +17,8 @@
 大型 ROS 2 系統同時包含 publisher、subscriber、service 與 action；若全部擠在
 一張圖上，很難快速判斷系統拓樸。`ros2-node-map` 提供可探索的工作區：
 
+![image-20260723184721026](./pic/README/image-20260723184721026.jpg)
+
 - 將 **node、topic、service 與 action** 分別呈現在 graph 中。
 - 可搜尋、依 namespace 與類型篩選、選取項目並查看關聯。
 - 在有 ROS 2 Jazzy 的 Linux 主機進行即時 discovery；沒有 ROS 時也可直接開啟 graph JSON snapshot。
