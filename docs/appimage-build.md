@@ -93,6 +93,26 @@ The host does not need ROS 2 to build the packages. At runtime, live graph
 discovery still requires ROS 2 Jazzy on the target system; without ROS, the same
 AppImage starts in File-only Mode.
 
+## Running without a display
+
+Capture and headless modes can run from an SSH session without an X server:
+
+```bash
+./ros2-node-map-v0.3.0-linux-arm64.AppImage -c
+./ros2-node-map-v0.3.0-linux-arm64.AppImage --headless
+```
+
+For these non-GUI modes, the AppImage launcher automatically passes Electron's
+`--headless`, `--disable-gpu`, and `--disable-software-rasterizer` switches.
+Do not add them manually. Normal GUI startup is unchanged.
+
+After changing the launcher, rebuild the AppImage before copying it to the
+target machine:
+
+```bash
+./scripts/build-appimages.sh --arch arm64
+```
+
 ## Updating the release version
 
 Keep frontend and backend versions synchronized with the existing version tool:

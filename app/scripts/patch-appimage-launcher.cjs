@@ -106,6 +106,14 @@ if (( \${#app_arguments[@]} > 1 )); then
   export NODE_MAP_CLI_MODE=invalid
 elif (( \${#app_arguments[@]} == 1 )); then
   export NODE_MAP_CLI_MODE="\${app_arguments[0]}"
+  if [[ "\${app_arguments[0]}" == headless || "\${app_arguments[0]}" == capture ]]; then
+    electron_arguments=(
+      --headless
+      --disable-gpu
+      --disable-software-rasterizer
+      "\${electron_arguments[@]}"
+    )
+  fi
 fi
 
 if [[ -n "$headless_port" ]]; then
@@ -160,3 +168,4 @@ module.exports = async function patchAppImageLauncher(context) {
   }
 };
 module.exports.findSquashfsOffset = findSquashfsOffset;
+module.exports.launcher = launcher;
